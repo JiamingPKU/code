@@ -23,7 +23,7 @@ lm1$coefficients
 
 ##Checking the adequacy of the model
 ###Check for linearity
-standresid=rstandard(lm1) 
+standresid=rstandard(lm1)
 #par(mfrow=c(2,2))
 par(mfrow=c(2,2))
 plot(standresid~Working_month, data=Example1, main="check for the linearity")

@@ -27,12 +27,12 @@ standresid=rstandard(lm1)
 #par(mfrow=c(2,2))
 par(mfrow=c(2,2))
 plot(standresid~Working_month, data=Example1, main="check for the linearity")
-
+#it seems that the resid is a 
 ##Refit the model
 Working_month2=Example1$Working_month^2
 lm2=lm(TV_sales~Working_month+Working_month2,data=Example1)
 summary(lm2)
-anova(lm1,lm2)
+anova(lm1,lm2) #2 models are different
 
 ##Checking the adequacy of the new model
 standresid=rstandard(lm2)
@@ -40,7 +40,7 @@ standresid=rstandard(lm2)
 plot(standresid~lm2$fitted, data=Example1, main="New Model:Constant Error Variance")
 ###install.packages("car")
 library(car)
-ncvTest(lm2)
+ncvTest(lm2) #Breusch-Pagan test
 
 
 ###Check for linearity
@@ -54,14 +54,15 @@ index=seq(1:n)
 plot(standresid~index, main="Check for Independence of Errors")
 ###install.packages("TSA")
 library(TSA)
-durbinWatsonTest(lm2)
+library(car)
+durbinWatsonTest(lm2) #p-value is generate by a random series, so it may change every time
 library(lmtest)
 dwtest(lm2)
 ###Check for normality
 qqPlot(lm2,main="QQ Plot")
 
 ###Check for Influential Observations
-dfbetas=dfbetas(lm2)
+dfbetas=dfbetas(lm2) 
 dffits=dffits(lm2)
 cooks=cooks.distance(lm2)
 cbind(dfbetas,dffits,cooks)

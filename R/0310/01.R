@@ -80,4 +80,12 @@ rep(0,5); rep(c(1,3),2);rep(c(1,3),c(2,4)); rep(c(1,3),each=2)
 paste(c("ab","cd")) #return a character
 paste(c("a","b"),c("c","d"));paste(c("x", 1:3));paste("x",1:3)
 paste("x",1:3,sep="~");paste("ab","cd",collapse="")
+## complex
 
+x<-1:100
+y<list(x)
+x[1]
+y[1]
+dim(x)
+dim(y)
+x1 <- c("a","b","c")

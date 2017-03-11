@@ -14,11 +14,9 @@ a[1];a[-1];a[0];a[10];
 b <- list(list(list())) #list can be recursive
 ## array
 
-## list
-
 ## factor
 a <- factor(c("x","y","y","x"))
-levels(a);
+levels(a);table(a);
 ## matrix
 
 ## data frame

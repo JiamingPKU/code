@@ -87,7 +87,7 @@ pairs(Example2)
 
 ##Model specification and estimation
 lm1=lm(Carbohydrate~Age+Weight+Protein,data=Example2)
-summary(lm1)
+summary(lm1) # Age is unremarkable
 ##Refit the model
 lm2=lm(Carbohydrate~Weight+Protein,data=Example2)
 summary(lm2)
@@ -213,7 +213,7 @@ Example4=read.csv("Example4.csv", header=T, sep=',')
 Example4
 names(Example4)
 
-#attach(Example4)
+attach(Example4)
 tapply(Weight,Factory, mean)
 tapply(Weight,Factory, sd)
 
@@ -238,6 +238,7 @@ durbinWatsonTest(lm1)
 
 ###Check for normality
 qqPlot(lm1,main="QQ Plot")
+#there are many functions in r to do normalTest
 
 ###Check for Influential Observations
 dffits=dffits(lm1)

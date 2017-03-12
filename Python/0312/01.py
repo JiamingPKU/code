@@ -3,7 +3,7 @@
 # @Author: Jack
 # @Date:   2017-03-12 15:00:54
 # @Last Modified by:   Jack
-# @Last Modified time: 2017-03-12 15:09:53
+# @Last Modified time: 2017-03-12 16:14:36
 
 
 import pandas as pd
@@ -13,7 +13,7 @@ import matplotlib.pylab as plt
 from matplotlib.pylab import rcParams
 rcParams['figure.figsize']=15,6
 
-#import the data
+# import the data
 data = pd.read_csv("AirPassengers.csv")
 print(data.head())
 print("\n Data Types:")

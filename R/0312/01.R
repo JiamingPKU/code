@@ -83,7 +83,7 @@ paste("x",1:3,sep="~");paste("ab","cd",collapse="")
 ## complex
 
 x<-1:100
-y<list(x)
+y<-list(x)
 x[1]
 y[1]
 dim(x)
@@ -91,6 +91,9 @@ dim(y)
 x1 <- c("a","b","c")
 
 ## input and output
+cat("x=",x,"\n",file="1.txt",append = 1)
+save(x, y, file="x-y.RData")
 
-
+rm(list=ls());load("x-y.RData");
+sink("allres.txt", split=TRUE)
 

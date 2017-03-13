@@ -41,7 +41,7 @@ plt.savefig("figure_3.png")
 
 ## acf and pacf
 diff1= dta.diff(1)
-dta=dta.diff1
+# dta=dta.diff1
 fig = plt.figure(figsize=(12,8))
 ax1=fig.add_subplot(211)
 fig = sm.graphics.tsa.plot_acf(dta,lags=40,ax=ax1)

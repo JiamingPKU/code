@@ -17,3 +17,4 @@ print(result.fetchall())
 
 conn.commit()
 conn.close()
+

@@ -1,0 +1,88 @@
+[1] "F:/code/R/course1"
+     Family        Father          Mother      Gender      Height     
+ 185    : 15   Min.   :62.00   Min.   :58.00   F:433   Min.   :56.00  
+ 166    : 11   1st Qu.:68.00   1st Qu.:63.00   M:465   1st Qu.:64.00  
+ 66     : 11   Median :69.00   Median :64.00           Median :66.50  
+ 130    : 10   Mean   :69.23   Mean   :64.08           Mean   :66.76  
+ 136    : 10   3rd Qu.:71.00   3rd Qu.:65.50           3rd Qu.:69.70  
+ 140    : 10   Max.   :78.50   Max.   :70.50           Max.   :79.00  
+ (Other):831                                                          
+      Kids       
+ Min.   : 1.000  
+ 1st Qu.: 4.000  
+ Median : 6.000  
+ Mean   : 6.136  
+ 3rd Qu.: 8.000  
+ Max.   :15.000  
+                 
+
+Call:
+lm(formula = Height ~ Father + Mother + Gender)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-9.523 -1.440  0.117  1.473  9.114 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 15.34476    2.74696   5.586 3.08e-08 ***
+Father       0.40598    0.02921  13.900  < 2e-16 ***
+Mother       0.32150    0.03128  10.277  < 2e-16 ***
+GenderM      5.22595    0.14401  36.289  < 2e-16 ***
+---
+Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+
+Residual standard error: 2.154 on 894 degrees of freedom
+Multiple R-squared:  0.6397,	Adjusted R-squared:  0.6385 
+F-statistic:   529 on 3 and 894 DF,  p-value: < 2.2e-16
+
+(Intercept)      Father      Mother     GenderM 
+ 15.3447600   0.4059780   0.3214951   5.2259513 
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 7.649174    Df = 1     p = 0.005679833 
+ lag Autocorrelation D-W Statistic p-value
+   1        0.219596      1.560395       0
+ Alternative hypothesis: rho != 0
+
+Call:
+lm(formula = Height ~ Father + Father * Gender + Mother + Mother * 
+    Gender + Gender)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.5305 -1.4399  0.1257  1.4638  9.0968 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    16.61023    3.91658   4.241 2.46e-05 ***
+Father          0.40072    0.03931  10.195  < 2e-16 ***
+GenderM         2.78965    5.51014   0.506    0.613    
+Mother          0.30746    0.04560   6.742 2.81e-11 ***
+Father:GenderM  0.01103    0.05883   0.188    0.851    
+GenderM:Mother  0.02609    0.06277   0.416    0.678    
+---
+Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+
+Residual standard error: 2.156 on 892 degrees of freedom
+Multiple R-squared:  0.6398,	Adjusted R-squared:  0.6377 
+F-statistic: 316.8 on 5 and 892 DF,  p-value: < 2.2e-16
+
+   (Intercept)         Father        GenderM         Mother Father:GenderM 
+   16.61022953     0.40071729     2.78964714     0.30745594     0.01103301 
+GenderM:Mother 
+    0.02609411 
+Analysis of Variance Table
+
+Model 1: Height ~ Father + Mother + Gender
+Model 2: Height ~ Father + Father * Gender + Mother + Mother * Gender + 
+    Gender
+  Res.Df    RSS Df Sum of Sq      F Pr(>F)
+1    894 4149.2                           
+2    892 4148.1  2    1.0267 0.1104 0.8955
+     df      AIC
+reg1  5 3932.795
+reg2  7 3936.573
+     df      BIC
+reg1  5 3956.796
+reg2  7 3970.174

@@ -95,7 +95,7 @@ summary(aov2)
 
 
 
-#####Part4: Covirence Analysis
+#####Part4: Analysis of Covirence 
 d1 <- data.frame(A=1,
                  x=c(15, 13, 11, 12, 12, 16, 14, 17),
                  y=c(85, 83, 65, 76, 80, 91, 84, 90))

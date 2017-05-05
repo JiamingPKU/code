@@ -62,27 +62,41 @@ ggplot(data=far1, aes(x=Etaxrt)) + geom_density()+
 ggplot(data=far1, aes(x=Etaxrt, fill=year)) + geom_density()+
   labs(x="实际税率",y="数量")+facet_grid(~year~.)
 
+######对15年数据查看#####
 library(dplyr)
 far15 <- far1 %>% filter(year==15)
 table(far15$year)
-ggplot(data=far15, aes(x=Etaxrt, fill=year)) + geom_density() + labs(x="实际税率", y ="数量", title="2015年")
-
-far15$tax <- (far15$Etaxrt>-0.05) + (far15$Etaxrt > 0.05) + (far15$Etaxrt >0.1)+
-  (far15$Etaxrt>0.2)+(far15$Etaxrt>0.3)
+##生成一个税率区间
 far15$tax <- (far15$Etaxrt>-0.05) + (far15$Etaxrt >0.1)+(far15$Etaxrt>0.2)+(far15$Etaxrt>0.3)
-table(far15$tax)
 far15$tax <- as.factor(far15$tax)
-s
-far15 <- na.omit(tax)
+#far15$check = !is.na(far15$tax)
+far15 <- far15 %>% filter(! is.na(tax))
+table(far15$tax)
+
+##作图
 ggplot(data=far15, aes(x=Etaxrt, fill=tax)) + geom_density()+
   labs(x="实际税率",y="数量")
-ggplot(data=far15, aes(x=T30100, fill=tax)) + geom_density()+
-  labs(x="实际税率",y="数量")+facet_grid(taxss~.)
-ggplot(data=far15, aes(x=Etaxrt, fill=tax)) + geom_density()+
-  labs(x="实际税率",y="数量")+facet_grid(~year~.)
+##资产负债率
+library("dplyr")
+library("reshape")
+far15 <- rename(far15, c("T30100"="debt","T40700"="mr","T60300"="pstk"))
+far15$debt <- winsor(far15$debt, fraction = 0.005)
+far15$mr <- winsor(far15$mr, fraction = 0.005)
+far15$pstk <- winsor(far15$pstk, fraction = 0.005)
 
-?merge
-?cbind
+ggplot(data=far15, aes(x=debt, fill=tax)) + geom_density()+
+  labs(x="实际税率",y="数量")
+ggplot(data=far15, aes(x=debt, fill=tax)) + geom_density()+
+  labs(x="资产负债率",y="数量")+facet_grid(tax~.)
+ggplot(data=far15, aes(x=mr, fill=tax))+geom_density()+
+  labs(x="边际利润率",y="数量")+facet_grid(tax~.)
+ggplot(data=far15, aes(x=pstk, fill=tax))+geom_density()+
+  labs(x="每股净资产",y="数量")+facet_grid(tax~.)
+
+
+ggplot(data=far15, aes(x=debt, y=mr,color=tax))+ 
+  geom_point()
+
 
 ##使用Winsorizing 方法
 ## source: r-bloggers-Winsorization

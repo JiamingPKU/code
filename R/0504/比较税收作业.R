@@ -68,6 +68,7 @@ far15 <- far1 %>% filter(year==15)
 table(far15$year)
 ##生成一个税率区间
 far15$tax <- (far15$Etaxrt>-0.05) + (far15$Etaxrt >0.1)+(far15$Etaxrt>0.2)+(far15$Etaxrt>0.3)
+far15$tax = far15$tax+1
 far15$tax <- as.factor(far15$tax)
 #far15$check = !is.na(far15$tax)
 far15 <- far15 %>% filter(! is.na(tax))
@@ -77,27 +78,36 @@ table(far15$tax)
 ggplot(data=far15, aes(x=Etaxrt, fill=tax)) + geom_density()+
   labs(x="实际税率",y="数量")
 ##资产负债率
-library("dplyr")
 library("reshape")
 far15 <- rename(far15, c("T30100"="debt","T40700"="mr","T60300"="pstk"))
 far15$debt <- winsor(far15$debt, fraction = 0.005)
-far15$mr <- winsor(far15$mr, fraction = 0.005)
+far15$mr <- winsor(far15$mr, fraction = 0.05)
 far15$pstk <- winsor(far15$pstk, fraction = 0.005)
 
 ggplot(data=far15, aes(x=debt, fill=tax)) + geom_density()+
-  labs(x="实际税率",y="数量")
-ggplot(data=far15, aes(x=debt, fill=tax)) + geom_density()+
-  labs(x="资产负债率",y="数量")+facet_grid(tax~.)
+  labs(x="资产负债率",y="数量",title="2015年")+facet_grid(tax~.)
 ggplot(data=far15, aes(x=mr, fill=tax))+geom_density()+
   labs(x="边际利润率",y="数量")+facet_grid(tax~.)
 ggplot(data=far15, aes(x=pstk, fill=tax))+geom_density()+
   labs(x="每股净资产",y="数量")+facet_grid(tax~.)
 
+## 总资产
+far15 <- rename(far15, c("A100000"="asset"))
+far15$asset <- log(far15$asset)
+ggplot(data=far15, aes(x=asset, fill=tax))+geom_density()+
+  labs(x="总资产",y="数量")+facet_grid(tax~.)
+ggplot(data=far15, aes(x=B110101 ))+geom_density()
+ggplot(data=far15, aes(x=log(B110101) ))+geom_density()
 
-ggplot(data=far15, aes(x=debt, y=mr,color=tax))+ 
-  geom_point()
+ggplot(data=far15, aes(x=asset, y=mr, color=tax))+geom_point()
+##每股收益的对数
+ggplot(data=far15, aes(x=log(T60200 ), fill=tax))+geom_density()+
+  labs(x="每股收益的对数",y="密度",title="2015年")+facet_grid(tax~.)
 
-
+##测试专区
+ggplot(data=far15, aes(x=log(T60200 ), fill=tax))+geom_density()+
+  labs(x="每股收益的对数",y="密度",title="2015年")+facet_grid(tax~.)
+ggplot(data=far15, aes(x=T60200 ,y=debt))+geom_point()
 ##使用Winsorizing 方法
 ## source: r-bloggers-Winsorization
 winsor <- function (x, fraction=.05)

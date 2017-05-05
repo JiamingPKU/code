@@ -1,0 +1,23 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\6May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 6 May 2017, 00:16:07
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. 
+. * -------------------------------------------------------
+. // Close the log, end the file
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\6May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 6 May 2017, 00:16:07
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

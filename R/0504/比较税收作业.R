@@ -7,8 +7,9 @@ getwd()
 far = read.table("F:\\data\\far.csv", sep=",", header=TRUE)
 names(far)
 table(far$Accper)
-year <- as.Date(far$Accper, "%Y/%m/%d")
-year <- format(year, "%y")
+far$year <- as.Date(far$Accper, "%Y/%m/%d")
+far$year <- format(far$year, "%y")
+table(far$year)
 
 ##读入风险系数数据
 beta = read.table("F:\\data\\beta.csv",sep=",", header=TRUE)
@@ -52,17 +53,34 @@ ggplot(data=far, aes(x=Etaxrt)) + geom_histogram()
 #发现有许多离群值，去除离群值；两端各去除0.5%的异常值
 quantile(far$Etaxrt, probs = c(0.005,0.995), na.rm=TRUE)
 far1 <- far
-far1$year <- as.Date(far1$Accper, "%Y/%m/%d")
-far1$year <- format(far1$year, "%y")
+#需要先执行后面的函数定义部分，然后再调用winsor函数
 far1$Etaxrt <- winsor(far1$Etaxrt, fraction = 0.005)
 ggplot(data=far1, aes(x=Etaxrt)) + geom_histogram()+
+  labs(x="实际税率",y="数量")
+ggplot(data=far1, aes(x=Etaxrt)) + geom_density()+
   labs(x="实际税率",y="数量")
 ggplot(data=far1, aes(x=Etaxrt, fill=year)) + geom_density()+
   labs(x="实际税率",y="数量")+facet_grid(~year~.)
 
+library(dplyr)
+far15 <- far1 %>% filter(year==15)
+table(far15$year)
+ggplot(data=far15, aes(x=Etaxrt, fill=year)) + geom_density() + labs(x="实际税率", y ="数量", title="2015年")
 
-mdata=merge(alltax, othertax, by=intersect(c("Stkcd","Accper"), c("Stkcd","Accper")) 
-              ,all=TRUE )
+far15$tax <- (far15$Etaxrt>-0.05) + (far15$Etaxrt > 0.05) + (far15$Etaxrt >0.1)+
+  (far15$Etaxrt>0.2)+(far15$Etaxrt>0.3)
+far15$tax <- (far15$Etaxrt>-0.05) + (far15$Etaxrt >0.1)+(far15$Etaxrt>0.2)+(far15$Etaxrt>0.3)
+table(far15$tax)
+far15$tax <- as.factor(far15$tax)
+s
+far15 <- na.omit(tax)
+ggplot(data=far15, aes(x=Etaxrt, fill=tax)) + geom_density()+
+  labs(x="实际税率",y="数量")
+ggplot(data=far15, aes(x=T30100, fill=tax)) + geom_density()+
+  labs(x="实际税率",y="数量")+facet_grid(taxss~.)
+ggplot(data=far15, aes(x=Etaxrt, fill=tax)) + geom_density()+
+  labs(x="实际税率",y="数量")+facet_grid(~year~.)
+
 ?merge
 ?cbind
 

@@ -12337,4 +12337,4 @@ savings_geren:  个人人民币存款                  {txt}Number of Observatio
 {res}12             11589.97                      5,718
 (More than 99 unique values)
 
-{com}. 
+{com}.  exit, clear

@@ -30,8 +30,7 @@ macro drop _all         // clear all macros
 capture log close       // Close existing log files
 log using logfile.txt, replace       // Open log file
 * -------------------------------------------------------
-
-
+use "F:\data\pf\区域经济统计年鉴_final.dta", clear
 
 
 /*

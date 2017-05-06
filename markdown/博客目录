@@ -1,0 +1,25 @@
+# 博客目录
+## Python
++ 一些有趣的小项目
+    * 微信机器人
++ 爬虫
+    * 爬虫入门
+    * requests库、selenium
+    * scrapy及其框架
+    * 实战项目（计划包括知乎、新浪微博及一些网站）
++ 网页制作
+    * flask
++ 数据处理
+    * pandas/matplotlib/numpy库
+    * 推荐使用ipython与jupyter
+## R
++ 时间序列分析
++ 分析的整理
++ R in action
+## 其他语言
++ Julia
++ Stata
++ D3
++ 阿里的g2
++ 百度echarts
+

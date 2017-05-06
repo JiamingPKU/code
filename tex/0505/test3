@@ -1,0 +1,12 @@
+\documentclass{article}
+\author{Jack \\
+	Parking University}
+\title{Test for Texpen}
+\begin{document}
+\maketitle
+\section*{SECTION}
+\paragraph{this is a paragraph written in \LaTeX}
+$\alpha + \beta = \sum_{i=0}^{\infty} \frac{1}{x^2}$
+\end{document}
+
+

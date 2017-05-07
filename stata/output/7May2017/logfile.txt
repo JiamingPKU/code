@@ -1,0 +1,116 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\7May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 May 2017, 16:47:28
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. 
+. /* -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. help import
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. import delimited using "F:\data\国泰安\far.csv", clear
+{res}{text}(26 vars, 30344 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. dir
+{txt}  <dir>   5/07/17 16:47  {res}.                 
+{txt}  <dir>   5/07/17 16:47  {res}..                
+{txt}   0.0k   5/07/17 16:47  {res}logfile.txt       
+
+{com}. sum E
+{err}variable {bf}E{sf} not found
+{txt}{search r(111):r(111);}
+
+{com}. sum etaxrt a100000 b110303 d100000
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}etaxrt {c |}{res}     30,334    .1629791    1.827419  -134.8262   220.3927
+{txt}{space 5}a100000 {c |}{res}     30,344    3.24e+10    4.89e+11          0   2.22e+13
+{txt}{space 5}b110303 {c |}{res}     29,687    2.33e+08    1.53e+09          0   6.32e+10
+{txt}{space 5}d100000 {c |}{res}     30,285    1.25e+09    1.74e+10  -1.36e+11   1.13e+12
+
+{com}. reg etaxrt a100000 b110303 d100000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    29,620
+{txt}{hline 13}{c +}{hline 34}   F(3, 29616)     = {res}     0.04
+{txt}       Model {c |} {res} .375084668         3  .125028223   {txt}Prob > F        ={res}    0.9906
+{txt}    Residual {c |} {res} 101105.019    29,616  3.41386476   {txt}R-squared       ={res}    0.0000
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}   -0.0001
+{txt}       Total {c |} {res} 101105.394    29,619  3.41353164   {txt}Root MSE        =   {res} 1.8477
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}a100000 {c |}{col 14}{res}{space 2} 1.87e-15{col 26}{space 2} 3.74e-14{col 37}{space 1}    0.05{col 46}{space 3}0.960{col 54}{space 4}-7.15e-14{col 67}{space 3} 7.52e-14
+{txt}{space 5}b110303 {c |}{col 14}{res}{space 2}-9.63e-13{col 26}{space 2} 7.54e-12{col 37}{space 1}   -0.13{col 46}{space 3}0.898{col 54}{space 4}-1.57e-11{col 67}{space 3} 1.38e-11
+{txt}{space 5}d100000 {c |}{col 14}{res}{space 2} 1.98e-13{col 26}{space 2} 1.05e-12{col 37}{space 1}    0.19{col 46}{space 3}0.851{col 54}{space 4}-1.86e-12{col 67}{space 3} 2.26e-12
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1627145{col 26}{space 2} .0108718{col 37}{space 1}   14.97{col 46}{space 3}0.000{col 54}{space 4} .1414052{col 67}{space 3} .1840238
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. gen asset = log(etaxrt )
+{txt}(4,201 missing values generated)
+
+{com}. reg etaxrt asset b110303 d100000
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    25,524
+{txt}{hline 13}{c +}{hline 34}   F(3, 25520)     = {res}   231.04
+{txt}       Model {c |} {res} 1448.30081         3  482.766936   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 53324.7444    25,520   2.0895276   {txt}R-squared       ={res}    0.0264
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0263
+{txt}       Total {c |} {res} 54773.0452    25,523  2.14602692   {txt}Root MSE        =   {res} 1.4455
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}asset {c |}{col 14}{res}{space 2} .2333338{col 26}{space 2}  .008863{col 37}{space 1}   26.33{col 46}{space 3}0.000{col 54}{space 4} .2159618{col 67}{space 3} .2507057
+{txt}{space 5}b110303 {c |}{col 14}{res}{space 2}-4.12e-12{col 26}{space 2} 5.83e-12{col 37}{space 1}   -0.71{col 46}{space 3}0.480{col 54}{space 4}-1.56e-11{col 67}{space 3} 7.32e-12
+{txt}{space 5}d100000 {c |}{col 14}{res}{space 2}-1.83e-13{col 26}{space 2} 5.69e-13{col 37}{space 1}   -0.32{col 46}{space 3}0.748{col 54}{space 4}-1.30e-12{col 67}{space 3} 9.32e-13
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6690967{col 26}{space 2} .0188542{col 37}{space 1}   35.49{col 46}{space 3}0.000{col 54}{space 4} .6321413{col 67}{space 3}  .706052
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. gen a = log(b110303)
+{txt}(1,505 missing values generated)
+
+{com}. gen b = log(d100000)
+{txt}(7,326 missing values generated)
+
+{com}. reg etaxrt asset a b
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    19,469
+{txt}{hline 13}{c +}{hline 34}   F(3, 19465)     = {res}   948.82
+{txt}       Model {c |} {res} 599.189016         3  199.729672   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 4097.43928    19,465  .210502917   {txt}R-squared       ={res}    0.1276
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1274
+{txt}       Total {c |} {res} 4696.62829    19,468  .241248628   {txt}Root MSE        =   {res} .45881
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}asset {c |}{col 14}{res}{space 2} .1821656{col 26}{space 2} .0034155{col 37}{space 1}   53.33{col 46}{space 3}0.000{col 54}{space 4} .1754709{col 67}{space 3} .1888603
+{txt}{space 11}a {c |}{col 14}{res}{space 2}-.0046377{col 26}{space 2} .0021197{col 37}{space 1}   -2.19{col 46}{space 3}0.029{col 54}{space 4}-.0087925{col 67}{space 3}-.0004829
+{txt}{space 11}b {c |}{col 14}{res}{space 2}-.0100911{col 26}{space 2} .0022706{col 37}{space 1}   -4.44{col 46}{space 3}0.000{col 54}{space 4}-.0145416{col 67}{space 3}-.0056406
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8311002{col 26}{space 2} .0432604{col 37}{space 1}   19.21{col 46}{space 3}0.000{col 54}{space 4} .7463061{col 67}{space 3} .9158942
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. scatter etaxrt asset a b
+{res}
+{com}. scatter etaxrt asset
+{res}
+{com}. 

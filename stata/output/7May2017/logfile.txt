@@ -113,4 +113,41 @@
 {res}
 {com}. scatter etaxrt asset
 {res}
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. export far.dta
+{err}export: unknown subcommand "far.dta"
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. export "far.dta", replace
+{err}export: unknown subcommand "far.dta"
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. help export
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save "far.dta", replace
+{txt}(note: file far.dta not found)
+file far.dta saved
+
 {com}. 
+{txt}end of do-file
+
+{com}. dir
+{txt}  <dir>   5/07/17 17:47  {res}.                 
+{txt}  <dir>   5/07/17 17:47  {res}..                
+{txt}4848.8k   5/07/17 17:47  {res}far.dta           
+{txt}   6.6k   5/07/17 16:56  {res}logfile.txt       
+
+{com}. exit

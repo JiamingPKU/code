@@ -1,153 +1,830 @@
 {smcl}
-{txt}{sf}{ul off}{.-}
+{com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
        {txt}log:  {res}F:\git\stata\output\7May2017\logfile.txt
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 7 May 2017, 16:47:28
+ {txt}opened on:  {res} 7 May 2017, 22:18:20
 {txt}
 {com}. * -------------------------------------------------------
 . 
 . 
 . 
 . 
-. 
-. /* -------------------------------------------------------
+. /*
+> * -------------------------------------------------------
 > // Close the log, end the file
 > log close
 > exit
 
 {txt}end of do-file
 
-{com}. help import
-
-. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. import delimited using "F:\data\国泰安\far.csv", clear
-{res}{text}(26 vars, 30344 obs)
-
-{com}. 
-{txt}end of do-file
-
 {com}. dir
-{txt}  <dir>   5/07/17 16:47  {res}.                 
-{txt}  <dir>   5/07/17 16:47  {res}..                
-{txt}   0.0k   5/07/17 16:47  {res}logfile.txt       
-
-{com}. sum E
-{err}variable {bf}E{sf} not found
-{txt}{search r(111):r(111);}
-
-{com}. sum etaxrt a100000 b110303 d100000
-
-{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
-{hline 13}{c +}{hline 57}
-{space 6}etaxrt {c |}{res}     30,334    .1629791    1.827419  -134.8262   220.3927
-{txt}{space 5}a100000 {c |}{res}     30,344    3.24e+10    4.89e+11          0   2.22e+13
-{txt}{space 5}b110303 {c |}{res}     29,687    2.33e+08    1.53e+09          0   6.32e+10
-{txt}{space 5}d100000 {c |}{res}     30,285    1.25e+09    1.74e+10  -1.36e+11   1.13e+12
-
-{com}. reg etaxrt a100000 b110303 d100000
-
-{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    29,620
-{txt}{hline 13}{c +}{hline 34}   F(3, 29616)     = {res}     0.04
-{txt}       Model {c |} {res} .375084668         3  .125028223   {txt}Prob > F        ={res}    0.9906
-{txt}    Residual {c |} {res} 101105.019    29,616  3.41386476   {txt}R-squared       ={res}    0.0000
-{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}   -0.0001
-{txt}       Total {c |} {res} 101105.394    29,619  3.41353164   {txt}Root MSE        =   {res} 1.8477
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 5}a100000 {c |}{col 14}{res}{space 2} 1.87e-15{col 26}{space 2} 3.74e-14{col 37}{space 1}    0.05{col 46}{space 3}0.960{col 54}{space 4}-7.15e-14{col 67}{space 3} 7.52e-14
-{txt}{space 5}b110303 {c |}{col 14}{res}{space 2}-9.63e-13{col 26}{space 2} 7.54e-12{col 37}{space 1}   -0.13{col 46}{space 3}0.898{col 54}{space 4}-1.57e-11{col 67}{space 3} 1.38e-11
-{txt}{space 5}d100000 {c |}{col 14}{res}{space 2} 1.98e-13{col 26}{space 2} 1.05e-12{col 37}{space 1}    0.19{col 46}{space 3}0.851{col 54}{space 4}-1.86e-12{col 67}{space 3} 2.26e-12
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .1627145{col 26}{space 2} .0108718{col 37}{space 1}   14.97{col 46}{space 3}0.000{col 54}{space 4} .1414052{col 67}{space 3} .1840238
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}
-{com}. gen asset = log(etaxrt )
-{txt}(4,201 missing values generated)
-
-{com}. reg etaxrt asset b110303 d100000
-
-{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    25,524
-{txt}{hline 13}{c +}{hline 34}   F(3, 25520)     = {res}   231.04
-{txt}       Model {c |} {res} 1448.30081         3  482.766936   {txt}Prob > F        ={res}    0.0000
-{txt}    Residual {c |} {res} 53324.7444    25,520   2.0895276   {txt}R-squared       ={res}    0.0264
-{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0263
-{txt}       Total {c |} {res} 54773.0452    25,523  2.14602692   {txt}Root MSE        =   {res} 1.4455
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 7}asset {c |}{col 14}{res}{space 2} .2333338{col 26}{space 2}  .008863{col 37}{space 1}   26.33{col 46}{space 3}0.000{col 54}{space 4} .2159618{col 67}{space 3} .2507057
-{txt}{space 5}b110303 {c |}{col 14}{res}{space 2}-4.12e-12{col 26}{space 2} 5.83e-12{col 37}{space 1}   -0.71{col 46}{space 3}0.480{col 54}{space 4}-1.56e-11{col 67}{space 3} 7.32e-12
-{txt}{space 5}d100000 {c |}{col 14}{res}{space 2}-1.83e-13{col 26}{space 2} 5.69e-13{col 37}{space 1}   -0.32{col 46}{space 3}0.748{col 54}{space 4}-1.30e-12{col 67}{space 3} 9.32e-13
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6690967{col 26}{space 2} .0188542{col 37}{space 1}   35.49{col 46}{space 3}0.000{col 54}{space 4} .6321413{col 67}{space 3}  .706052
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}
-{com}. gen a = log(b110303)
-{txt}(1,505 missing values generated)
-
-{com}. gen b = log(d100000)
-{txt}(7,326 missing values generated)
-
-{com}. reg etaxrt asset a b
-
-{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    19,469
-{txt}{hline 13}{c +}{hline 34}   F(3, 19465)     = {res}   948.82
-{txt}       Model {c |} {res} 599.189016         3  199.729672   {txt}Prob > F        ={res}    0.0000
-{txt}    Residual {c |} {res} 4097.43928    19,465  .210502917   {txt}R-squared       ={res}    0.1276
-{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1274
-{txt}       Total {c |} {res} 4696.62829    19,468  .241248628   {txt}Root MSE        =   {res} .45881
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      etaxrt{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 7}asset {c |}{col 14}{res}{space 2} .1821656{col 26}{space 2} .0034155{col 37}{space 1}   53.33{col 46}{space 3}0.000{col 54}{space 4} .1754709{col 67}{space 3} .1888603
-{txt}{space 11}a {c |}{col 14}{res}{space 2}-.0046377{col 26}{space 2} .0021197{col 37}{space 1}   -2.19{col 46}{space 3}0.029{col 54}{space 4}-.0087925{col 67}{space 3}-.0004829
-{txt}{space 11}b {c |}{col 14}{res}{space 2}-.0100911{col 26}{space 2} .0022706{col 37}{space 1}   -4.44{col 46}{space 3}0.000{col 54}{space 4}-.0145416{col 67}{space 3}-.0056406
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8311002{col 26}{space 2} .0432604{col 37}{space 1}   19.21{col 46}{space 3}0.000{col 54}{space 4} .7463061{col 67}{space 3} .9158942
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}
-{com}. scatter etaxrt asset a b
-{res}
-{com}. scatter etaxrt asset
-{res}
-{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. export far.dta
-{err}export: unknown subcommand "far.dta"
-{txt}{search r(198):r(198);}
-
-end of do-file
-
-{search r(198):r(198);}
-
-{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. export "far.dta", replace
-{err}export: unknown subcommand "far.dta"
-{txt}{search r(198):r(198);}
-
-end of do-file
-
-{search r(198):r(198);}
-
-{com}. help export
-
-. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
-{txt}
-{com}. save "far.dta", replace
-{txt}(note: file far.dta not found)
-file far.dta saved
-
-{com}. 
-{txt}end of do-file
-
-{com}. dir
-{txt}  <dir>   5/07/17 17:47  {res}.                 
-{txt}  <dir>   5/07/17 17:47  {res}..                
+{txt}  <dir>   5/07/17 22:18  {res}.                 
+{txt}  <dir>   5/07/17 22:18  {res}..                
+{txt}   1.2k   5/07/17 22:18  {res}01.do             
+{txt}   1.3k   5/07/17 18:01  {res}far.do            
 {txt}4848.8k   5/07/17 17:47  {res}far.dta           
-{txt}   6.6k   5/07/17 16:56  {res}logfile.txt       
+{txt}   0.0k   5/07/17 22:18  {res}logfile.txt       
 
-{com}. exit
+{com}. log
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\7May2017\logfile.txt, on
+  {txt}log type:  {res}smcl
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. import delimited using "F:\data\pf\paper\pf1.csv", clear
+{res}{text}(2876 vars, 39 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. help svvarlbl
+
+. help svvarlbl
+
+. svvarlbl
+{res} cap label variable region_name "区域名称"
+ cap label variable code "行政代码"
+ cap label variable year ""
+ cap label variable area "土地面积(平方公里)"
+ cap label variable pop_per "常住人口(万人)"
+ cap label variable pop "年底总人口(万人)"
+ cap label variable households "年底总户数(万户)"
+ cap label variable gdp "地区生产总值(亿元)"
+ cap label variable gdp_pri "第一产业"
+ cap label variable gdp_sec "第二产业"
+ cap label variable gdp_ind "#工业"
+ cap label variable gdp_tert "第三产业"
+ cap label variable pcgdp "人均地区生产总值(元)"
+ cap label variable gdp_index "地区生产总值指数(上年=100)"
+ cap label variable gdp_index_pri "第一产业"
+ cap label variable gdp_index_sec "第二产业"
+ cap label variable gdp_index_ind "#工业"
+ cap label variable gdp_index_tert "第三产业"
+ cap label variable pcgdp_index "人均地区生产总值指数(上年=100)"
+ cap label variable employ "就业人数(万人)"
+ cap label variable unemploy_urban_ratio "城镇登记失业率(%)"
+ cap label variable employ_soe "城镇单位就业人数(万人)"
+ cap label variable employ_collective "城镇私营单位就业人数(万人)"
+ cap label variable employ_private "城镇单位就业人员平均工资(元)"
+ cap label variable investment_urban "固定资产投资(不含农户)(亿元)"
+ cap label variable investment_realestate "开发"
+ cap label variable comhouse_sales "商品房销售额(亿元)"
+ cap label variable house_sales "#住宅"
+ cap label variable comhouse_area "商品房销售面积(万平方米)"
+ cap label variable house_area "#住宅"
+ cap label variable im_ex_port "货物进出口总额(万美元)"
+ cap label variable export "进口额"
+ cap label variable import "出口额"
+ cap label variable fdi "外商直接投资实际使用额(万美元)"
+ cap label variable fisrev "公共财政预算收入(亿元)"
+ cap label variable fisrev_tax "#税收收入"
+ cap label variable fisrev_tax_va "#国内增值税"
+ cap label variable fisrev_tax_op "#营业税"
+ cap label variable fisrev_tax_firm "#企业所得税"
+ cap label variable fisrev_tax_person "#个人所得税"
+ cap label variable fisexp "公共财政预算支出(亿元)"
+ cap label variable fisexp_edu "#教育"
+ cap label variable fisexp_security "#社会保障和就业"
+ cap label variable fisexp_med "#医疗卫生"
+ cap label variable fisexp_agri "#农林水利事务"
+ cap label variable fisexp_hou "#住房保障"
+ cap label variable income_rural "农村居民人均可支配收入(元)"
+ cap label variable expend_rural "农村居民人均消费支出(元)"
+ cap label variable expend_rural_food "#食品支出"
+ cap label variable income_urban "城镇居民人均可支配收入(元)"
+ cap label variable expend_urban "城镇居民人均消费支出(元)"
+ cap label variable expend_urban_food "#食品支出"
+ cap label variable housing_area_rual "农村人均住房面积(平方米)"
+ cap label variable housing_area_urban "城镇人均住房建筑面积(平方米)"
+ cap label variable households_rural "乡村户数(万户)"
+ cap label variable agri_power "农业机械总动力(万千瓦)"
+ cap label variable fertilizer "化肥使用量折纯量)(万吨)"
+ cap label variable electricity_rural "农村用电量(亿千瓦小时)"
+ cap label variable area_arable "耕地面积(千公顷)"
+ cap label variable area_irrigation "有效灌概面积(千公顷)"
+ cap label variable area_sown "农作物总播种面积(千公顷)"
+ cap label variable crop_area "#粮食作物"
+ cap label variable yield_grain "粮食产量"
+ cap label variable yield_cotton "棉花产量(吨)"
+ cap label variable yield_oil "油料产量(万吨)"
+ cap label variable yield_vegetable "蔬菜产量(万吨)"
+ cap label variable yield_fruit "水果产量(万吨)"
+ cap label variable yield_meat "肉类产量(万吨)"
+ cap label variable yield_dairy "奶类产量(万吨)"
+ cap label variable yield_eggs "禽蛋产量(万吨)"
+ cap label variable yield_aquatic "水产品产量(吨)"
+ cap label variable num_ind "单位数(个)"
+ cap label variable total_asset "资产总计(亿元)"
+ cap label variable total_debt "负债合计(亿元)"
+ cap label variable total_equity "所有者权益(亿元)"
+ cap label variable total_revenue "主营业务收入(亿元)"
+ cap label variable total_cost "主营业务成本(亿元)"
+ cap label variable total_profit "利润总额(亿元)"
+ cap label variable total_vatax "本年应交增值税(亿元)"
+ cap label variable num_ind_contruct "建筑业企业单位数(个)"
+ cap label variable output_ind_contruct "建筑业企业总产值(亿元)"
+ cap label variable area_construct "房屋建筑施工面积(万平方米)"
+ cap label variable area_finish "房屋建筑竣工面积(万平方米)"
+ cap label variable mileage "公路里程(公里)"
+ cap label variable mileage_express "#等级公路"
+ cap label variable num_car "民用汽车拥有量(辆)"
+ cap label variable num_car_private "#私人汽车"
+ cap label variable post_telecom "邮政业务总量(亿元)"
+ cap label variable telecom "电信业务总量(亿元)"
+ cap label variable landline "固定电话用户(万户)"
+ cap label variable mobile "移动电话用户(万户)"
+ cap label variable internet "互联网宽带接入用户数(万户)"
+ cap label variable consumption "社会消费品零售总额(亿元)"
+ cap label variable wholesale_retail "批发和零售业商品销售额(亿元)"
+ cap label variable hotel_cater "住宿和餐饮业营业额(亿元)"
+ cap label variable tourist "接待入境旅游者人数(万人次)"
+ cap label variable tourist_frn "#外国人"
+ cap label variable tourism_frn_exchange "国际旅游外汇收入(万美元)"
+ cap label variable tourist_domestic "国内旅游人数(万人次)"
+ cap label variable tourism_domestic_revenue "国内旅游收入(亿元)"
+ cap label variable starhotels "星级饭店数(个)"
+ cap label variable savings_rmbfrc "金融机构本外币存款(亿元)"
+ cap label variable savings "金融机构人民币存款(亿元)"
+ cap label variable savings_deposit "#储蓄存款"
+ cap label variable loan_rmbfrc "金融机构本外币贷款(亿元)"
+ cap label variable loan "金融机构人民币贷款(亿元)"
+ cap label variable loan_short "#短期贷款"
+ cap label variable loan_long "#中长期贷款"
+ cap label variable kindergarten "幼儿园数(所)"
+ cap label variable kindergarten_student "在园儿童数(万人)"
+ cap label variable prischool "普通小学学校数(所)"
+ cap label variable prischool_teacher "普通小学专任教师数(人)"
+ cap label variable prischool_matri "普通小学招生数(万人)"
+ cap label variable prischool_student "普通小学在校学生数(万人)"
+ cap label variable prischool_grad "普通小学毕业生数(万人)"
+ cap label variable midschool "初中学校数(所)"
+ cap label variable midschool_teacher "初中专任教师数(人)"
+ cap label variable midschool_matri "初中招生数(万人)"
+ cap label variable midschool_student "初中在校学生数(万人)"
+ cap label variable midschool_grad "初中毕业生数(万人)"
+ cap label variable highschool "普通高中学校数(所)"
+ cap label variable highschool_teacher "普通高中专任教师数(人)"
+ cap label variable highschool_matri "普通高中招生数(万人)"
+ cap label variable highschool_student "普通高中在校学生数(万人)"
+ cap label variable highschool_grad "普通高中毕业生数(万人)"
+ cap label variable univ "普通高等学校数(所)"
+ cap label variable univ_teacher "普通高等学校专任教师数(人)"
+ cap label variable univ_matri "普通高等学校招生数(万人)"
+ cap label variable univ_student "普通高等学校在校学生数(万人)"
+ cap label variable univ_grad "普通高等学校毕业生数(万人)"
+ cap label variable library "公共图书馆(个)"
+ cap label variable num_hygiene "卫生机构数(个)"
+ cap label variable num_hospital "#医院"
+ cap label variable bed_hygiene "卫生机构床位数(张)"
+ cap label variable bed_hospital "#医院"
+ cap label variable employ_hygiene "卫生机构人员数(人)"
+ cap label variable employ_medperson "#卫生技术人员"
+ cap label variable employ_doctor "#执业(助理)医师"
+ cap label variable employ_nurse "#注册护师、护士"
+ cap label variable pop_male "男性人口"
+ cap label variable pop_female "女性人口"
+ cap label variable pop_birth "出生人口(人)"
+ cap label variable pop_death "死亡人口(人)"
+ cap label variable pop_density "人口密度(人／平方公里)"
+ cap label variable pop_econ "经济活动人口"
+ cap label variable employ_pri "第一产业就业人数"
+ cap label variable employ_sec "第二产业就业人数"
+ cap label variable employ_tert "第三产业就业人数"
+ cap label variable unemploy_urban "城镇登记失业"
+ cap label variable num_workers "职工人数(人)"
+ cap label variable num_workers_other "其他经济"
+ cap label variable wage_total "职工工资总额(万元)"
+ cap label variable wage_soe "国有经济"
+ cap label variable wage_collective "城镇集体经济"
+ cap label variable wage_other "其他经济"
+ cap label variable wage "职工平均工资(元)"
+ cap label variable investment "全社会固定资产投资(亿元)"
+ cap label variable investment_infr "基本建设"
+ cap label variable investment_update "更新改造"
+ cap label variable investment_soe_new "国有投资新增固定资产(亿元)"
+ cap label variable fisexp_infr "#基建支出"
+ cap label variable fisexp_sci3 "#科技三项费"
+ cap label variable area_urban_construct "城市建成区面积(平方公里)"
+ cap label variable pipe "供水管道长度(公里)"
+ cap label variable water_supply "供水总量(万吨)"
+ cap label variable water_supply_hh "#生活用"
+ cap label variable pop_water "用水人口(万人)"
+ cap label variable coalgas "煤气供气量(万立方米)"
+ cap label variable coalgas_hh "#生活用"
+ cap label variable naturalgas "天然气供气量(万立方米)"
+ cap label variable naturalgas_hh "#生活用"
+ cap label variable liqpetro "液化石油气供气量(吨)"
+ cap label variable liqpetro_hh "#生活用"
+ cap label variable trash_gen "生活垃圾清运量(万吨)"
+ cap label variable trash_dispose "生活垃圾处理量(万吨)"
+ cap label variable sewage "排水管道长度(公里)"
+ cap label variable wastewater_release "生活废水排放量(万吨)"
+ cap label variable wastewater_dispose "生活废水处理量(万吨)"
+ cap label variable bus "市内公共电汽车数(辆)"
+ cap label variable taxi "出租汽车数(辆)"
+ cap label variable area_park "公园面积(公顷)"
+ cap label variable greenary "绿化覆盖率(％)"
+ cap label variable employ_rural "乡村劳动力(万人)"
+ cap label variable employ_rural_agri "#农林牧渔业"
+ cap label variable output_agri "农林牧渔业总产值(亿元)"
+ cap label variable output_agri_index "农林牧渔业总产值指数(上年=100)"
+ cap label variable yield_pbm "猪牛羊肉产量"
+ cap label variable output_ind_all "全部工业总产值"
+ cap label variable output_ind_index_all "全部工业总产值指数"
+ cap label variable num_indfirm "规模以上工业企业数单位数"
+ cap label variable num_indfirm_large "大型企业"
+ cap label variable num_indfirm_medium "中型企业"
+ cap label variable num_indfirm_small "小型企业"
+ cap label variable output_ind "规模以上工业总产值"
+ cap label variable output_ind_domestic "内资企业工业总产值(亿元)"
+ cap label variable output_ind_hmt "港澳台商投资企业工业总产值(亿元)"
+ cap label variable output_ind_frn "外商投资企业工业总产值(亿元)"
+ cap label variable ind_valueadded "工业增加值"
+ cap label variable total_profit_soe "国有工业"
+ cap label variable total_profit_collective "集体工业"
+ cap label variable total_profit_stockcoop "股份合作企业"
+ cap label variable total_profit_cooperative "联营企业"
+ cap label variable total_profit_limited "有限责任公司"
+ cap label variable total_profit_jointstock "股份有限公司"
+ cap label variable total_profit_private "私营企业"
+ cap label variable total_profit_other "其他企业"
+ cap label variable employ_ind_construct "建筑业企业从业人员"
+ cap label variable area_construct_house "#住宅面积"
+ cap label variable num_wholesale_retail "批发零售贸易业"
+ cap label variable wholesale_retail_employ "餐饮业"
+ cap label variable num_retail "法人企业个数"
+ cap label variable retail_employ "从业人数"
+ cap label variable wholesale "批发总额"
+ cap label variable wholesale_retail_buyin "购进总额"
+ cap label variable wholesale_retail_sales "销售总额"
+ cap label variable retail "库存总额"
+ cap label variable wholesale_retail_warehouse "集市贸易成交额"
+ cap label variable hotel_foreign "涉外饭店数(个)"
+ cap label variable savings_firm "#企业存款"
+ cap label variable savings_resident "#居民储蓄存款余额"
+ cap label variable savings_long "定期"
+ cap label variable savings_short "活期"
+ cap label variable loan_ind "#工业贷款"
+ cap label variable loan_com "#商业贷款"
+ cap label variable loan_agri "#农业贷款"
+ cap label variable matriculation_rate "学龄儿童入学率"
+ cap label variable midstudent "初中在校学生数"
+ cap label variable midstudent_matri "初中招生数"
+ cap label variable midstudent_grad "初中毕业生数"
+ cap label variable highstudent "高中在校学生数"
+ cap label variable highstudent_matri "高中招生数"
+ cap label variable highstudent_grad "高中毕业生数"
+ cap label variable techsecschool "中等专业学校数"
+ cap label variable techsecstudent "中等专业学校在校学生数"
+ cap label variable techsecstudent_matri "中等专业学校招生数"
+ cap label variable techsecstudent_grad "中等专业学校毕业生数"
+ cap label variable library_book "公共图书馆藏书量"
+ cap label variable radio_cover "广播覆盖率"
+ cap label variable tv_cover "电视覆盖率"
+ cap label variable poll_num "环境污染与破环事故次数"
+ cap label variable poll_amount "污染事故直接经济损失"
+ cap label variable poll_fine "污染事故赔罚款总额"
+ cap label variable fire "火灾事故"
+ cap label variable fire_people "火灾伤亡人数"
+ cap label variable fire_amount "火灾损失金额"
+ cap label variable traffic_acc "交通事故"
+ cap label variable traffic_injury "交通受伤人数"
+ cap label variable traffic_death "交通死亡人数"
+ cap label variable traffic_amount "交通事故损失金额"
+ cap label variable wage_total_soe "国有经济"
+ cap label variable wage_total_collective "城镇集体经济"
+ cap label variable wage_total_other "其他经济"
+ cap label variable employ_domestic "内资"
+ cap label variable num_workers_hmt "港澳台商投资"
+ cap label variable num_workers_frn "外商投资"
+ cap label variable employ_individual "城镇个体"
+ cap label variable broadcast_coverage "广播覆盖率（%）"
+ cap label variable TV_coverage "电视覆盖率（%）"
+ cap label variable epidemic_station "防疫站"
+ cap label variable health_center_woman_child "妇幼保健站"
+ cap label variable employ_hospital "医院人员数"
+ cap label variable doctor "医生"
+ cap label variable medium_teacher " #普通中学专任教师数"
+ cap label variable medium_school "普通中学数"
+ cap label variable medium_student "普通中学在校学生数"
+ cap label variable medium_matri "普通中学招生数"
+ cap label variable medium_grad "普通中学毕业学生数（万人）"
+ cap label variable preschool_enroll "  学龄儿童入学率（%）"
+ cap label variable save_firm "企业存款（亿元）"
+ cap label variable deposit "居民储蓄存款余额（亿元）"
+ cap label variable fixed_deposit "居民定期储蓄余额（亿元）"
+ cap label variable current_deposit "居民活期储蓄余额（亿元）"
+ cap label variable ind_loan "工业贷款"
+ cap label variable com_loan "商业贷款"
+ cap label variable agri_loan "农业贷款"
+ cap label variable resterant_foreign "涉外饭店数"
+ cap label variable tourist_international "  入境国际旅游人数（万人次）"
+ cap label variable cop_enterprise "    法人企业个数"
+ cap label variable total_employ "从业人数（人）"
+ cap label variable purchase "购进总额（亿元）"
+ cap label variable total_sell "销售总额（亿元）"
+ cap label variable inventory "  库存总额（亿元）"
+ cap label variable catering "餐饮业总额（亿元）"
+ cap label variable manufacturing_retail "制造业零售总额（亿元）"
+ cap label variable other_retail "其他行业"
+ cap label variable retail_enterprise "零售贸易业法人企业个数"
+ cap label variable num_ind_construct "建筑业企业单位数（个）"
+ cap label variable employ_construct "建筑业企业从业人员（万人）"
+ cap label variable output_ind_construct "建筑业企业总产值（亿元）"
+ cap label variable house_finish "住宅竣工面积（万平方米）"
+ cap label variable domestic_industry_output "    内资企业工业总产值(亿元)"
+ cap label variable foreign_output "外商投资（亿元）"
+ cap label variable add_value_ind "  工业增加值（亿元）"
+ cap label variable liability "负债合计（亿元）"
+ cap label variable product_sell "产品销售收入（亿元）"
+ cap label variable output_ind_state "国有工业总产值（亿元）"
+ cap label variable collective_ind_output "集体工业（亿元）"
+ cap label variable je_company_output "股份合作企业（亿元）"
+ cap label variable LLC_output "有限责任公司（亿元）"
+ cap label variable llc_share_output "股份有限公司（亿元）"
+ cap label variable private_output "私营企业（亿元）"
+ cap label variable other_output "  其他企业（亿元）"
+ cap label variable huge_exterprise "大型企业数"
+ cap label variable medium_enterprise "中型企业数"
+ cap label variable small_enterprise "小型企业数"
+ cap label variable household_rural "乡村户数（万户）"
+ cap label variable labor_rural "  乡村劳动力（万人）"
+ cap label variable agri_labor "农林牧渔业劳动力（万人）"
+ cap label variable agri_gdp "农林牧渔业总产值（亿元）"
+ cap label variable agri_index "农林牧渔业总产值指数（上年=100）"
+ cap label variable park_area "公园面积（公顷）"
+ cap label variable green_coverage "绿化覆盖率（%）"
+ cap label variable drain_length "排水管道长度（公里）"
+ cap label variable water_waste "  生活废水排放量（万吨）"
+ cap label variable water_waste_treat "生活废水处理量（万吨）"
+ cap label variable landfill_transport "生活垃圾清运量（万吨）"
+ cap label variable landfill_treat "生活垃圾处理量（万吨）"
+ cap label variable birth "出生人口（人）"
+ cap label variable death "死亡人口（人）"
+ cap label variable household "年末总户数（万户）"
+ cap label variable gas_supply "  煤气供气量（万立方米）"
+ cap label variable gas_live "生活用煤气供给量"
+ cap label variable lpg_supply "液化石油气供给量（吨）"
+ cap label variable lpg_live "生活用液化石油气供给量"
+ cap label variable built_area_city "城市建成区（平方公里）"
+ cap label variable water_pipe_length "  供水管道长度（公里）"
+ cap label variable water_live "生活用水（万吨）"
+ cap label variable water_population "  用水人口（万人）"
+ cap label variable financial_revenue "地方财政收入（亿元）"
+ cap label variable financial_expense "地方财政支出（亿元）"
+ cap label variable infrastructure "基础建设支出（亿元）"
+ cap label variable three_expense "科技三项费（亿元）"
+ cap label variable cul_sci_edu_hyg "文教科卫事业费（亿元）"
+ cap label variable fixed_invest "  全社会固定资产投资（亿元）"
+ cap label variable invest_capital_construct "基本建设投资"
+ cap label variable re_invest "更新改造投资"
+ cap label variable fixed_invest_state "  国有单位固定资产投资（亿元）      "
+ cap label variable new_fixed_state "国有投资新增固定资产（亿元）"
+ cap label variable employ_population "职工人数（万人）"
+ cap label variable employ_other "其他经济职工人数（万人）"
+ cap label variable emply_income "职工工资总额（亿元）"
+ cap label variable salary_state "国有经济职工工资总额（亿元）"
+ cap label variable salary_collective "城镇集体经济职工工资总额（亿元）"
+ cap label variable salary_other "其他经济职工工资总额（亿元）"
+ cap label variable employ_average_income "职工平均工资（元）"
+ cap label variable employ_state_city "国有经济城镇就业人员（万人）"
+ cap label variable employ_collective_city "  城镇集体经济城镇就业人员（万人）"
+ cap label variable employ_other_city "  其他经济就业城镇人员（万人）"
+ cap label variable domestic_employ_city "内资城镇就业（万人）"
+ cap label variable HK_Macao_Taiwan_employ_city "港澳台投资城镇就业人员（万元）"
+ cap label variable foreign_emply "外商投资城镇就业人员（万人）"
+ cap label variable employ_private_city "  城镇私营企业城镇就业人员（万人）"
+ cap label variable individual_city "城镇个体户就业（万人）"
+ cap label variable active_pop "经济活动人口（万人）"
+ cap label variable employ_city "城镇就业人员（万人）"
+ cap label variable unemploy_city "  城镇登记失业人员数（万人）"
+ cap label variable index_gdp "    国内生产总值指数（上年=100）"
+ cap label variable index_gip "工业生产总值指数"
+ cap label variable gip "工业生产总值（亿元）"
+ cap label variable index_ind "工业指数"
+ cap label variable pcdgp_index "    人均地区生产总值指数"
+ cap label variable food_rural "食品支出"
+ cap label variable food_city "食品支出（元）"
+ cap label variable associate_output "联营企业总产值（亿元）"
+ cap label variable HK_Macao_Taiwan_output "港澳台商投资企业总产值"
+ cap label variable tourist_foreign "入境旅游外国人数（万人次）"
+ cap label variable yield_milk "#牛奶"
+ cap label variable employ_hmt "港澳台商投资单位(万人)"
+ cap label variable employ_frn "外商投资单位(万人)"
+ cap label variable output_ind_soe "#国有及国有控股"
+ cap label variable ind_valueadded_index "工业企业增加值指数(上年=100)"
+ cap label variable post "邮政业务总量(亿元)"
+ cap label variable employ_urban "城镇就业人员(万人)"
+ cap label variable investment_soe "#国有经济"
+ cap label variable investment_collective "#集体经济"
+ cap label variable investment_private "#个体经济"
+ cap label variable investment_rural "农村(亿元)"
+ cap label variable comhouse_price "商品房屋平均销售价格(元/平方)"
+ cap label variable house_price "商品房屋(住宅)"
+ cap label variable num_hygiene_epide "防疫站(个)"
+ cap label variable num_hygiene_healthcare "妇幼保健站(个)"
+ cap label variable num_workers_soe "#国有经济"
+ cap label variable num_workers_collective "#城镇集体经济"
+ cap label variable tv_cover_cable "有线电视入户率(%)"
+ cap label variable consumption_wholesale_retail "批发和零售业(亿元)"
+ cap label variable consumption_other "其他行业(亿元)"
+ cap label variable state_ownedUnits "国有单位"
+ cap label variable electricity_hh "生活垃圾清运量(万吨)"
+ cap label variable fisexp_food_rural "食品支出"
+ cap label variable fisexp_food_city "食品支出"
+ cap label variable Collective_ownedUnits "城镇集体单位(万人)"
+ cap label variable UnitswithFundsfromHongKong "港澳台商投资单位(万人)"
+ cap label variable ForeignFundedUnits "外商投资单位(万人)"
+ cap label variable inc_finance_loc "地方财政收入(亿元)"
+ cap label variable exp_finance_local "地方财政支出(亿)"
+ cap label variable agri_exp "支农支出"
+ cap label variable output_industry "工业"
+ cap label variable output_index_industry "工业"
+ cap label variable import_ "出口额"
+ cap label variable fixed_period_deposit "定期"
+ cap label variable urbanarea "城镇(亿元)"
+ cap label variable rurualarea "农村(亿元)"
+ cap label variable sales_house "住宅"
+ cap label variable total_population "年底总人口(万人)"
+ cap label variable output_hmt "港澳台商投资企业"
+ cap label variable house_sale "住宅（商品房销售额）ResidentialBuildings"
+ cap label variable added_values_tax "国内增值税（一般预算收入-各项税收）"
+ cap label variable output_ind_index "工业企业增加值指数（上年=100）"
+ cap label variable rurual "资产总计（亿元）"
+ cap label variable gdp_region_ind "地区生产总值_第二产业_工业"
+ cap label variable state "国有单位"
+ cap label variable collective "城镇集体单位"
+ cap label variable hk_macao_taiwan "港澳台商投资单位"
+ cap label variable foreign "外商投资单位"
+ cap label variable private "私营企业"
+ cap label variable indivitual "个体"
+ cap label variable num_ind_large "工业企业单位数_大型企业"
+ cap label variable num_ind_med "工业企业单位数_中型企业"
+ cap label variable num_ind_little "工业企业单位数_小型企业"
+ cap label variable gdp_ind_state "工业总产值_国有及国有控股"
+ cap label variable gdp_ind_domestic "工业总产值_内资企业"
+ cap label variable gdp_ind_hk_macao_taiwan "工业总产值_港澳台商投资企业"
+ cap label variable gdp_ind_foreign "工业总产值_外商投资企业"
+ cap label variable index_add_value_ind "工业企业增加值指数"
+ cap label variable employ_contruct "建筑业企业从业人员"
+ cap label variable consumption_others "社会消费品零售总额_其他行业"
+ cap label variable num_ind_retailcater "批发零售住宿餐饮企业数(个)"
+ cap label variable num_employ_retailcater "批发零售住宿餐饮从业人数(人)"
+ cap label variable whole_retail "批发零售业销售总额(亿元)"
+ cap label variable savings_business "金融机构人民币存款_企业存款"
+ cap label variable savings_deposit_long "金融机构人民币存款_城乡居民储蓄存款_定期"
+ cap label variable loan_industry_short "金融机构人民币贷款_工业贷款"
+ cap label variable loan_commercial_short "金融机构人民币贷款_商业贷款"
+ cap label variable loan_agriculture "金融机构人民币贷款_农业贷款"
+ cap label variable employ_agri "乡村从业人员_农林牧渔业"
+ cap label variable books_library "公共图书馆藏书量(万册.件)"
+ cap label variable penetration_CATV "有线电视入户率(%)"
+ cap label variable comhouse_sales_averge "商品房平均销售价格"
+ cap label variable house_sales_average "商品房平均销售价格_住宅"
+ cap label variable num_employ "职工人数"
+ cap label variable employ_income "职工工资总额"
+ cap label variable salary_average "职工平均工资"
+ cap label variable average_salary_state "职工平均工资_国有单位"
+ cap label variable average_salary_collective "职工平均工资_城镇集体单位"
+ cap label variable average_salary_others "职工平均工资_其他单位"
+ cap label variable museum "艺术馆、文化馆（站）数"
+ cap label variable average_employ "年平均从业人员"
+ cap label variable employ_fdi_city "外商投资单位"
+ cap label variable num_ind_state "工业企业单位数_国有及国有控股"
+ cap label variable num_ind_domestic "工业企业单位数_内资企业"
+ cap label variable num_ind_hk_macao_hk "工业企业单位数_港澳台商投资企业"
+ cap label variable num_ind_foreign "工业企业单位数_外商投资企业"
+ cap label variable gdp_ind_large "工业总产值_大型企业"
+ cap label variable gdp_ind_med "工业总产值_中型企业"
+ cap label variable gdp_ind_little "工业总产值_小型企业"
+ cap label variable wage_private "城镇私营单位就业人员平均工资(元)"
+ cap label variable housing_area_rural "农村人均住房面积(平方米)"
+ cap label variable output_ind_light "轻工业(亿元)"
+ cap label variable output_ind_heavy "重工业(亿元)"
+ cap label variable output_ind_large "大型企业(亿元)"
+ cap label variable output_ind_medium "中型企业(亿元)"
+ cap label variable output_ind_small "小型企业(亿元)"
+ cap label variable employ_ind "从业人员年平均人数(万人)"
+ cap label variable hotel_cater_firm "住宿和餐饮业法人企业数(个)"
+ cap label variable hotel_cater_employ "住宿和餐饮业年末从业人数(个)"
+ cap label variable loan_domestic "境内贷款(亿元)"
+ cap label variable loan_overseas "境外贷款(亿元)"
+ cap label variable yiled_grain "粮食产量(万吨)"
+ cap label variable ouput_ind "工业总产值(亿元）"
+ cap label variable comsumption "社会消费品零售总额（亿元）"
+ cap label variable loan_rmbfrn "金融机构本外币贷款"
+ cap label variable savings_danwei "单位人民币存款"
+ cap label variable savings_geren "个人人民币存款"
+
+{com}. pwd
+{res}F:\git\stata\output\7May2017
+
+{com}. br
+
+. tab code
+
+     {txt}行政代 {c |}
+         码 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+     110000 {c |}{res}         12        0.21        0.21
+{txt}     110101 {c |}{res}         13        0.23        0.44
+{txt}     110102 {c |}{res}         13        0.23        0.66
+{txt}     110103 {c |}{res}          8        0.14        0.80
+{txt}     110104 {c |}{res}          8        0.14        0.94
+{txt}     110105 {c |}{res}         13        0.23        1.17
+{txt}     110106 {c |}{res}         13        0.23        1.40
+{txt}     110107 {c |}{res}         13        0.23        1.63
+{txt}     110108 {c |}{res}         13        0.23        1.85
+{txt}     110109 {c |}{res}         13        0.23        2.08
+{txt}     110111 {c |}{res}         13        0.23        2.31
+{txt}     110112 {c |}{res}         13        0.23        2.54
+{txt}     110113 {c |}{res}         13        0.23        2.76
+{txt}     110114 {c |}{res}         13        0.23        2.99
+{txt}     110115 {c |}{res}         13        0.23        3.22
+{txt}     110116 {c |}{res}         13        0.23        3.45
+{txt}     110117 {c |}{res}         13        0.23        3.67
+{txt}     110218 {c |}{res}          1        0.02        3.69
+{txt}     110228 {c |}{res}         13        0.23        3.92
+{txt}     110229 {c |}{res}         13        0.23        4.14
+{txt}     120000 {c |}{res}         13        0.23        4.37
+{txt}     120101 {c |}{res}         13        0.23        4.60
+{err}{hline 2}Break{hline 2}
+{txt}{search r(1):r(1);}
+
+{com}. count code
+{err}varlist not allowed
+{txt}{search r(101):r(101);}
+
+{com}. help count
+
+. count gdp
+{err}varlist not allowed
+{txt}{search r(101):r(101);}
+
+{com}. cookbook code
+{err}command {bf}cookbook{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}660000{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}460{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  383172
+{txt}{col 15}std. dev:{res}{col 26}  161130
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  130700{col 37}  231100{col 47}  410400{col 57}  510800{col 67}  620400
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+
+{com}. tab year
+
+       {txt}year {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+       2001 {c |}{res}        415        7.26        7.26
+{txt}       2002 {c |}{res}        432        7.56       14.81
+{txt}       2003 {c |}{res}        432        7.56       22.37
+{txt}       2004 {c |}{res}        438        7.66       30.03
+{txt}       2005 {c |}{res}        446        7.80       37.83
+{txt}       2006 {c |}{res}        445        7.78       45.61
+{txt}       2007 {c |}{res}        441        7.71       53.32
+{txt}       2008 {c |}{res}        447        7.82       61.14
+{txt}       2009 {c |}{res}        448        7.83       68.98
+{txt}       2010 {c |}{res}        444        7.76       76.74
+{txt}       2011 {c |}{res}        443        7.75       84.49
+{txt}       2012 {c |}{res}        446        7.80       92.29
+{txt}       2013 {c |}{res}        441        7.71      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      5,718      100.00
+
+{com}. codebook region_name
+
+{txt}{hline}
+{res}region_name{right:区域名称}
+{txt}{hline}
+
+{col 19}type:  string ({res}str80{txt}), but longest is str39
+
+{col 10}unique values:  {res}501{col 51}{txt}missing "":  {res}0{txt}/{res}5,718
+
+{txt}{col 15}examples:  {res}"商丘市"
+{col 26}"惠州市"
+{col 26}"海西蒙古族藏族自治州"
+{col 26}"贵阳市"
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}660000{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}460{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  383172
+{txt}{col 15}std. dev:{res}{col 26}  161130
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  130700{col 37}  231100{col 47}  410400{col 57}  510800{col 67}  620400
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}3.89{txt},{res}39482.56{txt}]{col 55}units:  {res}1.000e-08
+{col 10}{txt}unique values:  {res}2,801{col 51}{txt}missing .:  {res}2,878{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 1327.01
+{txt}{col 15}std. dev:{res}{col 26} 2841.08
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27} 101.105{col 37}  225.76{col 47} 518.045{col 57} 1196.03{col 67}  2930.7
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}27930484{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}2,274{col 51}{txt}missing .:  {res}3,356{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  435307
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     601{col 37}    4051{col 47} 23865.5{col 57}  139324{col 67}  593400
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}40418851{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}1,997{col 51}{txt}missing .:  {res}3,698{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  544828
+{txt}{col 15}std. dev:{res}{col 26} 2.4e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  2089.8{col 37} 11228.5{col 47}   48771{col 57}  196420{col 67}  885427
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}27930484{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}2,274{col 51}{txt}missing .:  {res}3,356{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  435307
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     601{col 37}    4051{col 47} 23865.5{col 57}  139324{col 67}  593400
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}2532298{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}2,461{col 51}{txt}missing .:  {res}3,097{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 59023.4
+{txt}{col 15}std. dev:{res}{col 26}  171856
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     510{col 37}    2623{col 47}   10119{col 57}   39836{col 67}  133877
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. di 2461+3097-5718
+{res}-160
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\7May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 May 2017, 03:07:00
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

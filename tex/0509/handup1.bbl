@@ -1,0 +1,128 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Garrett%
+\ \BBA {} Mitchell%
+}{%
+Garrett%
+\ \BBA {} Mitchell%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+garrett2001globalization}
+\APACinsertmetastar {%
+garrett2001globalization}%
+\begin{APACrefauthors}%
+Garrett, G.%
+\BCBT {}\ \BBA {} Mitchell, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Globalization, government spending and taxation in the
+  OECD} {Globalization, government spending and taxation in the oecd}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{European Journal of Political
+  Research}{39}{2}{145--177}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rodrik%
+}{%
+Rodrik%
+}{%
+{\protect \APACyear {1998}}%
+}]{%
+rodrik1998more}
+\APACinsertmetastar {%
+rodrik1998more}%
+\begin{APACrefauthors}%
+Rodrik, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Why do more open economies have bigger governments?}
+  {Why do more open economies have bigger governments?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of political economy}{106}{5}{997--1032}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+M\BPBI V.~Tanzi%
+}{%
+M\BPBI V.~Tanzi%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+tanzi2000globalization}
+\APACinsertmetastar {%
+tanzi2000globalization}%
+\begin{APACrefauthors}%
+Tanzi, M\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2000}.
+\newblock
+\APACrefbtitle {Globalization, technological developments, and the work of
+  fiscal termites} {Globalization, technological developments, and the work of
+  fiscal termites}\ (\BNUM\ 0-181).
+\newblock
+\APACaddressPublisher{}{International Monetary Fund}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+V.~Tanzi%
+}{%
+V.~Tanzi%
+}{%
+{\protect \APACyear {1973}}%
+}]{%
+tanzi1973theory}
+\APACinsertmetastar {%
+tanzi1973theory}%
+\begin{APACrefauthors}%
+Tanzi, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1973}.
+\newblock
+\APACrefbtitle {The theory of tax structure change during economic development:
+  a critical survey} {The theory of tax structure change during economic
+  development: a critical survey}.
+\newblock
+\APACaddressPublisher{}{Dott. A. Giuffr{\`e} Editore}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+维托·坦茨%
+, 坦茨%
+\BCBL {}\ \BBA {} 王宇%
+}{%
+维托·坦茨%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+wangyu2014}
+\APACinsertmetastar {%
+wangyu2014}%
+\begin{APACrefauthors}%
+维托·坦茨%
+, 坦茨%
+\BCBL {}\ \BBA {} 王宇.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {政府与市场:变革中的政府职能}
+  {政府与市场:变革中的政府职能}.
+\newblock
+\APACaddressPublisher{}{商务印书馆}.
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

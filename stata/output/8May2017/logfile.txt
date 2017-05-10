@@ -1,0 +1,2109 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\8May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 May 2017, 07:53:59
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. dir "..\7May2017"
+{txt}  <dir>   5/08/17  3:07  {res}7May2017          
+
+{com}. dir "..\7May2017\"
+{txt}  <dir>   5/08/17  3:07  {res}.                 
+{txt}  <dir>   5/08/17  3:07  {res}..                
+{txt}   1.5k   5/08/17  3:07  {res}01.do             
+{txt}   1.3k   5/07/17 18:01  {res}far.do            
+{txt}4848.8k   5/07/17 17:47  {res}far.dta           
+{txt}  40.1k   5/08/17  3:07  {res}logfile.txt       
+
+{com}. doedit "..\7May2017\01.do"
+
+. doedit "..\7May2017\01.do"
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep if year > 2007
+{txt}(3,049 observations deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}660000{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}457{col 51}{txt}missing .:  {res}0{txt}/{res}2,669
+
+{txt}{col 19}mean:{res}{col 26}  385382
+{txt}{col 15}std. dev:{res}{col 26}  160975
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  130800{col 37}  232700{col 47}  410800{col 57}  510800{col 67}  620500
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2008{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}6{col 51}{txt}missing .:  {res}0{txt}/{res}2,669
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       447{col 33}2008
+{col 21}       448{col 33}2009
+{col 21}       444{col 33}2010
+{col 21}       443{col 33}2011
+{col 21}       446{col 33}2012
+{col 21}       441{col 33}2013
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}7.97{txt},{res}39482.56{txt}]{col 55}units:  {res}1.000e-08
+{col 10}{txt}unique values:  {res}1,604{col 51}{txt}missing .:  {res}1,056{txt}/{res}2,669
+
+{txt}{col 19}mean:{res}{col 26} 1595.62
+{txt}{col 15}std. dev:{res}{col 26}  3068.9
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  175.56{col 37}  358.24{col 47}  704.72{col 57} 1506.74{col 67}  3501.5
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}27930484{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}1,535{col 51}{txt}missing .:  {res}1,107{txt}/{res}2,669
+
+{txt}{col 19}mean:{res}{col 26}  461667
+{txt}{col 15}std. dev:{res}{col 26} 2.0e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     681{col 37}    5271{col 47}   28770{col 57}  165234{col 67}  674233
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}2{txt},{res}40418851{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}1,593{col 51}{txt}missing .:  {res}1,063{txt}/{res}2,669
+
+{txt}{col 19}mean:{res}{col 26}  544061
+{txt}{col 15}std. dev:{res}{col 26} 2.4e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  2384.4{col 37}   12300{col 47}   51782{col 57}  203045{col 67}  922448
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}2532298{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}1,469{col 51}{txt}missing .:  {res}1,159{txt}/{res}2,669
+
+{txt}{col 19}mean:{res}{col 26} 68159.2
+{txt}{col 15}std. dev:{res}{col 26}  182469
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  1086.5{col 37}    4406{col 47}   14476{col 57}   51910{col 67}  153492
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep if year > 2009
+{txt}(895 observations deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}16.81{txt},{res}15420.1{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}777{col 51}{txt}missing .:  {res}993{txt}/{res}1,774
+
+{txt}{col 19}mean:{res}{col 26} 1559.09
+{txt}{col 15}std. dev:{res}{col 26} 1940.22
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   248.8{col 37}  492.71{col 47}   978.5{col 57}  1683.6{col 67}  3501.5
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}1{txt},{res}23177284{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}746{col 51}{txt}missing .:  {res}1,025{txt}/{res}1,774
+
+{txt}{col 19}mean:{res}{col 26}  435206
+{txt}{col 15}std. dev:{res}{col 26} 1.8e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     894{col 37}    6631{col 47}   34837{col 57}  180174{col 67}  731888
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}2{txt},{res}30570191{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}771{col 51}{txt}missing .:  {res}1,002{txt}/{res}1,774
+
+{txt}{col 19}mean:{res}{col 26}  497730
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  3597.4{col 37}   18138{col 47} 70537.9{col 57}  246653{col 67}  922448
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}11{txt},{res}1359985{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}716{col 51}{txt}missing .:  {res}1,049{txt}/{res}1,774
+
+{txt}{col 19}mean:{res}{col 26} 64029.2
+{txt}{col 15}std. dev:{res}{col 26}  136569
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    1849{col 37}    5308{col 47}   19908{col 57}   58561{col 67}  152000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep if year == 2013
+{txt}(1,333 observations deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}659004{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}441{col 51}{txt}missing .:  {res}0{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  385657
+{txt}{col 15}std. dev:{res}{col 26}  160183
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  131000{col 37}  310000{col 47}  410900{col 57}  510700{col 67}  620400
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2013{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}441
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       441{col 33}2013
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}18.6{txt},{res}15420.1{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}385{col 51}{txt}missing .:  {res}52{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 1665.19
+{txt}{col 15}std. dev:{res}{col 26} 2070.92
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   255.3{col 37}   535.2{col 47}  1022.2{col 57}  1781.8{col 67}  3835.2
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}4{txt},{res}23177284{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}372{col 51}{txt}missing .:  {res}66{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  448900
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     894{col 37}    6800{col 47}   38437{col 57}  184313{col 67}  733289
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}2{txt},{res}30570191{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}386{col 51}{txt}missing .:  {res}55{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  518762
+{txt}{col 15}std. dev:{res}{col 26} 2.0e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    3758{col 37}   19379{col 47}   76012{col 57}  252418{col 67}  975832
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}29{txt},{res}1359985{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}362{col 51}{txt}missing .:  {res}79{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 66124.9
+{txt}{col 15}std. dev:{res}{col 26}  140458
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2015{col 37}    5766{col 47} 21072.5{col 57}   63293{col 67}  154983
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep
+{err}varlist or in range required
+{txt}{search r(100):r(100);}
+
+end of do-file
+
+{search r(100):r(100);}
+
+{com}. help restore
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. preserve
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}660000{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}460{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26}  383172
+{txt}{col 15}std. dev:{res}{col 26}  161130
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  130700{col 37}  231100{col 47}  410400{col 57}  510800{col 67}  620400
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. 
+. keep if year == 2001
+{txt}(5,303 observations deleted)
+
+{com}. 
+. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}3.89{txt},{res}10647.71{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}382{col 51}{txt}missing .:  {res}32{txt}/{res}415
+
+{txt}{col 19}mean:{res}{col 26} 538.007
+{txt}{col 15}std. dev:{res}{col 26} 1203.58
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   44.46{col 37}   90.03{col 47}  184.59{col 57}  407.43{col 67} 1120.12
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}415{txt}/{res}415
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       415{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}415{txt}/{res}415
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       415{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.8{txt},{res}1297240{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}330{col 51}{txt}missing .:  {res}78{txt}/{res}415
+
+{txt}{col 19}mean:{res}{col 26} 27716.9
+{txt}{col 15}std. dev:{res}{col 26}  102553
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     135{col 37}     634{col 47}    2654{col 57}   12071{col 67}   64320
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. reserve
+{err}command {bf}reserve{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+end of do-file
+
+{search r(199):r(199);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. restore
+{err}nothing to restore
+{txt}{search r(622):r(622);}
+
+end of do-file
+
+{search r(622):r(622);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook code
+
+{txt}{hline}
+{res}code{right:行政代码}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}long{txt})
+
+{col 18}range:  [{res}110000{txt},{res}659001{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}415{col 51}{txt}missing .:  {res}0{txt}/{res}415
+
+{txt}{col 19}mean:{res}{col 26}  381583
+{txt}{col 15}std. dev:{res}{col 26}  160712
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  130800{col 37}  231000{col 47}  371700{col 57}  511000{col 67}  620300
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2001{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}415
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       415{col 33}2001
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. restore
+{err}nothing to restore
+{txt}{search r(622):r(622);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. preserve
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep if year == 2002
+{txt}(5,286 observations deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. restore
+{err}nothing to restore
+{txt}{search r(622):r(622);}
+
+end of do-file
+
+{search r(622):r(622);}
+
+{com}. restore
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. keep if year == 2003
+{txt}(5,286 observations deleted)
+
+{com}. 
+. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}432{txt}/{res}432
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       432{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. restore
+{err}nothing to restore
+{txt}{search r(622):r(622);}
+
+{com}. restore
+{err}nothing to restore
+{txt}{search r(622):r(622);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2004
+{txt}(5,280 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2004{txt},{res}2004{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}438
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       438{col 33}2004
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}438{txt}/{res}438
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       438{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}438{txt}/{res}438
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       438{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}438{txt}/{res}438
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       438{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}438{txt}/{res}438
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       438{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2005
+{txt}(5,272 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2005{txt},{res}2005{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}2005
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}446{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}446{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}446{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}446{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2006
+{txt}(5,273 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2006{txt},{res}2006{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}445
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       445{col 33}2006
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}6.2{txt},{res}26204.5{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}411{col 51}{txt}missing .:  {res}21{txt}/{res}445
+
+{txt}{col 19}mean:{res}{col 26} 1061.94
+{txt}{col 15}std. dev:{res}{col 26} 2581.32
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}      86{col 37}  167.15{col 47}  359.05{col 57}   726.3{col 67}  2276.7
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}22525900{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}387{col 51}{txt}missing .:  {res}48{txt}/{res}445
+
+{txt}{col 19}mean:{res}{col 26}  332785
+{txt}{col 15}std. dev:{res}{col 26} 1.6e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     332{col 37}    2138{col 47}   15300{col 57}   79536{col 67}  350417
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}445{txt}/{res}445
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       445{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}11{txt},{res}1743140{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}381{col 51}{txt}missing .:  {res}61{txt}/{res}445
+
+{txt}{col 19}mean:{res}{col 26} 48844.7
+{txt}{col 15}std. dev:{res}{col 26}  155938
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     347{col 37}  1554.5{col 47}  6028.5{col 57}   23688{col 67}  104499
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2007
+{txt}(5,277 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2007{txt},{res}2007{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}441
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       441{col 33}2007
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}10.13{txt},{res}31084.4{txt}]{col 55}units:  {res}1.000e-07
+{col 10}{txt}unique values:  {res}419{col 51}{txt}missing .:  {res}21{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 1282.51
+{txt}{col 15}std. dev:{res}{col 26} 3080.59
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  103.95{col 37} 207.903{col 47} 438.427{col 57} 889.974{col 67} 2722.15
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}26479587{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}401{col 51}{txt}missing .:  {res}38{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  434132
+{txt}{col 15}std. dev:{res}{col 26} 2.0e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   566.6{col 37}  3112.2{col 47}   19330{col 57}  119980{col 67}  502988
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}36924109{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}413{col 51}{txt}missing .:  {res}27{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  547807
+{txt}{col 15}std. dev:{res}{col 26} 2.6e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    1228{col 37}    7767{col 47} 34697.1{col 57}  161847{col 67}  839145
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}3{txt},{res}2189206{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}384{col 51}{txt}missing .:  {res}51{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 60725.9
+{txt}{col 15}std. dev:{res}{col 26}  188309
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     328{col 37}    2364{col 47}  8435.5{col 57}   29769{col 67}  133985
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2008
+{txt}(5,271 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2008{txt},{res}2008{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}447
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       447{col 33}2008
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}7.97{txt},{res}35696.46{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}406{col 51}{txt}missing .:  {res}41{txt}/{res}447
+
+{txt}{col 19}mean:{res}{col 26} 1571.81
+{txt}{col 15}std. dev:{res}{col 26} 3678.16
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   126.9{col 37}   249.9{col 47}  544.27{col 57} 1092.83{col 67} 3434.19
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}1{txt},{res}27930484{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}398{col 51}{txt}missing .:  {res}44{txt}/{res}447
+
+{txt}{col 19}mean:{res}{col 26}  520374
+{txt}{col 15}std. dev:{res}{col 26} 2.3e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     672{col 37}    4225{col 47}   25876{col 57}  150181{col 67}  674233
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}2{txt},{res}40418851{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}416{col 51}{txt}missing .:  {res}30{txt}/{res}447
+
+{txt}{col 19}mean:{res}{col 26}  636346
+{txt}{col 15}std. dev:{res}{col 26} 2.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2075{col 37}    9841{col 47}   45913{col 57}  188080{col 67} 1.1e+06
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}1{txt},{res}2512001{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}386{col 51}{txt}missing .:  {res}55{txt}/{res}447
+
+{txt}{col 19}mean:{res}{col 26} 69378.4
+{txt}{col 15}std. dev:{res}{col 26}  210847
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     727{col 37}    3502{col 47}   11397{col 57}   37501{col 67}  150960
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2009
+{txt}(5,270 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2009{txt},{res}2009{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}448
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       448{col 33}2009
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}9.13{txt},{res}39482.56{txt}]{col 55}units:  {res}1.000e-08
+{col 10}{txt}unique values:  {res}423{col 51}{txt}missing .:  {res}22{txt}/{res}448
+
+{txt}{col 19}mean:{res}{col 26} 1685.26
+{txt}{col 15}std. dev:{res}{col 26} 3988.77
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  138.64{col 37}  284.82{col 47} 589.609{col 57} 1178.01{col 67} 3701.79
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}25216239{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}407{col 51}{txt}missing .:  {res}38{txt}/{res}448
+
+{txt}{col 19}mean:{res}{col 26}  452301
+{txt}{col 15}std. dev:{res}{col 26} 2.0e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   527.5{col 37}    4067{col 47}   22767{col 57}  134921{col 67}  596502
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}20{txt},{res}35895578{txt}]{col 55}units:  {res}.0001
+{col 10}{txt}unique values:  {res}416{col 51}{txt}missing .:  {res}31{txt}/{res}448
+
+{txt}{col 19}mean:{res}{col 26}  537548
+{txt}{col 15}std. dev:{res}{col 26} 2.5e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27} 2071.15{col 37} 8670.94{col 47}   39201{col 57}  156771{col 67}  837110
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}0{txt},{res}2532298{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}390{col 51}{txt}missing .:  {res}55{txt}/{res}448
+
+{txt}{col 19}mean:{res}{col 26}   74562
+{txt}{col 15}std. dev:{res}{col 26}  222044
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     720{col 37}    3610{col 47} 11334.6{col 57}   46229{col 67}  161795
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2010
+{txt}(5,274 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2010{txt},{res}2010{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}444
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       444{col 33}2010
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}444{txt}/{res}444
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       444{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}444{txt}/{res}444
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       444{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}444{txt}/{res}444
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       444{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}444{txt}/{res}444
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       444{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2011
+{txt}(5,275 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2011{txt},{res}2011{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}443
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       443{col 33}2011
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}443{txt}/{res}443
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       443{col 33}.
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}443{txt}/{res}443
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       443{col 33}.
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}443{txt}/{res}443
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       443{col 33}.
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}.{txt},{res}.{txt}]{col 55}units:  {res}.
+{col 10}{txt}unique values:  {res}0{col 51}{txt}missing .:  {res}443{txt}/{res}443
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       443{col 33}.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2012
+{txt}(5,272 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2012{txt},{res}2012{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}446
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       446{col 33}2012
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}16.81{txt},{res}13551.21{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}392{col 51}{txt}missing .:  {res}54{txt}/{res}446
+
+{txt}{col 19}mean:{res}{col 26} 1453.81
+{txt}{col 15}std. dev:{res}{col 26} 1797.65
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  225.98{col 37}  454.22{col 47} 905.955{col 57} 1565.36{col 67} 3189.37
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}1{txt},{res}19544714{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}374{col 51}{txt}missing .:  {res}72{txt}/{res}446
+
+{txt}{col 19}mean:{res}{col 26}  421476
+{txt}{col 15}std. dev:{res}{col 26} 1.7e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     927{col 37}    6528{col 47}   32419{col 57}  173890{col 67}  678313
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}6{txt},{res}27135572{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}386{col 51}{txt}missing .:  {res}60{txt}/{res}446
+
+{txt}{col 19}mean:{res}{col 26}  476699
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}  3367.2{col 37}   16586{col 47}   67905{col 57}  243535{col 67}  922448
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}11{txt},{res}1235033{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}358{col 51}{txt}missing .:  {res}83{txt}/{res}446
+
+{txt}{col 19}mean:{res}{col 26} 61939.2
+{txt}{col 15}std. dev:{res}{col 26}  132739
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    1720{col 37}    5067{col 47}   18339{col 57}   56355{col 67}  150164
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2013
+{txt}(5,277 observations deleted)
+
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2013{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}1{col 51}{txt}missing .:  {res}0{txt}/{res}441
+
+{txt}{col 13}tabulation:  Freq.  Value
+{col 21}{res}       441{col 33}2013
+{txt}
+{com}. codebook gdp
+
+{txt}{hline}
+{res}gdp{right:地区生产总值(亿元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}18.6{txt},{res}15420.1{txt}]{col 55}units:  {res}.1
+{col 10}{txt}unique values:  {res}385{col 51}{txt}missing .:  {res}52{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 1665.19
+{txt}{col 15}std. dev:{res}{col 26} 2070.92
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}   255.3{col 37}   535.2{col 47}  1022.2{col 57}  1781.8{col 67}  3835.2
+{txt}
+{com}. codebook export
+
+{txt}{hline}
+{res}export{right:进口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}4{txt},{res}23177284{txt}]{col 55}units:  {res}.01
+{col 10}{txt}unique values:  {res}372{col 51}{txt}missing .:  {res}66{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  448900
+{txt}{col 15}std. dev:{res}{col 26} 1.9e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}     894{col 37}    6800{col 47}   38437{col 57}  184313{col 67}  733289
+{txt}
+{com}. codebook import
+
+{txt}{hline}
+{res}import{right:出口额}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}2{txt},{res}30570191{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}386{col 51}{txt}missing .:  {res}55{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26}  518762
+{txt}{col 15}std. dev:{res}{col 26} 2.0e+06
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    3758{col 37}   19379{col 47}   76012{col 57}  252418{col 67}  975832
+{txt}
+{com}. codebook fdi
+
+{txt}{hline}
+{res}fdi{right:外商直接投资实际使用额(万美元)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}double{txt})
+
+{col 18}range:  [{res}29{txt},{res}1359985{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}362{col 51}{txt}missing .:  {res}79{txt}/{res}441
+
+{txt}{col 19}mean:{res}{col 26} 66124.9
+{txt}{col 15}std. dev:{res}{col 26}  140458
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2015{col 37}    5766{col 47} 21072.5{col 57}   63293{col 67}  154983
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. codebook year
+
+{txt}{hline}
+{res}year{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}float{txt})
+
+{col 18}range:  [{res}2001{txt},{res}2013{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}13{col 51}{txt}missing .:  {res}0{txt}/{res}5,718
+
+{txt}{col 19}mean:{res}{col 26} 2007.05
+{txt}{col 15}std. dev:{res}{col 26}   3.721
+
+{txt}{col 12}percentiles:{col 32}10%{col 42}25%{col 52}50%{col 62}75%{col 72}90%
+{res}{col 27}    2002{col 37}    2004{col 47}    2007{col 57}    2010{col 67}    2012
+{txt}
+{com}. keep if year == 2014
+{txt}(5,718 observations deleted)
+
+{com}. codebook year
+{err}no observations
+{txt}{search r(2000):r(2000);}
+
+end of do-file
+
+{search r(2000):r(2000);}
+
+{com}. br
+
+. clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. br region_name year pop_per gdp kindergarten kindergarten_student prischool num_workers_soe tv_cover_cable state_ownedUnits
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\data_final_jianshe.do", clear
+{err}{p 0 4 2}
+file F:\data\pf\data_final_jianshe.do
+not Stata format
+{p_end}
+{txt}{search r(610):r(610);}
+
+end of do-file
+
+{search r(610):r(610);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\city_jianshe.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. version 13
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\city_jianshe.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\city_jianshe.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save city.dta, clear
+{err}option {bf:clear} not allowed
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save city.dta, replace
+{txt}(note: file city.dta not found)
+file city.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode analyze city.dta
+{res}  {txt}(Directory ./bak.stunicode created; please do not delete)
+{txt}
+  File summary (before starting):
+        1  file(s) specified
+        1  file(s) to be examined ...
+{txt}
+  File city.dta (Stata dataset)
+      406 variable labels need translation
+{err}               sprintf():  3900  unable to allocate <tmp> of 645200 bytes
+    strtype_for_strvar():     -  function returned error
+translate_string_for_strvar():     -  function returned error
+      examine_strN_var():     -  function returned error
+      examine_dta_strN():     -  function returned error
+      examine_dta_file():     -  function returned error
+          examine_file():     -  function returned error
+      do_examine_files():     -  function returned error
+            unicode_do():     -  function returned error
+       unicode_analyze():     -  function returned error
+                 <istmt>:     -  function returned error
+{txt}{search r(3900):r(3900);}
+
+end of do-file
+
+{search r(3900):r(3900);}
+
+{com}. version 14
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode analyze city.dta
+{res}{txt}
+  File summary (before starting):
+        1  file(s) specified
+        1  file(s) to be examined ...
+{txt}
+  File city.dta (Stata dataset)
+      406 variable labels need translation
+{err}               sprintf():  3900  unable to allocate <tmp> of 645200 bytes
+    strtype_for_strvar():     -  function returned error
+translate_string_for_strvar():     -  function returned error
+      examine_strN_var():     -  function returned error
+      examine_dta_strN():     -  function returned error
+      examine_dta_file():     -  function returned error
+          examine_file():     -  function returned error
+      do_examine_files():     -  function returned error
+            unicode_do():     -  function returned error
+       unicode_analyze():     -  function returned error
+                 <istmt>:     -  function returned error
+{txt}{search r(3900):r(3900);}
+
+end of do-file
+
+{search r(3900):r(3900);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode set gb18030
+{err}{bf:set} is an invalid {bf:unicode} subcommand
+{col 5}{bf:unicode} syntax is
+{col 9}{bf:unicode analyze}      {it:filespec}
+{col 9}{bf:unicode encoding set} {it:encoding}
+{col 9}{bf:unicode translate}    {it:filespec} [, ...]
+{col 9}{bf:unicode retranslate}  {it:filespec} [, ...]
+{col 9}{bf:unicode restore}      {it:filespec} [, ...]
+
+{p 4 4 2}
+{bf:analyze} and [{bf:re}]{bf:translate} can handle Stata
+datasets as well as text files such as do-files,
+ado-files, help files, {it:etc.}
+
+{p 4 4 2}
+There must be no data in memory.
+See {help unicode:help unicode}.
+{p_end}
+{txt}{search r(197):r(197);}
+
+end of do-file
+
+{search r(197):r(197);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode encoding set gb18030
+{res}{txt}  (default encoding now gb18030)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode translate city.dta
+{txt}  (using gb18030 encoding)
+{res}{txt}
+  File summary (before starting):
+        1  file(s) specified
+        1  file(s) to be examined ...
+{txt}
+  File city.dta (text file)
+{col 11} 6106534 lines in file
+{col 11} 2477383 lines ASCII
+{col 11}     126 lines UTF-8
+{col 11}   55751 lines translated
+{col 11} 3573274 lines w/ invalid chars not translated
+{col 11}{hline}
+{p 10 12 2}
+{bf:{err:File not translated because it contains}}
+{bf:{err:unconvertable characters;}}
+{p_end}
+{p 13 13 2}
+you might need to specify a different encoding,
+but more likely you need to run
+{bf:unicode translate} with the {bf:invalid} option
+{p_end}
+
+  File city.dta still needs translation
+
+  File summary:
+{bf:{err:      all files not translated because they contain unconvertable characters;}}
+{p 13 13 2}
+you might need to specify a different encoding,
+but more likely you need to run
+{bf:unicode translate} with the {bf:invalid} option
+{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use city.dta, replace
+{err}op. sys. refuses to provide memory
+{p 4 4 2}
+Stata's data-storage memory manager has already allocated
+224m
+bytes and it just attempted
+to allocate another
+16m bytes.
+The operating system said no.
+Perhaps you are running another memory-consuming task
+and the command will work later when the task
+completes.  Perhaps you are on a multiuser system
+that is especially busy and the command will work
+later when activity quiets down.  Perhaps a system
+administrator has put a limit on what you can allocate;
+see {help memory:help memory}.
+Or perhaps that's all the memory your computer can
+allocate to Stata.
+{p_end}
+{txt}{search r(909):r(909);}
+
+end of do-file
+
+{search r(909):r(909);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use city.dta, clear
+{err}op. sys. refuses to provide memory
+{p 4 4 2}
+Stata's data-storage memory manager has already allocated
+224m
+bytes and it just attempted
+to allocate another
+16m bytes.
+The operating system said no.
+Perhaps you are running another memory-consuming task
+and the command will work later when the task
+completes.  Perhaps you are on a multiuser system
+that is especially busy and the command will work
+later when activity quiets down.  Perhaps a system
+administrator has put a limit on what you can allocate;
+see {help memory:help memory}.
+Or perhaps that's all the memory your computer can
+allocate to Stata.
+{p_end}
+{txt}{search r(909):r(909);}
+
+end of do-file
+
+{search r(909):r(909);}
+
+{com}. dir
+{txt}  <dir>   5/08/17  9:06  {res}.                 
+{txt}  <dir>   5/08/17  9:06  {res}..                
+{txt}  <dir>   5/08/17  9:06  {res}bak.stunicode     
+{txt} 212.9M   5/08/17  9:06  {res}city.dta          
+{txt}   0.0k   5/08/17  7:53  {res}logfile.txt       
+
+{com}. use city.dta
+{err}op. sys. refuses to provide memory
+{p 4 4 2}
+Stata's data-storage memory manager has already allocated
+224m
+bytes and it just attempted
+to allocate another
+16m bytes.
+The operating system said no.
+Perhaps you are running another memory-consuming task
+and the command will work later when the task
+completes.  Perhaps you are on a multiuser system
+that is especially busy and the command will work
+later when activity quiets down.  Perhaps a system
+administrator has put a limit on what you can allocate;
+see {help memory:help memory}.
+Or perhaps that's all the memory your computer can
+allocate to Stata.
+{p_end}
+{txt}{search r(909):r(909);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\8May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 May 2017, 10:33:24
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

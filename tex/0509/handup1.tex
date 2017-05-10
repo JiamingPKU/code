@@ -1,0 +1,32 @@
+\documentclass[10pt]{article}
+\usepackage{apacite}
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+	\geometry{top=3cm, bottom=3cm, left=3cm, right=3cm}
+\author{任庆杰\\
+		140001500\\
+		renqingjie@pku.edu.cn}
+\title{研究计划}
+\begin{document}
+\maketitle
+关于全球化和政府支出的关系，目前的研究存在两个相互矛盾的假说\cite{garrett2001globalization}\cite{wangyu2014}。一个是效率假说，较高的政府支出，会降低其在全球化中的竞争力，因此随着全球化进程的推进，该经济体面临着经济的效率压力。此时政府会被迫采取更加开放的政策、降低税率、减少政府支出\cite{wangyu2014}。而除了效率的考虑之外，税基侵蚀也可能是政府规模减小的一个原因。全球化使得企业更加容易采取避税措施，在税基受到侵蚀的情况下，政府很难继续获得高税收收入\cite{tanzi2000globalization}。另一个补偿假说是说，随着全球化的加深，政府必须扩大支出来增加本地的竞争力，包括在教育上的投入以提高人力资本、增加公共品的供给以吸引资本流入\cite{rodrik1998more}。Rodrik还认为，对外贸易存在着更大的波动性，政府需要增大支出来应对潜在的风险，“对外依存度高的经济体，其政府支出扩张也较快” \cite{rodrik1998more}。但他忽略了对外贸易频繁，对外依存度高的经济体，往往会有更大的关税收入\cite{tanzi1973theory}。
+
+已有国外和国内的学者分别使用不同的数据集对这两种效应进行实证检验。国内的检验主要集中在省级面板数据。
+
+本文除了使用更新的省级面板数据外，还将尝试使用地区级别的面板数据，检验全球化对地方政府规模的影响。
+
+回归模型为：
+\begin{equation}
+{G} \sim {k_0} + {k_1}
+\end{equation}
+其中$G$为政府规模的变量，$k_0$代表本地投资，$k_1$代表外来投资。
+
+模型存在解决的2个问题是：$G$和$k_1$ 因为$tax$而存在的内生性和$k_0$与$k_1$之间因为本地区位优势$r$而产生的相关性。
+
+省级数据来自CEIC数据库，地区数据来自课堂中使用的中国区域统计年鉴。
+
+\renewcommand\refname{参考文献}
+\bibliographystyle{apacite}%
+\bibliography{bib1}
+
+\end{document}

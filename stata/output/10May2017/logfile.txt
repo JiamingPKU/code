@@ -1,0 +1,62 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\10May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 May 2017, 23:28:29
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\city.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode analyze "F:\data\pf\city.dta"
+{err}{it:filespec} invalid
+{p 4 4 2}
+You specified {bf:F:\data\pf\city.dta}.
+All files to be analyzed or translated must be in the
+current (working) directory (folder).
+Use the {bf:cd} command to change directories.
+{p_end}
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. unicode analyze "F:\data\pf\city.dta"
+{err}{it:filespec} invalid
+{p 4 4 2}
+You specified {bf:F:\data\pf\city.dta}.
+All files to be analyzed or translated must be in the
+current (working) directory (folder).
+Use the {bf:cd} command to change directories.
+{p_end}
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. exit

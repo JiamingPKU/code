@@ -2,7 +2,7 @@
 # @Author: Ren Qingjie
 # @Date:   2017-05-14 15:48:55
 # @Last Modified by:   Ren Qingjie
-# @Last Modified time: 2017-05-14 16:22:35
+# @Last Modified time: 2017-05-14 17:06:05
 
 
 import time
@@ -15,15 +15,17 @@ import face_recognition
 from PIL import Image
 
 
+# 设置相机和扩展版
 s = sakshat.SAKSHAT()
 c = picamera.PiCamera()
 
+
 # 总体名单及对应的编号
-leaders = {0: 'DengXiaoping', 1: 'HuaGuofeng', 2: 'HuJintao', 3: 'HuYaobang',
-             4: 'JiangZeMin', 5: 'LiKeqiang', 6: 'MaoZedong', 7: 'WenJiabao',
-             8: 'XijinPing', 9: 'Zhaoziyang'}
+leaders = {0: 'DengXiaoping', 1: 'HuaGuofeng', 2: 'HuJintao', 3: 'HuYaobang', 4: 'JiangZeMin',
+           5: 'LiKeqiang', 6: 'MaoZedong', 7: 'WenJiabao', 8: 'XijinPing', 9: 'Zhaoziyang'}
 
 
+# 识别照片的函数
 def check(total, sample):
     # total为全体，是一个字典类型
     # sample为样本，是一个图片格式，通过拍照获得
@@ -31,7 +33,7 @@ def check(total, sample):
     face_locations = face_recognition.face_locations(image)
     face_landmarks_list = face_recognition.face_landmarks(image)
 
-    # 处理已知的名单
+    # 处理已知的名单和已知的图片
     known_image = []
     for i in os.listdir('leaderFaces'):
         known_image.append(
@@ -43,16 +45,32 @@ def check(total, sample):
 
     # 处理读入的图片
     face_image_list = []
-    results = []
+    # results记录成功签到和未签到的人数
+    results = {total[i]: False for i in total}
     for face_location in face_locations:
         top, right, bottom, left = face_location
         face_image = image[top:bottom, left:right]
         face_image_list.append(face_image)
         unknown_encoding = face_recognition.face_encodings(face_image)[0]
-        if True in face_recognition.compare_faces(biden_encoding, unknown_encoding, 0.5):
-                 biden_encoding, unknown_encoding, 0.5).index(True)])
-        else:
-            results.append(False)
 
+        if True in face_recognition.compare_faces(biden_encoding, unknown_encoding, 0.5):
+            # 识别情况
+            recognition = face_recognition.compare_faces(
+                biden_encoding, unknown_encoding, 0.5)
+            # 确定对应的人
+            leader = recognition.index(True)
+            # 添加到结果中
+            results[leader] = True
+            # results[total[face_recognition.compare_faces(biden_encoding,
+            # unknown_encoding, 0.5).index(True)] = True;
     return results
 
+
+# 拍摄照片的函数
+def take(camera=c,):
+
+    # main process
+
+
+def main():
+    total = leaders

@@ -11,6 +11,8 @@ num = data[2] # num represents number
 ast = ts(ast, frequency = 12,start = 1995) # total net assets
 num = ts(num, frequency = 12, start = 1995) # number of FOF funds
 
+ 
+
 GR_ast = diff(log(ast)) # growth ratio of total net asset
 GR_ast = ts(GR_ast, names = 'GR_ast')
 GR_num = diff(log(num)) # growth ratio of number of FOF funds

@@ -2,17 +2,14 @@
 # @Author: Ren Qingjie
 # @Date:   2017-05-14 15:48:55
 # @Last Modified by:   Ren Qingjie
-# @Last Modified time: 2017-05-14 17:06:05
+# @Last Modified time: 2017-05-14 18:23:00
 
 
 import time
 import os
-import sys
-import signal
 import sakshat
 import picamera
 import face_recognition
-from PIL import Image
 
 
 # 设置相机和扩展版
@@ -31,7 +28,7 @@ def check(total, sample):
     # sample为样本，是一个图片格式，通过拍照获得
     image = face_recognition.load_image_file(sample)
     face_locations = face_recognition.face_locations(image)
-    face_landmarks_list = face_recognition.face_landmarks(image)
+    # face_landmarks_list = face_recognition.face_landmarks(image)
 
     # 处理已知的名单和已知的图片
     known_image = []
@@ -66,11 +63,37 @@ def check(total, sample):
     return results
 
 
-# 拍摄照片的函数
-def take(camera=c,):
+# # 拍摄照片的函数
+# def take(button, camera=c, t=5):
+#     # 开关作为触发机制
+#     if button is True:
+#         # 开始预览
+#         camera.start_preview()
+#         # 停顿5秒
+#         time.sleep(t)
+#         # 拍照
+#         camera.capture("sample.jpg")
+#         # 结束预览
+#         camera.stop_preview()
 
-    # main process
+def take(camera=c, t=10):
+    camera.start_preview()
+    time.sleep(t)
+    camera.capture("sample.jpg")
+    camera.stop_preview()
 
 
+# main process
 def main():
+    # 开始拍照
+    take(camera=c, t=10)
+    # 引入变量
     total = leaders
+    sample = "sample.jpg"
+    # 比较，得到结果
+    print(check(total, sample))
+    # 通过显示器和扩展版显示出来结果
+
+
+if __name__ == '__main__':
+    main()

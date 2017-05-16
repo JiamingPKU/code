@@ -7,10 +7,10 @@
 
 import time
 import os
-import signal
 import sakshat
 import picamera
 import face_recognition
+import PIL
 
 
 # 设置相机和扩展版
@@ -58,13 +58,13 @@ def check(total, sample):
             # 确定对应的人
             leader = recognition.index(True)
             # 添加到结果中
-            results[leader] = True
+            results[leaders[leader]] = True
             # results[total[face_recognition.compare_faces(biden_encoding,
             # unknown_encoding, 0.5).index(True)] = True;
     return results
 
 
-# # 拍摄照片的函数
+# # 自动拍摄函数
 # def take(button, camera=c, t=5):
 #     # 开关作为触发机制
 #     if button is True:
@@ -77,6 +77,8 @@ def check(total, sample):
 #         # 结束预览
 #         camera.stop_preview()
 
+
+# 延时拍照函数
 def take(camera=c, t=10):
     camera.start_preview()
     time.sleep(t)

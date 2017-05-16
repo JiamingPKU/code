@@ -1,0 +1,18 @@
+	(1)	(2)
+VARIABLES	fatal	fatal
+		
+beertax	0.0972	0.0972
+	(0.117)	(0.117)
+spircons	0.162	0.162
+	(0.107)	(0.107)
+unrate	-0.0291	-0.0291
+	(0.0209)	(0.0209)
+perinck	-0.158***	-0.158***
+	(0.0371)	(0.0371)
+Constant	4.119***	4.119***
+	(0.677)	(0.677)
+		
+Observations	336	336
+R-squared	0.302	0.302
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

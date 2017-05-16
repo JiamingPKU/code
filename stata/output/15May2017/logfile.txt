@@ -1,0 +1,2765 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\15May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}15 May 2017, 10:19:55
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. version 1
+
+. help import
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\city.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\区域经济统计年鉴_final.dta", clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. tsset code year
+{res}{txt}{col 8}panel variable:  {res}code (unbalanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 2001 to 2013, but with gaps
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\traffic.dta",clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. tsset state year
+{res}{txt}{col 8}panel variable:  {res}state (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 1982 to 1988
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. decribe
+{err}command {bf}decribe{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. describe
+
+{txt}Contains data from {res}F:\data\pf\traffic.dta
+{txt}  obs:{res}           336                          
+{txt} vars:{res}            54                          30 Mar 2012 08:50
+{txt} size:{res}        61,152                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:state          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:sid      }{bind:  }{res}{res}State ID (FIPS) Code{p_end}
+{p 0 48}{bind:year           }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Year{p_end}
+{p 0 48}{bind:spircons       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Spirits Consumption{p_end}
+{p 0 48}{bind:unrate         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Unemployment Rate{p_end}
+{p 0 48}{bind:perinc         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Per Capita Personal Income{p_end}
+{p 0 48}{bind:emppop         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Employment/Population Ratio{p_end}
+{p 0 48}{bind:beertax        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Tax on Case of Beer{p_end}
+{p 0 48}{bind:sobapt         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}% Southern Baptist{p_end}
+{p 0 48}{bind:mormon         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}% Mormon{p_end}
+{p 0 48}{bind:mlda           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Minimum Legal Drinking Age{p_end}
+{p 0 48}{bind:dry            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}% Residing in Dry Counties{p_end}
+{p 0 48}{bind:yngdrv         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}% of Drivers Aged 15-24{p_end}
+{p 0 48}{bind:vmiles         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Ave. Mile per Driver{p_end}
+{p 0 48}{bind:breath         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Prelim. Breath Test Law{p_end}
+{p 0 48}{bind:jaild          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Mandatory Jail Sentence{p_end}
+{p 0 48}{bind:comserd        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Mandatory Community Service{p_end}
+{p 0 48}{bind:allmort        }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}# of Vehicle Fatalities (#VF){p_end}
+{p 0 48}{bind:mrall          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Vehicle Fatality Rate (VFR){p_end}
+{p 0 48}{bind:allnite        }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}# of Night-time VF (#NVF){p_end}
+{p 0 48}{bind:mralln         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Night-time VFR (NFVR){p_end}
+{p 0 48}{bind:allsvn         }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}# of Single VF (#SVN){p_end}
+{p 0 48}{bind:a1517          }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#VF, 15-17 year olds{p_end}
+{p 0 48}{bind:mra1517        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}VFR, 15-17 year olds{p_end}
+{p 0 48}{bind:a1517n         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#NVF, 15-17 year olds{p_end}
+{p 0 48}{bind:mra1517n       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}NVFR, 15-17 year olds{p_end}
+{p 0 48}{bind:a1820          }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#VF, 18-20 year olds{p_end}
+{p 0 48}{bind:a1820n         }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#NVF, 18-20 year olds{p_end}
+{p 0 48}{bind:mra1820        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}VFR, 18-20 year olds{p_end}
+{p 0 48}{bind:mra1820n       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}NVFR, 18-20 year olds{p_end}
+{p 0 48}{bind:a2124          }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#VF, 21-24 year olds{p_end}
+{p 0 48}{bind:mra2124        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}VFR, 21-24 year olds{p_end}
+{p 0 48}{bind:a2124n         }{txt}{bind: int     }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}#NVF, 21-24 year olds{p_end}
+{p 0 48}{bind:mra2124n       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}NVFR, 21-24 year olds{p_end}
+{p 0 48}{bind:aidall         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}# of alcohol-involved VF{p_end}
+{p 0 48}{bind:mraidall       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Alcohol-Involved VFR{p_end}
+{p 0 48}{bind:pop            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Population{p_end}
+{p 0 48}{bind:pop1517        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Population, 15-17 year olds{p_end}
+{p 0 48}{bind:pop1820        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Population, 18-20 year olds{p_end}
+{p 0 48}{bind:pop2124        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Population, 21-24 year olds{p_end}
+{p 0 48}{bind:miles          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}total vehicle miles (millions{p_end}
+{p 0 48}{bind:unus           }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}U.S. unemployment rate{p_end}
+{p 0 48}{bind:epopus         }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}U.S. Emp/Pop Ratio{p_end}
+{p 0 48}{bind:gspch          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}GSP Rate of Change{p_end}
+{p 0 48}{bind:stabrv         }{txt}{bind: str2    }{bind:{txt}%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:region         }{txt}{bind: str2    }{bind:{txt}%9s       }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:reg            }{txt}{bind: long    }{bind:{txt}%8.0g     }{space 1}{bind:reg      }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal          }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal1517      }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal1820      }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal2124      }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal1517n     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal1820n     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:fatal2124n     }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:perincK        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by: {res}state  year
+
+{com}. xtdescribe
+
+   {txt}state:  {res}1{txt}, {res}4{txt}, ..., {res}56                                     {txt}n ={res}         48
+    {txt}year:  {res}1982, 1983, ..., 1988                             {txt}T ={res}          7
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}7 periods
+           {txt}(state*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     7       7       7         7         7       7       7
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 7}
+{res}       48    100.00  100.00{txt} {c |}  {res}1111111
+{txt} {hline 27}{c +}{c -}{c -}{hline 7}
+{res}       48    100.00        {txt} {c |}  {res}XXXXXXX
+
+{com}.  line beertax year
+{err}{c -(} required
+{txt}{search r(100):r(100);}
+
+{com}. version 13
+
+. line beertax year
+{res}
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtline beertax
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. reg fatal beertax spircons unrate perinck
+{err}variable {bf}perinck{sf} not found
+{txt}{search r(111):r(111);}
+
+end of do-file
+
+{search r(111):r(111);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. reg fatal beertax spircons unrate perincK
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       336
+{txt}{hline 13}{c +}{hline 34}   F(4, 331)       = {res}    35.78
+{txt}       Model {c |} {res}  32.878445         4  8.21961124   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  76.037065       331   .22971923   {txt}R-squared       ={res}    0.3019
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2934
+{txt}       Total {c |} {res}  108.91551       335  .325120925   {txt}Root MSE        =   {res} .47929
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2} .0971997{col 26}{space 2} .0615518{col 37}{space 1}    1.58{col 46}{space 3}0.115{col 54}{space 4}-.0238823{col 67}{space 3} .2182817
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .1623471{col 26}{space 2} .0432466{col 37}{space 1}    3.75{col 46}{space 3}0.000{col 54}{space 4} .0772743{col 67}{space 3} .2474198
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0291014{col 26}{space 2} .0127156{col 37}{space 1}   -2.29{col 46}{space 3}0.023{col 54}{space 4}-.0541151{col 67}{space 3}-.0040877
+{txt}{space 5}perincK {c |}{col 14}{res}{space 2}-.1584291{col 26}{space 2} .0169869{col 37}{space 1}   -9.33{col 46}{space 3}0.000{col 54}{space 4}-.1918449{col 67}{space 3}-.1250132
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.118674{col 26}{space 2}  .296995{col 37}{space 1}   13.87{col 46}{space 3}0.000{col 54}{space 4} 3.534438{col 67}{space 3} 4.702909
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perincK
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}       336
+{txt}Group variable: {res}state                           {txt}Number of groups  = {res}        48
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.2263                                         {txt}min = {res}         7
+{txt}     between = {res}0.0123                                         {txt}avg = {res}       7.0
+{txt}     overall = {res}0.0042                                         {txt}max = {res}         7
+
+                                                {txt}Wald chi2({res}4{txt})      =  {res}    49.90
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2} .0442768{col 26}{space 2} .1204613{col 37}{space 1}    0.37{col 46}{space 3}0.713{col 54}{space 4} -.191823{col 67}{space 3} .2803765
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .3024711{col 26}{space 2} .0642954{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4} .1764546{col 67}{space 3} .4284877
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0491381{col 26}{space 2} .0098197{col 37}{space 1}   -5.00{col 46}{space 3}0.000{col 54}{space 4}-.0683843{col 67}{space 3}-.0298919
+{txt}{space 5}perincK {c |}{col 14}{res}{space 2}-.0110727{col 26}{space 2} .0194746{col 37}{space 1}   -0.57{col 46}{space 3}0.570{col 54}{space 4}-.0492423{col 67}{space 3} .0270968
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.001973{col 26}{space 2} .3811247{col 37}{space 1}    5.25{col 46}{space 3}0.000{col 54}{space 4} 1.254983{col 67}{space 3} 2.748964
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .41675665
+     {txt}sigma_e {c |} {res} .15678965
+         {txt}rho {c |} {res} .87601197{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perincK, fe
+
+{txt}Fixed-effects (within) regression               Number of obs      = {res}      336
+{txt}Group variable: {res}state                           {txt}Number of groups   = {res}       48
+
+{txt}R-sq:  within  = {res}0.3526                         {txt}Obs per group: min = {res}        7
+{txt}       between = {res}0.1146                                        {txt}avg = {res}      7.0
+{txt}       overall = {res}0.0863                                        {txt}max = {res}        7
+
+                                                {txt}F({res}4{txt},{res}284{txt})           = {res}    38.68
+{txt}corr(u_i, Xb)  = {res}-0.8804                        {txt}Prob > F           =    {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2}-.4840728{col 26}{space 2} .1625106{col 37}{space 1}   -2.98{col 46}{space 3}0.003{col 54}{space 4}-.8039508{col 67}{space 3}-.1641948
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .8169652{col 26}{space 2} .0792118{col 37}{space 1}   10.31{col 46}{space 3}0.000{col 54}{space 4} .6610484{col 67}{space 3} .9728819
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0290499{col 26}{space 2} .0090274{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.0468191{col 67}{space 3}-.0112808
+{txt}{space 5}perincK {c |}{col 14}{res}{space 2} .1047103{col 26}{space 2} .0205986{col 37}{space 1}    5.08{col 46}{space 3}0.000{col 54}{space 4}  .064165{col 67}{space 3} .1452555
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -.383783{col 26}{space 2} .4201781{col 37}{space 1}   -0.91{col 46}{space 3}0.362{col 54}{space 4}-1.210841{col 67}{space 3} .4432754
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 1.1181913
+     {txt}sigma_e {c |} {res} .15678965
+         {txt}rho {c |} {res} .98071823{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}47{txt}, {res}284{txt}) = {res}59.77                    {txt}Prob > F = {res}0.0000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perinck, re
+{err}variable {bf}perinck{sf} not found
+{txt}{search r(111):r(111);}
+
+end of do-file
+
+{search r(111):r(111);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perincK, re
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}       336
+{txt}Group variable: {res}state                           {txt}Number of groups  = {res}        48
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.2263                                         {txt}min = {res}         7
+{txt}     between = {res}0.0123                                         {txt}avg = {res}       7.0
+{txt}     overall = {res}0.0042                                         {txt}max = {res}         7
+
+                                                {txt}Wald chi2({res}4{txt})      =  {res}    49.90
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2} .0442768{col 26}{space 2} .1204613{col 37}{space 1}    0.37{col 46}{space 3}0.713{col 54}{space 4} -.191823{col 67}{space 3} .2803765
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .3024711{col 26}{space 2} .0642954{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4} .1764546{col 67}{space 3} .4284877
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0491381{col 26}{space 2} .0098197{col 37}{space 1}   -5.00{col 46}{space 3}0.000{col 54}{space 4}-.0683843{col 67}{space 3}-.0298919
+{txt}{space 5}perincK {c |}{col 14}{res}{space 2}-.0110727{col 26}{space 2} .0194746{col 37}{space 1}   -0.57{col 46}{space 3}0.570{col 54}{space 4}-.0492423{col 67}{space 3} .0270968
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.001973{col 26}{space 2} .3811247{col 37}{space 1}    5.25{col 46}{space 3}0.000{col 54}{space 4} 1.254983{col 67}{space 3} 2.748964
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .41675665
+     {txt}sigma_e {c |} {res} .15678965
+         {txt}rho {c |} {res} .87601197{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+{txt}end of do-file
+
+{com}. ssc install xttest1
+{txt}{err}ssc install: "xttest1" not found at SSC, type -{cmd:findit xttest1}-
+(To find all packages at SSC that start with x, type -{cmd:ssc describe x}-)
+{txt}{search r(601):r(601);}
+
+{com}. help xttest1
+
+. xttest1, re
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perinck, fe est store fixed
+{err}variable {bf}perinck{sf} not found
+{txt}{search r(111):r(111);}
+
+end of do-file
+
+{search r(111):r(111);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perincK, fe est store fixed
+{err}option {bf:est} not allowed
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perincK, feest store fixed
+{err}option {bf:feest} not allowed
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perincK, fe
+{txt}
+{com}. qui est store fixed
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perincK, re
+{txt}
+{com}. qui est store random
+{txt}
+{com}. hausman fixed random
+
+{txt}{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}   fixed    {col 30}   random   {col 46}Difference{col 66}S.E.
+{hline 13}{c +}{hline 64}
+{space 5}beertax {c |}{res}{col 18}-.4840728{col 31} .0442768{col 47}-.5283495{col 63} .1090815
+{txt}{space 4}spircons {c |}{res}{col 18} .8169652{col 31} .3024711{col 47}  .514494{col 63} .0462668
+{txt}{space 6}unrate {c |}{res}{col 18}-.0290499{col 31}-.0491381{col 47} .0200882{col 63}        .
+{txt}{space 5}perincK {c |}{res}{col 18} .1047103{col 31}-.0110727{col 47}  .115783{col 63} .0067112
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = consistent under Ho and Ha; obtained from xtreg}
+{ralign 78:B = inconsistent under Ha, efficient under Ho; obtained from xtreg}
+
+    Test:  Ho:  difference in coefficients not systematic
+
+{ralign 25:chi2({res:4})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{col 27}=  {res}    130.93
+{txt}{col 17}Prob>chi2 =  {res}    0.0000
+{txt}{col 17}(V_b-V_B is not positive definite)
+
+{com}. 
+{txt}end of do-file
+
+{com}. rename perincK perinck
+{res}
+{com}. rename perincK perinck
+{res}{err}variable {bf}perincK{sf} not found
+{txt}{search r(111):r(111);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. reg fatal beertax spircons unrate perinck i.state
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       336
+{txt}{hline 13}{c +}{hline 34}   F(51, 284)      = {res}    81.30
+{txt}       Model {c |} {res} 101.933939        51  1.99870469   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 6.98157079       284  .024582996   {txt}R-squared       ={res}    0.9359
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9244
+{txt}       Total {c |} {res}  108.91551       335  .325120925   {txt}Root MSE        =   {res} .15679
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2}-.4840728{col 26}{space 2} .1625106{col 37}{space 1}   -2.98{col 46}{space 3}0.003{col 54}{space 4}-.8039508{col 67}{space 3}-.1641948
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .8169652{col 26}{space 2} .0792118{col 37}{space 1}   10.31{col 46}{space 3}0.000{col 54}{space 4} .6610484{col 67}{space 3} .9728819
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0290499{col 26}{space 2} .0090274{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.0468191{col 67}{space 3}-.0112808
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2} .1047103{col 26}{space 2} .0205986{col 37}{space 1}    5.08{col 46}{space 3}0.000{col 54}{space 4}  .064165{col 67}{space 3} .1452555
+{txt}{space 12} {c |}
+{space 7}state {c |}
+{space 9}AZ  {c |}{col 14}{res}{space 2}-1.146089{col 26}{space 2} .2370828{col 37}{space 1}   -4.83{col 46}{space 3}0.000{col 54}{space 4}-1.612752{col 67}{space 3}-.6794267
+{txt}{space 9}AR  {c |}{col 14}{res}{space 2}-.3422802{col 26}{space 2} .1883595{col 37}{space 1}   -1.82{col 46}{space 3}0.070{col 54}{space 4} -.713038{col 67}{space 3} .0284775
+{txt}{space 9}CA  {c |}{col 14}{res}{space 2}-2.478906{col 26}{space 2} .2876704{col 37}{space 1}   -8.62{col 46}{space 3}0.000{col 54}{space 4}-3.045143{col 67}{space 3} -1.91267
+{txt}{space 9}CO  {c |}{col 14}{res}{space 2}-2.359016{col 26}{space 2}  .264732{col 37}{space 1}   -8.91{col 46}{space 3}0.000{col 54}{space 4}-2.880102{col 67}{space 3} -1.83793
+{txt}{space 9}CT  {c |}{col 14}{res}{space 2}-3.517465{col 26}{space 2} .3019129{col 37}{space 1}  -11.65{col 46}{space 3}0.000{col 54}{space 4}-4.111736{col 67}{space 3}-2.923195
+{txt}{space 9}DE  {c |}{col 14}{res}{space 2}-2.621819{col 26}{space 2} .2867415{col 37}{space 1}   -9.14{col 46}{space 3}0.000{col 54}{space 4}-3.186228{col 67}{space 3}-2.057411
+{txt}{space 9}FL  {c |}{col 14}{res}{space 2}-1.484055{col 26}{space 2} .1659679{col 37}{space 1}   -8.94{col 46}{space 3}0.000{col 54}{space 4}-1.810738{col 67}{space 3}-1.157372
+{txt}{space 9}GA  {c |}{col 14}{res}{space 2}-.4193311{col 26}{space 2} .1745343{col 37}{space 1}   -2.40{col 46}{space 3}0.017{col 54}{space 4}-.7628761{col 67}{space 3}-.0757861
+{txt}{space 9}ID  {c |}{col 14}{res}{space 2} -.475246{col 26}{space 2}  .220535{col 37}{space 1}   -2.15{col 46}{space 3}0.032{col 54}{space 4}-.9093365{col 67}{space 3}-.0411555
+{txt}{space 9}IL  {c |}{col 14}{res}{space 2} -2.66262{col 26}{space 2} .2686178{col 37}{space 1}   -9.91{col 46}{space 3}0.000{col 54}{space 4}-3.191354{col 67}{space 3}-2.133885
+{txt}{space 9}IN  {c |}{col 14}{res}{space 2}-1.551228{col 26}{space 2} .2326984{col 37}{space 1}   -6.67{col 46}{space 3}0.000{col 54}{space 4} -2.00926{col 67}{space 3}-1.093195
+{txt}{space 9}IA  {c |}{col 14}{res}{space 2}-1.512083{col 26}{space 2} .2131372{col 37}{space 1}   -7.09{col 46}{space 3}0.000{col 54}{space 4}-1.931612{col 67}{space 3}-1.092554
+{txt}{space 9}KS  {c |}{col 14}{res}{space 2}-1.425295{col 26}{space 2} .2068592{col 37}{space 1}   -6.89{col 46}{space 3}0.000{col 54}{space 4}-1.832466{col 67}{space 3}-1.018123
+{txt}{space 9}KY  {c |}{col 14}{res}{space 2}-1.008736{col 26}{space 2} .2463502{col 37}{space 1}   -4.09{col 46}{space 3}0.000{col 54}{space 4} -1.49364{col 67}{space 3}-.5238318
+{txt}{space 9}LA  {c |}{col 14}{res}{space 2}-.9904429{col 26}{space 2} .1655918{col 37}{space 1}   -5.98{col 46}{space 3}0.000{col 54}{space 4}-1.316386{col 67}{space 3}   -.6645
+{txt}{space 9}ME  {c |}{col 14}{res}{space 2}-1.728957{col 26}{space 2} .1739532{col 37}{space 1}   -9.94{col 46}{space 3}0.000{col 54}{space 4}-2.071358{col 67}{space 3}-1.386556
+{txt}{space 9}MD  {c |}{col 14}{res}{space 2}-2.971806{col 26}{space 2} .2776468{col 37}{space 1}  -10.70{col 46}{space 3}0.000{col 54}{space 4}-3.518312{col 67}{space 3}-2.425299
+{txt}{space 9}MA  {c |}{col 14}{res}{space 2}-3.542156{col 26}{space 2} .2798809{col 37}{space 1}  -12.66{col 46}{space 3}0.000{col 54}{space 4}-4.093061{col 67}{space 3}-2.991252
+{txt}{space 9}MI  {c |}{col 14}{res}{space 2}-2.039022{col 26}{space 2} .2208262{col 37}{space 1}   -9.23{col 46}{space 3}0.000{col 54}{space 4}-2.473686{col 67}{space 3}-1.604359
+{txt}{space 9}MN  {c |}{col 14}{res}{space 2}-2.726702{col 26}{space 2} .2425808{col 37}{space 1}  -11.24{col 46}{space 3}0.000{col 54}{space 4}-3.204186{col 67}{space 3}-2.249218
+{txt}{space 9}MS  {c |}{col 14}{res}{space 2} .1623338{col 26}{space 2} .1303206{col 37}{space 1}    1.25{col 46}{space 3}0.214{col 54}{space 4} -.094183{col 67}{space 3} .4188506
+{txt}{space 9}MO  {c |}{col 14}{res}{space 2}-1.473051{col 26}{space 2} .2272922{col 37}{space 1}   -6.48{col 46}{space 3}0.000{col 54}{space 4}-1.920442{col 67}{space 3} -1.02566
+{txt}{space 9}MT  {c |}{col 14}{res}{space 2}-.6003982{col 26}{space 2} .2292796{col 37}{space 1}   -2.62{col 46}{space 3}0.009{col 54}{space 4}-1.051701{col 67}{space 3}-.1490952
+{txt}{space 9}NE  {c |}{col 14}{res}{space 2}-1.812884{col 26}{space 2} .2122758{col 37}{space 1}   -8.54{col 46}{space 3}0.000{col 54}{space 4}-2.230718{col 67}{space 3}-1.395051
+{txt}{space 9}NV  {c |}{col 14}{res}{space 2}-3.433805{col 26}{space 2} .3849446{col 37}{space 1}   -8.92{col 46}{space 3}0.000{col 54}{space 4}-4.191511{col 67}{space 3}-2.676098
+{txt}{space 9}NH  {c |}{col 14}{res}{space 2}-4.226736{col 26}{space 2} .3403102{col 37}{space 1}  -12.42{col 46}{space 3}0.000{col 54}{space 4}-4.896587{col 67}{space 3}-3.556886
+{txt}{space 9}NJ  {c |}{col 14}{res}{space 2}-3.425003{col 26}{space 2} .3062102{col 37}{space 1}  -11.19{col 46}{space 3}0.000{col 54}{space 4}-4.027732{col 67}{space 3}-2.822273
+{txt}{space 9}NM  {c |}{col 14}{res}{space 2} .4537402{col 26}{space 2}  .218171{col 37}{space 1}    2.08{col 46}{space 3}0.038{col 54}{space 4} .0243029{col 67}{space 3} .8831775
+{txt}{space 9}NY  {c |}{col 14}{res}{space 2}-3.146312{col 26}{space 2} .2797083{col 37}{space 1}  -11.25{col 46}{space 3}0.000{col 54}{space 4}-3.696877{col 67}{space 3}-2.595748
+{txt}{space 9}NC  {c |}{col 14}{res}{space 2}-.6387593{col 26}{space 2} .1052991{col 37}{space 1}   -6.07{col 46}{space 3}0.000{col 54}{space 4} -.846025{col 67}{space 3}-.4314937
+{txt}{space 9}ND  {c |}{col 14}{res}{space 2}-2.124115{col 26}{space 2} .2240075{col 37}{space 1}   -9.48{col 46}{space 3}0.000{col 54}{space 4} -2.56504{col 67}{space 3}-1.683189
+{txt}{space 9}OH  {c |}{col 14}{res}{space 2}-1.689753{col 26}{space 2} .2171301{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-2.117141{col 67}{space 3}-1.262364
+{txt}{space 9}OK  {c |}{col 14}{res}{space 2}-.6842853{col 26}{space 2} .1423505{col 37}{space 1}   -4.81{col 46}{space 3}0.000{col 54}{space 4}-.9644812{col 67}{space 3}-.4040894
+{txt}{space 9}OR  {c |}{col 14}{res}{space 2}-1.388066{col 26}{space 2} .2469936{col 37}{space 1}   -5.62{col 46}{space 3}0.000{col 54}{space 4}-1.874237{col 67}{space 3}-.9018957
+{txt}{space 9}PA  {c |}{col 14}{res}{space 2} -1.92044{col 26}{space 2}   .23691{col 37}{space 1}   -8.11{col 46}{space 3}0.000{col 54}{space 4}-2.386762{col 67}{space 3}-1.454117
+{txt}{space 9}RI  {c |}{col 14}{res}{space 2}-3.097237{col 26}{space 2} .2657561{col 37}{space 1}  -11.65{col 46}{space 3}0.000{col 54}{space 4}-3.620338{col 67}{space 3}-2.574135
+{txt}{space 9}SC  {c |}{col 14}{res}{space 2}-.0251951{col 26}{space 2} .1055721{col 37}{space 1}   -0.24{col 46}{space 3}0.812{col 54}{space 4}-.2329982{col 67}{space 3}  .182608
+{txt}{space 9}SD  {c |}{col 14}{res}{space 2}-1.345773{col 26}{space 2} .1856284{col 37}{space 1}   -7.25{col 46}{space 3}0.000{col 54}{space 4}-1.711156{col 67}{space 3}-.9803912
+{txt}{space 9}TN  {c |}{col 14}{res}{space 2} -.780764{col 26}{space 2} .2286333{col 37}{space 1}   -3.41{col 46}{space 3}0.001{col 54}{space 4}-1.230795{col 67}{space 3}-.3307333
+{txt}{space 9}TX  {c |}{col 14}{res}{space 2}-1.117104{col 26}{space 2} .2096785{col 37}{space 1}   -5.33{col 46}{space 3}0.000{col 54}{space 4}-1.529825{col 67}{space 3} -.704383
+{txt}{space 9}UT  {c |}{col 14}{res}{space 2}-.7663286{col 26}{space 2} .1719348{col 37}{space 1}   -4.46{col 46}{space 3}0.000{col 54}{space 4}-1.104757{col 67}{space 3}-.4279003
+{txt}{space 9}VT  {c |}{col 14}{res}{space 2}-1.844306{col 26}{space 2} .1996576{col 37}{space 1}   -9.24{col 46}{space 3}0.000{col 54}{space 4}-2.237302{col 67}{space 3}-1.451309
+{txt}{space 9}VA  {c |}{col 14}{res}{space 2}-1.891904{col 26}{space 2} .1822974{col 37}{space 1}  -10.38{col 46}{space 3}0.000{col 54}{space 4} -2.25073{col 67}{space 3}-1.533079
+{txt}{space 9}WA  {c |}{col 14}{res}{space 2}-2.176212{col 26}{space 2} .2544505{col 37}{space 1}   -8.55{col 46}{space 3}0.000{col 54}{space 4} -2.67706{col 67}{space 3}-1.675363
+{txt}{space 9}WV  {c |}{col 14}{res}{space 2}-.2142207{col 26}{space 2} .2170518{col 37}{space 1}   -0.99{col 46}{space 3}0.325{col 54}{space 4} -.641455{col 67}{space 3} .2130137
+{txt}{space 9}WI  {c |}{col 14}{res}{space 2} -2.41626{col 26}{space 2} .2635008{col 37}{space 1}   -9.17{col 46}{space 3}0.000{col 54}{space 4}-2.934922{col 67}{space 3}-1.897597
+{txt}{space 9}WY  {c |}{col 14}{res}{space 2}-.7183534{col 26}{space 2} .2748405{col 37}{space 1}   -2.61{col 46}{space 3}0.009{col 54}{space 4}-1.259336{col 67}{space 3}-.1773705
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.269226{col 26}{space 2} .4504062{col 37}{space 1}    2.82{col 46}{space 3}0.005{col 54}{space 4} .3826682{col 67}{space 3} 2.155784
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xi: reg fatal beertax spircons unrate perinck i.state
+{txt}i.state{col 19}_Istate_1-56{col 39}(naturally coded; _Istate_1 omitted)
+
+      Source {c |}       SS           df       MS      Number of obs   ={res}       336
+{txt}{hline 13}{c +}{hline 34}   F(51, 284)      = {res}    81.30
+{txt}       Model {c |} {res} 101.933939        51  1.99870469   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 6.98157079       284  .024582996   {txt}R-squared       ={res}    0.9359
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9244
+{txt}       Total {c |} {res}  108.91551       335  .325120925   {txt}Root MSE        =   {res} .15679
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2}-.4840728{col 26}{space 2} .1625106{col 37}{space 1}   -2.98{col 46}{space 3}0.003{col 54}{space 4}-.8039508{col 67}{space 3}-.1641948
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .8169652{col 26}{space 2} .0792118{col 37}{space 1}   10.31{col 46}{space 3}0.000{col 54}{space 4} .6610484{col 67}{space 3} .9728819
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0290499{col 26}{space 2} .0090274{col 37}{space 1}   -3.22{col 46}{space 3}0.001{col 54}{space 4}-.0468191{col 67}{space 3}-.0112808
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2} .1047103{col 26}{space 2} .0205986{col 37}{space 1}    5.08{col 46}{space 3}0.000{col 54}{space 4}  .064165{col 67}{space 3} .1452555
+{txt}{space 3}_Istate_4 {c |}{col 14}{res}{space 2}-1.146089{col 26}{space 2} .2370828{col 37}{space 1}   -4.83{col 46}{space 3}0.000{col 54}{space 4}-1.612752{col 67}{space 3}-.6794267
+{txt}{space 3}_Istate_5 {c |}{col 14}{res}{space 2}-.3422802{col 26}{space 2} .1883595{col 37}{space 1}   -1.82{col 46}{space 3}0.070{col 54}{space 4} -.713038{col 67}{space 3} .0284775
+{txt}{space 3}_Istate_6 {c |}{col 14}{res}{space 2}-2.478906{col 26}{space 2} .2876704{col 37}{space 1}   -8.62{col 46}{space 3}0.000{col 54}{space 4}-3.045143{col 67}{space 3} -1.91267
+{txt}{space 3}_Istate_8 {c |}{col 14}{res}{space 2}-2.359016{col 26}{space 2}  .264732{col 37}{space 1}   -8.91{col 46}{space 3}0.000{col 54}{space 4}-2.880102{col 67}{space 3} -1.83793
+{txt}{space 3}_Istate_9 {c |}{col 14}{res}{space 2}-3.517465{col 26}{space 2} .3019129{col 37}{space 1}  -11.65{col 46}{space 3}0.000{col 54}{space 4}-4.111736{col 67}{space 3}-2.923195
+{txt}{space 2}_Istate_10 {c |}{col 14}{res}{space 2}-2.621819{col 26}{space 2} .2867415{col 37}{space 1}   -9.14{col 46}{space 3}0.000{col 54}{space 4}-3.186228{col 67}{space 3}-2.057411
+{txt}{space 2}_Istate_12 {c |}{col 14}{res}{space 2}-1.484055{col 26}{space 2} .1659679{col 37}{space 1}   -8.94{col 46}{space 3}0.000{col 54}{space 4}-1.810738{col 67}{space 3}-1.157372
+{txt}{space 2}_Istate_13 {c |}{col 14}{res}{space 2}-.4193311{col 26}{space 2} .1745343{col 37}{space 1}   -2.40{col 46}{space 3}0.017{col 54}{space 4}-.7628761{col 67}{space 3}-.0757861
+{txt}{space 2}_Istate_16 {c |}{col 14}{res}{space 2} -.475246{col 26}{space 2}  .220535{col 37}{space 1}   -2.15{col 46}{space 3}0.032{col 54}{space 4}-.9093365{col 67}{space 3}-.0411555
+{txt}{space 2}_Istate_17 {c |}{col 14}{res}{space 2} -2.66262{col 26}{space 2} .2686178{col 37}{space 1}   -9.91{col 46}{space 3}0.000{col 54}{space 4}-3.191354{col 67}{space 3}-2.133885
+{txt}{space 2}_Istate_18 {c |}{col 14}{res}{space 2}-1.551228{col 26}{space 2} .2326984{col 37}{space 1}   -6.67{col 46}{space 3}0.000{col 54}{space 4} -2.00926{col 67}{space 3}-1.093195
+{txt}{space 2}_Istate_19 {c |}{col 14}{res}{space 2}-1.512083{col 26}{space 2} .2131372{col 37}{space 1}   -7.09{col 46}{space 3}0.000{col 54}{space 4}-1.931612{col 67}{space 3}-1.092554
+{txt}{space 2}_Istate_20 {c |}{col 14}{res}{space 2}-1.425295{col 26}{space 2} .2068592{col 37}{space 1}   -6.89{col 46}{space 3}0.000{col 54}{space 4}-1.832466{col 67}{space 3}-1.018123
+{txt}{space 2}_Istate_21 {c |}{col 14}{res}{space 2}-1.008736{col 26}{space 2} .2463502{col 37}{space 1}   -4.09{col 46}{space 3}0.000{col 54}{space 4} -1.49364{col 67}{space 3}-.5238318
+{txt}{space 2}_Istate_22 {c |}{col 14}{res}{space 2}-.9904429{col 26}{space 2} .1655918{col 37}{space 1}   -5.98{col 46}{space 3}0.000{col 54}{space 4}-1.316386{col 67}{space 3}   -.6645
+{txt}{space 2}_Istate_23 {c |}{col 14}{res}{space 2}-1.728957{col 26}{space 2} .1739532{col 37}{space 1}   -9.94{col 46}{space 3}0.000{col 54}{space 4}-2.071358{col 67}{space 3}-1.386556
+{txt}{space 2}_Istate_24 {c |}{col 14}{res}{space 2}-2.971806{col 26}{space 2} .2776468{col 37}{space 1}  -10.70{col 46}{space 3}0.000{col 54}{space 4}-3.518312{col 67}{space 3}-2.425299
+{txt}{space 2}_Istate_25 {c |}{col 14}{res}{space 2}-3.542156{col 26}{space 2} .2798809{col 37}{space 1}  -12.66{col 46}{space 3}0.000{col 54}{space 4}-4.093061{col 67}{space 3}-2.991252
+{txt}{space 2}_Istate_26 {c |}{col 14}{res}{space 2}-2.039022{col 26}{space 2} .2208262{col 37}{space 1}   -9.23{col 46}{space 3}0.000{col 54}{space 4}-2.473686{col 67}{space 3}-1.604359
+{txt}{space 2}_Istate_27 {c |}{col 14}{res}{space 2}-2.726702{col 26}{space 2} .2425808{col 37}{space 1}  -11.24{col 46}{space 3}0.000{col 54}{space 4}-3.204186{col 67}{space 3}-2.249218
+{txt}{space 2}_Istate_28 {c |}{col 14}{res}{space 2} .1623338{col 26}{space 2} .1303206{col 37}{space 1}    1.25{col 46}{space 3}0.214{col 54}{space 4} -.094183{col 67}{space 3} .4188506
+{txt}{space 2}_Istate_29 {c |}{col 14}{res}{space 2}-1.473051{col 26}{space 2} .2272922{col 37}{space 1}   -6.48{col 46}{space 3}0.000{col 54}{space 4}-1.920442{col 67}{space 3} -1.02566
+{txt}{space 2}_Istate_30 {c |}{col 14}{res}{space 2}-.6003982{col 26}{space 2} .2292796{col 37}{space 1}   -2.62{col 46}{space 3}0.009{col 54}{space 4}-1.051701{col 67}{space 3}-.1490952
+{txt}{space 2}_Istate_31 {c |}{col 14}{res}{space 2}-1.812884{col 26}{space 2} .2122758{col 37}{space 1}   -8.54{col 46}{space 3}0.000{col 54}{space 4}-2.230718{col 67}{space 3}-1.395051
+{txt}{space 2}_Istate_32 {c |}{col 14}{res}{space 2}-3.433805{col 26}{space 2} .3849446{col 37}{space 1}   -8.92{col 46}{space 3}0.000{col 54}{space 4}-4.191511{col 67}{space 3}-2.676098
+{txt}{space 2}_Istate_33 {c |}{col 14}{res}{space 2}-4.226736{col 26}{space 2} .3403102{col 37}{space 1}  -12.42{col 46}{space 3}0.000{col 54}{space 4}-4.896587{col 67}{space 3}-3.556886
+{txt}{space 2}_Istate_34 {c |}{col 14}{res}{space 2}-3.425003{col 26}{space 2} .3062102{col 37}{space 1}  -11.19{col 46}{space 3}0.000{col 54}{space 4}-4.027732{col 67}{space 3}-2.822273
+{txt}{space 2}_Istate_35 {c |}{col 14}{res}{space 2} .4537402{col 26}{space 2}  .218171{col 37}{space 1}    2.08{col 46}{space 3}0.038{col 54}{space 4} .0243029{col 67}{space 3} .8831775
+{txt}{space 2}_Istate_36 {c |}{col 14}{res}{space 2}-3.146312{col 26}{space 2} .2797083{col 37}{space 1}  -11.25{col 46}{space 3}0.000{col 54}{space 4}-3.696877{col 67}{space 3}-2.595748
+{txt}{space 2}_Istate_37 {c |}{col 14}{res}{space 2}-.6387593{col 26}{space 2} .1052991{col 37}{space 1}   -6.07{col 46}{space 3}0.000{col 54}{space 4} -.846025{col 67}{space 3}-.4314937
+{txt}{space 2}_Istate_38 {c |}{col 14}{res}{space 2}-2.124115{col 26}{space 2} .2240075{col 37}{space 1}   -9.48{col 46}{space 3}0.000{col 54}{space 4} -2.56504{col 67}{space 3}-1.683189
+{txt}{space 2}_Istate_39 {c |}{col 14}{res}{space 2}-1.689753{col 26}{space 2} .2171301{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-2.117141{col 67}{space 3}-1.262364
+{txt}{space 2}_Istate_40 {c |}{col 14}{res}{space 2}-.6842853{col 26}{space 2} .1423505{col 37}{space 1}   -4.81{col 46}{space 3}0.000{col 54}{space 4}-.9644812{col 67}{space 3}-.4040894
+{txt}{space 2}_Istate_41 {c |}{col 14}{res}{space 2}-1.388066{col 26}{space 2} .2469936{col 37}{space 1}   -5.62{col 46}{space 3}0.000{col 54}{space 4}-1.874237{col 67}{space 3}-.9018957
+{txt}{space 2}_Istate_42 {c |}{col 14}{res}{space 2} -1.92044{col 26}{space 2}   .23691{col 37}{space 1}   -8.11{col 46}{space 3}0.000{col 54}{space 4}-2.386762{col 67}{space 3}-1.454117
+{txt}{space 2}_Istate_44 {c |}{col 14}{res}{space 2}-3.097237{col 26}{space 2} .2657561{col 37}{space 1}  -11.65{col 46}{space 3}0.000{col 54}{space 4}-3.620338{col 67}{space 3}-2.574135
+{txt}{space 2}_Istate_45 {c |}{col 14}{res}{space 2}-.0251951{col 26}{space 2} .1055721{col 37}{space 1}   -0.24{col 46}{space 3}0.812{col 54}{space 4}-.2329982{col 67}{space 3}  .182608
+{txt}{space 2}_Istate_46 {c |}{col 14}{res}{space 2}-1.345773{col 26}{space 2} .1856284{col 37}{space 1}   -7.25{col 46}{space 3}0.000{col 54}{space 4}-1.711156{col 67}{space 3}-.9803912
+{txt}{space 2}_Istate_47 {c |}{col 14}{res}{space 2} -.780764{col 26}{space 2} .2286333{col 37}{space 1}   -3.41{col 46}{space 3}0.001{col 54}{space 4}-1.230795{col 67}{space 3}-.3307333
+{txt}{space 2}_Istate_48 {c |}{col 14}{res}{space 2}-1.117104{col 26}{space 2} .2096785{col 37}{space 1}   -5.33{col 46}{space 3}0.000{col 54}{space 4}-1.529825{col 67}{space 3} -.704383
+{txt}{space 2}_Istate_49 {c |}{col 14}{res}{space 2}-.7663286{col 26}{space 2} .1719348{col 37}{space 1}   -4.46{col 46}{space 3}0.000{col 54}{space 4}-1.104757{col 67}{space 3}-.4279003
+{txt}{space 2}_Istate_50 {c |}{col 14}{res}{space 2}-1.844306{col 26}{space 2} .1996576{col 37}{space 1}   -9.24{col 46}{space 3}0.000{col 54}{space 4}-2.237302{col 67}{space 3}-1.451309
+{txt}{space 2}_Istate_51 {c |}{col 14}{res}{space 2}-1.891904{col 26}{space 2} .1822974{col 37}{space 1}  -10.38{col 46}{space 3}0.000{col 54}{space 4} -2.25073{col 67}{space 3}-1.533079
+{txt}{space 2}_Istate_53 {c |}{col 14}{res}{space 2}-2.176212{col 26}{space 2} .2544505{col 37}{space 1}   -8.55{col 46}{space 3}0.000{col 54}{space 4} -2.67706{col 67}{space 3}-1.675363
+{txt}{space 2}_Istate_54 {c |}{col 14}{res}{space 2}-.2142207{col 26}{space 2} .2170518{col 37}{space 1}   -0.99{col 46}{space 3}0.325{col 54}{space 4} -.641455{col 67}{space 3} .2130137
+{txt}{space 2}_Istate_55 {c |}{col 14}{res}{space 2} -2.41626{col 26}{space 2} .2635008{col 37}{space 1}   -9.17{col 46}{space 3}0.000{col 54}{space 4}-2.934922{col 67}{space 3}-1.897597
+{txt}{space 2}_Istate_56 {c |}{col 14}{res}{space 2}-.7183534{col 26}{space 2} .2748405{col 37}{space 1}   -2.61{col 46}{space 3}0.009{col 54}{space 4}-1.259336{col 67}{space 3}-.1773705
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.269226{col 26}{space 2} .4504062{col 37}{space 1}    2.82{col 46}{space 3}0.005{col 54}{space 4} .3826682{col 67}{space 3} 2.155784
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\nlswork.dta", clear
+{txt}(National Longitudinal Survey.  Young Women 14-26 years of age in 1968)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. tsset idcode year
+{res}{txt}{col 8}panel variable:  {res}idcode (unbalanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 68 to 88, but with gaps
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtdescribe
+
+  {txt}idcode:  {res}1{txt}, {res}2{txt}, ..., {res}5159                                   {txt}n ={res}       4711
+    {txt}year:  {res}68, 69, ..., 88                                   {txt}T ={res}         15
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}21 periods
+           {txt}(idcode*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     1       1       3         5         9      13      15
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}      136      2.89    2.89{txt} {c |}  {res}1....................
+      114      2.42    5.31{txt} {c |}  {res}....................1
+       89      1.89    7.20{txt} {c |}  {res}.................1.11
+       87      1.85    9.04{txt} {c |}  {res}...................11
+       86      1.83   10.87{txt} {c |}  {res}111111.1.11.1.11.1.11
+       61      1.29   12.16{txt} {c |}  {res}..............11.1.11
+       56      1.19   13.35{txt} {c |}  {res}11...................
+       54      1.15   14.50{txt} {c |}  {res}...............1.1.11
+       54      1.15   15.64{txt} {c |}  {res}.......1.11.1.11.1.11
+     3974     84.36  100.00{txt} {c |} (other patterns)
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}     4711    100.00        {txt} {c |}  {res}XXXXXX.X.XX.X.XX.X.XX
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}.   help xtdescribe
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtdescribe,  patterns(100)
+
+  {txt}idcode:  {res}1{txt}, {res}2{txt}, ..., {res}5159                                   {txt}n ={res}       4711
+    {txt}year:  {res}68, 69, ..., 88                                   {txt}T ={res}         15
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}21 periods
+           {txt}(idcode*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     1       1       3         5         9      13      15
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}      136      2.89    2.89{txt} {c |}  {res}1....................
+      114      2.42    5.31{txt} {c |}  {res}....................1
+       89      1.89    7.20{txt} {c |}  {res}.................1.11
+       87      1.85    9.04{txt} {c |}  {res}...................11
+       86      1.83   10.87{txt} {c |}  {res}111111.1.11.1.11.1.11
+       61      1.29   12.16{txt} {c |}  {res}..............11.1.11
+       56      1.19   13.35{txt} {c |}  {res}11...................
+       54      1.15   14.50{txt} {c |}  {res}...............1.1.11
+       54      1.15   15.64{txt} {c |}  {res}.......1.11.1.11.1.11
+       49      1.04   16.68{txt} {c |}  {res}.........11.1.11.1.11
+       45      0.96   17.64{txt} {c |}  {res}............1.11.1.11
+       43      0.91   18.55{txt} {c |}  {res}1111.................
+       42      0.89   19.44{txt} {c |}  {res}...1.................
+       40      0.85   20.29{txt} {c |}  {res}.....1.1.11.1.11.1.11
+       38      0.81   21.10{txt} {c |}  {res}....11.1.11.1.11.1.11
+       38      0.81   21.91{txt} {c |}  {res}111..................
+       34      0.72   22.63{txt} {c |}  {res}..1111.1.11.1.11.1.11
+       31      0.66   23.29{txt} {c |}  {res}.................1...
+       30      0.64   23.92{txt} {c |}  {res}..........1.1.11.1.11
+       29      0.62   24.54{txt} {c |}  {res}...111.1.11.1.11.1.11
+       26      0.55   25.09{txt} {c |}  {res}.....1...............
+       25      0.53   25.62{txt} {c |}  {res}.........1...........
+       25      0.53   26.15{txt} {c |}  {res}....1................
+       24      0.51   26.66{txt} {c |}  {res}.........11..........
+       24      0.51   27.17{txt} {c |}  {res}.......1.............
+       24      0.51   27.68{txt} {c |}  {res}..11.................
+       24      0.51   28.19{txt} {c |}  {res}1.1111.1.11.1.11.1.11
+       23      0.49   28.68{txt} {c |}  {res}..1..................
+       23      0.49   29.17{txt} {c |}  {res}.1...................
+       22      0.47   29.63{txt} {c |}  {res}...................1.
+       22      0.47   30.10{txt} {c |}  {res}.11111.1.11.1.11.1.11
+       21      0.45   30.55{txt} {c |}  {res}.......1.11..........
+       21      0.45   30.99{txt} {c |}  {res}111111...............
+       21      0.45   31.44{txt} {c |}  {res}111111.1.............
+       20      0.42   31.86{txt} {c |}  {res}...............1.....
+       20      0.42   32.29{txt} {c |}  {res}.....1.1.............
+       20      0.42   32.71{txt} {c |}  {res}....11.1.............
+       18      0.38   33.09{txt} {c |}  {res}.111.................
+       17      0.36   33.45{txt} {c |}  {res}.11..................
+       16      0.34   33.79{txt} {c |}  {res}..............11.....
+       16      0.34   34.13{txt} {c |}  {res}11111................
+       16      0.34   34.47{txt} {c |}  {res}111111.1.11..........
+       15      0.32   34.79{txt} {c |}  {res}.................1..1
+       15      0.32   35.11{txt} {c |}  {res}....11...............
+       15      0.32   35.43{txt} {c |}  {res}...11................
+       15      0.32   35.75{txt} {c |}  {res}...111.1.1...........
+       15      0.32   36.06{txt} {c |}  {res}1.1..................
+       15      0.32   36.38{txt} {c |}  {res}1.11.................
+       14      0.30   36.68{txt} {c |}  {res}...............1...11
+       14      0.30   36.98{txt} {c |}  {res}..............1......
+       14      0.30   37.27{txt} {c |}  {res}.....1.1.11..........
+       13      0.28   37.55{txt} {c |}  {res}...............1.1...
+       13      0.28   37.83{txt} {c |}  {res}..............1..1.11
+       13      0.28   38.10{txt} {c |}  {res}.......1.1...........
+       13      0.28   38.38{txt} {c |}  {res}..111................
+       12      0.25   38.63{txt} {c |}  {res}.................1.1.
+       12      0.25   38.89{txt} {c |}  {res}..........1..........
+       12      0.25   39.14{txt} {c |}  {res}.........1..1.11.1.11
+       12      0.25   39.40{txt} {c |}  {res}.........11.1.11.....
+       12      0.25   39.65{txt} {c |}  {res}..1111.1.............
+       12      0.25   39.91{txt} {c |}  {res}.11111...............
+       12      0.25   40.16{txt} {c |}  {res}111111.1.11.1.11...11
+       11      0.23   40.39{txt} {c |}  {res}...............1.1..1
+       11      0.23   40.63{txt} {c |}  {res}.......1.11.1.11.1...
+       11      0.23   40.86{txt} {c |}  {res}....11.1.1...........
+       11      0.23   41.10{txt} {c |}  {res}111111.1.1...........
+       11      0.23   41.33{txt} {c |}  {res}111111.1.11...11.1.11
+       10      0.21   41.54{txt} {c |}  {res}..............11.1..1
+       10      0.21   41.75{txt} {c |}  {res}..............11.1.1.
+       10      0.21   41.97{txt} {c |}  {res}............1........
+       10      0.21   42.18{txt} {c |}  {res}............1.1......
+       10      0.21   42.39{txt} {c |}  {res}............1.11.1.1.
+       10      0.21   42.60{txt} {c |}  {res}.....1.1.1...........
+       10      0.21   42.81{txt} {c |}  {res}...1.1.1.11.1.11.1.11
+        9      0.19   43.01{txt} {c |}  {res}............1.11.....
+        9      0.19   43.20{txt} {c |}  {res}..........1...11.1.11
+        9      0.19   43.39{txt} {c |}  {res}..........1.1........
+        9      0.19   43.58{txt} {c |}  {res}.......1..1..........
+        9      0.19   43.77{txt} {c |}  {res}.......1.11.1........
+        9      0.19   43.96{txt} {c |}  {res}..11.1.1.11.1.11.1.11
+        9      0.19   44.15{txt} {c |}  {res}..1111...............
+        9      0.19   44.34{txt} {c |}  {res}..1111.1.1...........
+        9      0.19   44.53{txt} {c |}  {res}.11111.1.1...........
+        9      0.19   44.73{txt} {c |}  {res}111111.1.1..1.11.1.11
+        9      0.19   44.92{txt} {c |}  {res}111111.1.11.1........
+        9      0.19   45.11{txt} {c |}  {res}111111.1.11.1.11.1...
+        8      0.17   45.28{txt} {c |}  {res}...............1.1.1.
+        8      0.17   45.45{txt} {c |}  {res}............1..1.1.11
+        8      0.17   45.62{txt} {c |}  {res}.........11.1.1......
+        8      0.17   45.79{txt} {c |}  {res}.........11.1.11.1...
+        8      0.17   45.96{txt} {c |}  {res}.......1.11.1.11...11
+        8      0.17   46.13{txt} {c |}  {res}....1..1.11.1.11.1.11
+        8      0.17   46.30{txt} {c |}  {res}....11...11.1.11.1.11
+        8      0.17   46.47{txt} {c |}  {res}....11.1.11..........
+        8      0.17   46.64{txt} {c |}  {res}...111.1.............
+        8      0.17   46.81{txt} {c |}  {res}11.1.................
+        8      0.17   46.98{txt} {c |}  {res}111111.1.11.1.1......
+        8      0.17   47.14{txt} {c |}  {res}111111.1.11.1.11.....
+        7      0.15   47.29{txt} {c |}  {res}..............11.1...
+        7      0.15   47.44{txt} {c |}  {res}............1..1.....
+     2476     52.56  100.00{txt} {c |} (other patterns)
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}     4711    100.00        {txt} {c |}  {res}XXXXXX.X.XX.X.XX.X.XX
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}.   set more off
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtdescribe,  patterns(1000)
+
+  {txt}idcode:  {res}1{txt}, {res}2{txt}, ..., {res}5159                                   {txt}n ={res}       4711
+    {txt}year:  {res}68, 69, ..., 88                                   {txt}T ={res}         15
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}21 periods
+           {txt}(idcode*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     1       1       3         5         9      13      15
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}      136      2.89    2.89{txt} {c |}  {res}1....................
+      114      2.42    5.31{txt} {c |}  {res}....................1
+       89      1.89    7.20{txt} {c |}  {res}.................1.11
+       87      1.85    9.04{txt} {c |}  {res}...................11
+       86      1.83   10.87{txt} {c |}  {res}111111.1.11.1.11.1.11
+       61      1.29   12.16{txt} {c |}  {res}..............11.1.11
+       56      1.19   13.35{txt} {c |}  {res}11...................
+       54      1.15   14.50{txt} {c |}  {res}...............1.1.11
+       54      1.15   15.64{txt} {c |}  {res}.......1.11.1.11.1.11
+       49      1.04   16.68{txt} {c |}  {res}.........11.1.11.1.11
+       45      0.96   17.64{txt} {c |}  {res}............1.11.1.11
+       43      0.91   18.55{txt} {c |}  {res}1111.................
+       42      0.89   19.44{txt} {c |}  {res}...1.................
+       40      0.85   20.29{txt} {c |}  {res}.....1.1.11.1.11.1.11
+       38      0.81   21.10{txt} {c |}  {res}....11.1.11.1.11.1.11
+       38      0.81   21.91{txt} {c |}  {res}111..................
+       34      0.72   22.63{txt} {c |}  {res}..1111.1.11.1.11.1.11
+       31      0.66   23.29{txt} {c |}  {res}.................1...
+       30      0.64   23.92{txt} {c |}  {res}..........1.1.11.1.11
+       29      0.62   24.54{txt} {c |}  {res}...111.1.11.1.11.1.11
+       26      0.55   25.09{txt} {c |}  {res}.....1...............
+       25      0.53   25.62{txt} {c |}  {res}.........1...........
+       25      0.53   26.15{txt} {c |}  {res}....1................
+       24      0.51   26.66{txt} {c |}  {res}.........11..........
+       24      0.51   27.17{txt} {c |}  {res}.......1.............
+       24      0.51   27.68{txt} {c |}  {res}..11.................
+       24      0.51   28.19{txt} {c |}  {res}1.1111.1.11.1.11.1.11
+       23      0.49   28.68{txt} {c |}  {res}..1..................
+       23      0.49   29.17{txt} {c |}  {res}.1...................
+       22      0.47   29.63{txt} {c |}  {res}...................1.
+       22      0.47   30.10{txt} {c |}  {res}.11111.1.11.1.11.1.11
+       21      0.45   30.55{txt} {c |}  {res}.......1.11..........
+       21      0.45   30.99{txt} {c |}  {res}111111...............
+       21      0.45   31.44{txt} {c |}  {res}111111.1.............
+       20      0.42   31.86{txt} {c |}  {res}...............1.....
+       20      0.42   32.29{txt} {c |}  {res}.....1.1.............
+       20      0.42   32.71{txt} {c |}  {res}....11.1.............
+       18      0.38   33.09{txt} {c |}  {res}.111.................
+       17      0.36   33.45{txt} {c |}  {res}.11..................
+       16      0.34   33.79{txt} {c |}  {res}..............11.....
+       16      0.34   34.13{txt} {c |}  {res}11111................
+       16      0.34   34.47{txt} {c |}  {res}111111.1.11..........
+       15      0.32   34.79{txt} {c |}  {res}.................1..1
+       15      0.32   35.11{txt} {c |}  {res}....11...............
+       15      0.32   35.43{txt} {c |}  {res}...11................
+       15      0.32   35.75{txt} {c |}  {res}...111.1.1...........
+       15      0.32   36.06{txt} {c |}  {res}1.1..................
+       15      0.32   36.38{txt} {c |}  {res}1.11.................
+       14      0.30   36.68{txt} {c |}  {res}...............1...11
+       14      0.30   36.98{txt} {c |}  {res}..............1......
+       14      0.30   37.27{txt} {c |}  {res}.....1.1.11..........
+       13      0.28   37.55{txt} {c |}  {res}...............1.1...
+       13      0.28   37.83{txt} {c |}  {res}..............1..1.11
+       13      0.28   38.10{txt} {c |}  {res}.......1.1...........
+       13      0.28   38.38{txt} {c |}  {res}..111................
+       12      0.25   38.63{txt} {c |}  {res}.................1.1.
+       12      0.25   38.89{txt} {c |}  {res}..........1..........
+       12      0.25   39.14{txt} {c |}  {res}.........1..1.11.1.11
+       12      0.25   39.40{txt} {c |}  {res}.........11.1.11.....
+       12      0.25   39.65{txt} {c |}  {res}..1111.1.............
+       12      0.25   39.91{txt} {c |}  {res}.11111...............
+       12      0.25   40.16{txt} {c |}  {res}111111.1.11.1.11...11
+       11      0.23   40.39{txt} {c |}  {res}...............1.1..1
+       11      0.23   40.63{txt} {c |}  {res}.......1.11.1.11.1...
+       11      0.23   40.86{txt} {c |}  {res}....11.1.1...........
+       11      0.23   41.10{txt} {c |}  {res}111111.1.1...........
+       11      0.23   41.33{txt} {c |}  {res}111111.1.11...11.1.11
+       10      0.21   41.54{txt} {c |}  {res}..............11.1..1
+       10      0.21   41.75{txt} {c |}  {res}..............11.1.1.
+       10      0.21   41.97{txt} {c |}  {res}............1........
+       10      0.21   42.18{txt} {c |}  {res}............1.1......
+       10      0.21   42.39{txt} {c |}  {res}............1.11.1.1.
+       10      0.21   42.60{txt} {c |}  {res}.....1.1.1...........
+       10      0.21   42.81{txt} {c |}  {res}...1.1.1.11.1.11.1.11
+        9      0.19   43.01{txt} {c |}  {res}............1.11.....
+        9      0.19   43.20{txt} {c |}  {res}..........1...11.1.11
+        9      0.19   43.39{txt} {c |}  {res}..........1.1........
+        9      0.19   43.58{txt} {c |}  {res}.......1..1..........
+        9      0.19   43.77{txt} {c |}  {res}.......1.11.1........
+        9      0.19   43.96{txt} {c |}  {res}..11.1.1.11.1.11.1.11
+        9      0.19   44.15{txt} {c |}  {res}..1111...............
+        9      0.19   44.34{txt} {c |}  {res}..1111.1.1...........
+        9      0.19   44.53{txt} {c |}  {res}.11111.1.1...........
+        9      0.19   44.73{txt} {c |}  {res}111111.1.1..1.11.1.11
+        9      0.19   44.92{txt} {c |}  {res}111111.1.11.1........
+        9      0.19   45.11{txt} {c |}  {res}111111.1.11.1.11.1...
+        8      0.17   45.28{txt} {c |}  {res}...............1.1.1.
+        8      0.17   45.45{txt} {c |}  {res}............1..1.1.11
+        8      0.17   45.62{txt} {c |}  {res}.........11.1.1......
+        8      0.17   45.79{txt} {c |}  {res}.........11.1.11.1...
+        8      0.17   45.96{txt} {c |}  {res}.......1.11.1.11...11
+        8      0.17   46.13{txt} {c |}  {res}....1..1.11.1.11.1.11
+        8      0.17   46.30{txt} {c |}  {res}....11...11.1.11.1.11
+        8      0.17   46.47{txt} {c |}  {res}....11.1.11..........
+        8      0.17   46.64{txt} {c |}  {res}...111.1.............
+        8      0.17   46.81{txt} {c |}  {res}11.1.................
+        8      0.17   46.98{txt} {c |}  {res}111111.1.11.1.1......
+        8      0.17   47.14{txt} {c |}  {res}111111.1.11.1.11.....
+        7      0.15   47.29{txt} {c |}  {res}..............11.1...
+        7      0.15   47.44{txt} {c |}  {res}............1..1.....
+        7      0.15   47.59{txt} {c |}  {res}.........1..1........
+        7      0.15   47.74{txt} {c |}  {res}.........11...11.1.11
+        7      0.15   47.89{txt} {c |}  {res}.......1.11.1.11.....
+        7      0.15   48.04{txt} {c |}  {res}...111...............
+        7      0.15   48.19{txt} {c |}  {res}..1111.1.11..........
+        7      0.15   48.33{txt} {c |}  {res}.11111.1.11.1.1..1.11
+        7      0.15   48.48{txt} {c |}  {res}1..111.1.11.1.11.1.11
+        7      0.15   48.63{txt} {c |}  {res}1.1111.1.............
+        7      0.15   48.78{txt} {c |}  {res}111111...11.1.11.1.11
+        6      0.13   48.91{txt} {c |}  {res}..............11....1
+        6      0.13   49.03{txt} {c |}  {res}..............11...11
+        6      0.13   49.16{txt} {c |}  {res}............1.11...11
+        6      0.13   49.29{txt} {c |}  {res}.........11.1........
+        6      0.13   49.42{txt} {c |}  {res}.........11.1.11...11
+        6      0.13   49.54{txt} {c |}  {res}.......1.11.1.1......
+        6      0.13   49.67{txt} {c |}  {res}....11.1.11.1........
+        6      0.13   49.80{txt} {c |}  {res}....11.1.11.1.11.1..1
+        6      0.13   49.93{txt} {c |}  {res}...1.1.1.............
+        6      0.13   50.05{txt} {c |}  {res}...111.1.11...11.1.11
+        6      0.13   50.18{txt} {c |}  {res}...111.1.11.1.11...11
+        6      0.13   50.31{txt} {c |}  {res}..1.1................
+        6      0.13   50.44{txt} {c |}  {res}..1111.1.11.1........
+        6      0.13   50.56{txt} {c |}  {res}.1111................
+        6      0.13   50.69{txt} {c |}  {res}.11111.1.11.1.11.1...
+        6      0.13   50.82{txt} {c |}  {res}1..................11
+        6      0.13   50.94{txt} {c |}  {res}1.111................
+        6      0.13   51.07{txt} {c |}  {res}11.111.1.11.1.11.1.11
+        6      0.13   51.20{txt} {c |}  {res}111111.1.11.1.1..1.11
+        6      0.13   51.33{txt} {c |}  {res}111111.1.11.1.11.1..1
+        6      0.13   51.45{txt} {c |}  {res}111111.1.11.1.11.1.1.
+        5      0.11   51.56{txt} {c |}  {res}............1.11.1..1
+        5      0.11   51.67{txt} {c |}  {res}..........1.1.1......
+        5      0.11   51.77{txt} {c |}  {res}.........11.1.11...1.
+        5      0.11   51.88{txt} {c |}  {res}.........11.1.11.1..1
+        5      0.11   51.98{txt} {c |}  {res}.........11.1.11.1.1.
+        5      0.11   52.09{txt} {c |}  {res}.......1.11...11.1.11
+        5      0.11   52.20{txt} {c |}  {res}.......1.11.1..1.1.11
+        5      0.11   52.30{txt} {c |}  {res}.......1.11.1.11.1.1.
+        5      0.11   52.41{txt} {c |}  {res}.....1.1.11.1.11.....
+        5      0.11   52.52{txt} {c |}  {res}....11.1....1.11.1.11
+        5      0.11   52.62{txt} {c |}  {res}....11.1.11...11.1.11
+        5      0.11   52.73{txt} {c |}  {res}....11.1.11.1.1..1.11
+        5      0.11   52.83{txt} {c |}  {res}....11.1.11.1.11...11
+        5      0.11   52.94{txt} {c |}  {res}....11.1.11.1.11.1...
+        5      0.11   53.05{txt} {c |}  {res}...1...1.............
+        5      0.11   53.15{txt} {c |}  {res}...1...1.11.1.11.1.11
+        5      0.11   53.26{txt} {c |}  {res}...1.1...............
+        5      0.11   53.36{txt} {c |}  {res}...111.1.11..........
+        5      0.11   53.47{txt} {c |}  {res}...111.1.11.1.1......
+        5      0.11   53.58{txt} {c |}  {res}...111.1.11.1.11.....
+        5      0.11   53.68{txt} {c |}  {res}...111.1.11.1.11.1...
+        5      0.11   53.79{txt} {c |}  {res}...111.1.11.1.11.1.1.
+        5      0.11   53.90{txt} {c |}  {res}..1.11.1.1...........
+        5      0.11   54.00{txt} {c |}  {res}..111............1.11
+        5      0.11   54.11{txt} {c |}  {res}..1111.1.11.1.11.....
+        5      0.11   54.21{txt} {c |}  {res}..1111.1.11.1.11.1..1
+        5      0.11   54.32{txt} {c |}  {res}.11111.1.11.1.11.1.1.
+        5      0.11   54.43{txt} {c |}  {res}1111..........11.1.11
+        5      0.11   54.53{txt} {c |}  {res}1111.....11.1.11.1.11
+        5      0.11   54.64{txt} {c |}  {res}1111...1.11.1.11.1.11
+        5      0.11   54.74{txt} {c |}  {res}111111.1.1.......1.11
+        4      0.08   54.83{txt} {c |}  {res}............1......11
+        4      0.08   54.91{txt} {c |}  {res}............1.1..1...
+        4      0.08   55.00{txt} {c |}  {res}............1.1..1.11
+        4      0.08   55.08{txt} {c |}  {res}............1.11....1
+        4      0.08   55.17{txt} {c |}  {res}..........1.1....1.11
+        4      0.08   55.25{txt} {c |}  {res}..........1.1..1.....
+        4      0.08   55.34{txt} {c |}  {res}..........1.1.1..1.11
+        4      0.08   55.42{txt} {c |}  {res}..........1.1.11...1.
+        4      0.08   55.51{txt} {c |}  {res}..........1.1.11...11
+        4      0.08   55.59{txt} {c |}  {res}..........1.1.11.1...
+        4      0.08   55.68{txt} {c |}  {res}.........1.......1.11
+        4      0.08   55.76{txt} {c |}  {res}.........11.1....1.11
+        4      0.08   55.85{txt} {c |}  {res}.......1...........1.
+        4      0.08   55.93{txt} {c |}  {res}.......1.1.......1.11
+        4      0.08   56.02{txt} {c |}  {res}.......1.11.1.11.1..1
+        4      0.08   56.10{txt} {c |}  {res}.....1...11..........
+        4      0.08   56.19{txt} {c |}  {res}.....1.1.1..1.11.1.11
+        4      0.08   56.27{txt} {c |}  {res}.....1.1.11.1.1....11
+        4      0.08   56.36{txt} {c |}  {res}.....1.1.11.1.1..1.11
+        4      0.08   56.44{txt} {c |}  {res}....11.1.11...11.....
+        4      0.08   56.53{txt} {c |}  {res}....11.1.11.1.11.....
+        4      0.08   56.61{txt} {c |}  {res}....11.1.11.1.11.1.1.
+        4      0.08   56.70{txt} {c |}  {res}...1.............1.11
+        4      0.08   56.78{txt} {c |}  {res}..11...1.............
+        4      0.08   56.87{txt} {c |}  {res}..11.1...............
+        4      0.08   56.95{txt} {c |}  {res}..1111.1.1.......1.11
+        4      0.08   57.04{txt} {c |}  {res}..1111.1.11...11.1.11
+        4      0.08   57.12{txt} {c |}  {res}..1111.1.11.1.1......
+        4      0.08   57.21{txt} {c |}  {res}..1111.1.11.1.11.1.1.
+        4      0.08   57.29{txt} {c |}  {res}.1.1.................
+        4      0.08   57.38{txt} {c |}  {res}.1.111.1.11.1.11.1.11
+        4      0.08   57.46{txt} {c |}  {res}.11.11.1.............
+        4      0.08   57.55{txt} {c |}  {res}.111.1...............
+        4      0.08   57.63{txt} {c |}  {res}.11111.1.11..........
+        4      0.08   57.72{txt} {c |}  {res}1......1.............
+        4      0.08   57.80{txt} {c |}  {res}1.11.1.1.11.1.11.1.11
+        4      0.08   57.89{txt} {c |}  {res}1.1111...............
+        4      0.08   57.97{txt} {c |}  {res}1111...1.............
+        4      0.08   58.06{txt} {c |}  {res}1111.1.1.11.1.11.1.11
+        4      0.08   58.14{txt} {c |}  {res}111111...........1.11
+        4      0.08   58.23{txt} {c |}  {res}111111.1.1.........11
+        4      0.08   58.31{txt} {c |}  {res}111111.1.11.1..1...11
+        3      0.06   58.37{txt} {c |}  {res}...............1....1
+        3      0.06   58.44{txt} {c |}  {res}...............1...1.
+        3      0.06   58.50{txt} {c |}  {res}..............1....1.
+        3      0.06   58.57{txt} {c |}  {res}..............1....11
+        3      0.06   58.63{txt} {c |}  {res}..............1..1...
+        3      0.06   58.69{txt} {c |}  {res}..............11...1.
+        3      0.06   58.76{txt} {c |}  {res}............1.11.1...
+        3      0.06   58.82{txt} {c |}  {res}..........1........11
+        3      0.06   58.88{txt} {c |}  {res}..........1......1.11
+        3      0.06   58.95{txt} {c |}  {res}..........1.1.1....11
+        3      0.06   59.01{txt} {c |}  {res}..........1.1.11.1..1
+        3      0.06   59.07{txt} {c |}  {res}..........1.1.11.1.1.
+        3      0.06   59.14{txt} {c |}  {res}.........1.......1...
+        3      0.06   59.20{txt} {c |}  {res}.........1.....1.....
+        3      0.06   59.27{txt} {c |}  {res}.........1....11.1...
+        3      0.06   59.33{txt} {c |}  {res}.........1....11.1.11
+        3      0.06   59.39{txt} {c |}  {res}.........11........11
+        3      0.06   59.46{txt} {c |}  {res}.........11...11.....
+        3      0.06   59.52{txt} {c |}  {res}.........11...11...11
+        3      0.06   59.58{txt} {c |}  {res}.........11...11.1...
+        3      0.06   59.65{txt} {c |}  {res}.........11...11.1.1.
+        3      0.06   59.71{txt} {c |}  {res}.........11.1.1....11
+        3      0.06   59.77{txt} {c |}  {res}.........11.1.1..1.11
+        3      0.06   59.84{txt} {c |}  {res}.........11.1.11....1
+        3      0.06   59.90{txt} {c |}  {res}.......1...........11
+        3      0.06   59.97{txt} {c |}  {res}.......1.........1...
+        3      0.06   60.03{txt} {c |}  {res}.......1.1....11...11
+        3      0.06   60.09{txt} {c |}  {res}.......1.1..1........
+        3      0.06   60.16{txt} {c |}  {res}.......1.1..1.11.....
+        3      0.06   60.22{txt} {c |}  {res}.......1.1..1.11.1.11
+        3      0.06   60.28{txt} {c |}  {res}.....1......1.1......
+        3      0.06   60.35{txt} {c |}  {res}.....1...11.1........
+        3      0.06   60.41{txt} {c |}  {res}.....1.1.11...11.1.11
+        3      0.06   60.48{txt} {c |}  {res}.....1.1.11.1........
+        3      0.06   60.54{txt} {c |}  {res}.....1.1.11.1..1.1.11
+        3      0.06   60.60{txt} {c |}  {res}.....1.1.11.1.1......
+        3      0.06   60.67{txt} {c |}  {res}.....1.1.11.1.11...11
+        3      0.06   60.73{txt} {c |}  {res}.....1.1.11.1.11.1...
+        3      0.06   60.79{txt} {c |}  {res}.....1.1.11.1.11.1..1
+        3      0.06   60.86{txt} {c |}  {res}....11....1...11.1.11
+        3      0.06   60.92{txt} {c |}  {res}....11....1.1.11.1.11
+        3      0.06   60.98{txt} {c |}  {res}....11...11.1........
+        3      0.06   61.05{txt} {c |}  {res}....11.1..1.1.11.1.11
+        3      0.06   61.11{txt} {c |}  {res}....11.1.1..1........
+        3      0.06   61.18{txt} {c |}  {res}....11.1.11.1......11
+        3      0.06   61.24{txt} {c |}  {res}....11.1.11.1.1......
+        3      0.06   61.30{txt} {c |}  {res}...1...............11
+        3      0.06   61.37{txt} {c |}  {res}...1.....11.1.11.1.11
+        3      0.06   61.43{txt} {c |}  {res}...1.1.1.11.1.11...11
+        3      0.06   61.49{txt} {c |}  {res}...111.............11
+        3      0.06   61.56{txt} {c |}  {res}...111.1.11.........1
+        3      0.06   61.62{txt} {c |}  {res}...111.1.11.1.1..1...
+        3      0.06   61.69{txt} {c |}  {res}...111.1.11.1.1..1.11
+        3      0.06   61.75{txt} {c |}  {res}...111.1.11.1.11.1..1
+        3      0.06   61.81{txt} {c |}  {res}..1..............1.11
+        3      0.06   61.88{txt} {c |}  {res}..1.11.1.11..........
+        3      0.06   61.94{txt} {c |}  {res}..11...1.11..........
+        3      0.06   62.00{txt} {c |}  {res}..11.1.1.............
+        3      0.06   62.07{txt} {c |}  {res}..111..1.11..........
+        3      0.06   62.13{txt} {c |}  {res}..1111...........1.11
+        3      0.06   62.19{txt} {c |}  {res}..1111...11...11.1.11
+        3      0.06   62.26{txt} {c |}  {res}..1111...11.1.11.1.11
+        3      0.06   62.32{txt} {c |}  {res}..1111.1.........1...
+        3      0.06   62.39{txt} {c |}  {res}..1111.1..1.1.11.1.11
+        3      0.06   62.45{txt} {c |}  {res}.1.11................
+        3      0.06   62.51{txt} {c |}  {res}.111..........11.1.11
+        3      0.06   62.58{txt} {c |}  {res}.111.1.1.............
+        3      0.06   62.64{txt} {c |}  {res}.11111.1.............
+        3      0.06   62.70{txt} {c |}  {res}.11111.1.1..1.11.1.11
+        3      0.06   62.77{txt} {c |}  {res}.11111.1.11...11.1.11
+        3      0.06   62.83{txt} {c |}  {res}1......1.1...........
+        3      0.06   62.90{txt} {c |}  {res}1....1......1.11.1.11
+        3      0.06   62.96{txt} {c |}  {res}1..1...1.............
+        3      0.06   63.02{txt} {c |}  {res}1.11.1.1.............
+        3      0.06   63.09{txt} {c |}  {res}1.11.1.1.11..........
+        3      0.06   63.15{txt} {c |}  {res}1.1111.1.1...........
+        3      0.06   63.21{txt} {c |}  {res}11.1.1...............
+        3      0.06   63.28{txt} {c |}  {res}11.11................
+        3      0.06   63.34{txt} {c |}  {res}11.111.1.............
+        3      0.06   63.40{txt} {c |}  {res}111...........1......
+        3      0.06   63.47{txt} {c |}  {res}111....1.............
+        3      0.06   63.53{txt} {c |}  {res}1111...............11
+        3      0.06   63.60{txt} {c |}  {res}1111.............1.11
+        3      0.06   63.66{txt} {c |}  {res}1111.1...............
+        3      0.06   63.72{txt} {c |}  {res}1111.1.1.1...........
+        3      0.06   63.79{txt} {c |}  {res}1111.1.1.11.1.11.....
+        3      0.06   63.85{txt} {c |}  {res}11111..1.............
+        3      0.06   63.91{txt} {c |}  {res}11111..1.11..........
+        3      0.06   63.98{txt} {c |}  {res}111111.1...........11
+        3      0.06   64.04{txt} {c |}  {res}111111.1.........1.11
+        3      0.06   64.11{txt} {c |}  {res}111111.1..1.1.11.1.11
+        2      0.04   64.15{txt} {c |}  {res}..............1..1.1.
+        2      0.04   64.19{txt} {c |}  {res}............1.......1
+        2      0.04   64.23{txt} {c |}  {res}............1.1....1.
+        2      0.04   64.28{txt} {c |}  {res}............1.1....11
+        2      0.04   64.32{txt} {c |}  {res}..........1...1.....1
+        2      0.04   64.36{txt} {c |}  {res}..........1...11.1...
+        2      0.04   64.40{txt} {c |}  {res}..........1.1.11.....
+        2      0.04   64.44{txt} {c |}  {res}.........1..........1
+        2      0.04   64.49{txt} {c |}  {res}.........1.........11
+        2      0.04   64.53{txt} {c |}  {res}.........1....1......
+        2      0.04   64.57{txt} {c |}  {res}.........1..1.11...11
+        2      0.04   64.61{txt} {c |}  {res}.........11.........1
+        2      0.04   64.66{txt} {c |}  {res}.........11......1...
+        2      0.04   64.70{txt} {c |}  {res}.........11......1.1.
+        2      0.04   64.74{txt} {c |}  {res}.........11......1.11
+        2      0.04   64.78{txt} {c |}  {res}.........11.1..1.1...
+        2      0.04   64.83{txt} {c |}  {res}.........11.1..1.1.11
+        2      0.04   64.87{txt} {c |}  {res}.......1.........1.11
+        2      0.04   64.91{txt} {c |}  {res}.......1......11.....
+        2      0.04   64.95{txt} {c |}  {res}.......1....1........
+        2      0.04   65.00{txt} {c |}  {res}.......1..1.........1
+        2      0.04   65.04{txt} {c |}  {res}.......1..1........11
+        2      0.04   65.08{txt} {c |}  {res}.......1..1...11.1.11
+        2      0.04   65.12{txt} {c |}  {res}.......1.1..........1
+        2      0.04   65.17{txt} {c |}  {res}.......1.1.........11
+        2      0.04   65.21{txt} {c |}  {res}.......1.1.......1.1.
+        2      0.04   65.25{txt} {c |}  {res}.......1.1....11.1.11
+        2      0.04   65.29{txt} {c |}  {res}.......1.11.........1
+        2      0.04   65.34{txt} {c |}  {res}.......1.11......1...
+        2      0.04   65.38{txt} {c |}  {res}.......1.11...11.1..1
+        2      0.04   65.42{txt} {c |}  {res}.......1.11...11.1.1.
+        2      0.04   65.46{txt} {c |}  {res}.......1.11.1....1.11
+        2      0.04   65.51{txt} {c |}  {res}.......1.11.1..1.1.1.
+        2      0.04   65.55{txt} {c |}  {res}.......1.11.1.1..1.11
+        2      0.04   65.59{txt} {c |}  {res}.......1.11.1.11...1.
+        2      0.04   65.63{txt} {c |}  {res}.....1...........1...
+        2      0.04   65.68{txt} {c |}  {res}.....1........11.1.11
+        2      0.04   65.72{txt} {c |}  {res}.....1...1...........
+        2      0.04   65.76{txt} {c |}  {res}.....1...11.1.11.1.11
+        2      0.04   65.80{txt} {c |}  {res}.....1.1.........1.1.
+        2      0.04   65.85{txt} {c |}  {res}.....1.1.........1.11
+        2      0.04   65.89{txt} {c |}  {res}.....1.1..1...1......
+        2      0.04   65.93{txt} {c |}  {res}.....1.1..1.1........
+        2      0.04   65.97{txt} {c |}  {res}.....1.1..1.1.1......
+        2      0.04   66.02{txt} {c |}  {res}.....1.1.1..1........
+        2      0.04   66.06{txt} {c |}  {res}.....1.1.11......1.11
+        2      0.04   66.10{txt} {c |}  {res}.....1.1.11....1.1.11
+        2      0.04   66.14{txt} {c |}  {res}.....1.1.11...11.1...
+        2      0.04   66.19{txt} {c |}  {res}.....1.1.11.1.......1
+        2      0.04   66.23{txt} {c |}  {res}.....1.1.11.1.1..1...
+        2      0.04   66.27{txt} {c |}  {res}.....1.1.11.1.11.1.1.
+        2      0.04   66.31{txt} {c |}  {res}....1....1...........
+        2      0.04   66.36{txt} {c |}  {res}....1..1.............
+        2      0.04   66.40{txt} {c |}  {res}....1..1......1......
+        2      0.04   66.44{txt} {c |}  {res}....1..1....1.1......
+        2      0.04   66.48{txt} {c |}  {res}....1..1.11.1.11.1..1
+        2      0.04   66.53{txt} {c |}  {res}....11...1.........11
+        2      0.04   66.57{txt} {c |}  {res}....11...11..........
+        2      0.04   66.61{txt} {c |}  {res}....11.1......11.1.11
+        2      0.04   66.65{txt} {c |}  {res}....11.1..1...11.1.1.
+        2      0.04   66.69{txt} {c |}  {res}....11.1.1.........11
+        2      0.04   66.74{txt} {c |}  {res}....11.1.1.......1.11
+        2      0.04   66.78{txt} {c |}  {res}....11.1.1....11.....
+        2      0.04   66.82{txt} {c |}  {res}....11.1.1....11...11
+        2      0.04   66.86{txt} {c |}  {res}....11.1.1..1.1..1.11
+        2      0.04   66.91{txt} {c |}  {res}....11.1.1..1.11.1.11
+        2      0.04   66.95{txt} {c |}  {res}....11.1.11....1.1.11
+        2      0.04   66.99{txt} {c |}  {res}....11.1.11.1.1..1..1
+        2      0.04   67.03{txt} {c |}  {res}....11.1.11.1.11....1
+        2      0.04   67.08{txt} {c |}  {res}...1................1
+        2      0.04   67.12{txt} {c |}  {res}...1..........1......
+        2      0.04   67.16{txt} {c |}  {res}...1...1.11.1.1......
+        2      0.04   67.20{txt} {c |}  {res}...1.1...11.1.11.1.11
+        2      0.04   67.25{txt} {c |}  {res}...1.1.1....1.11.1.11
+        2      0.04   67.29{txt} {c |}  {res}...1.1.1.11...11.1.11
+        2      0.04   67.33{txt} {c |}  {res}...11............1.11
+        2      0.04   67.37{txt} {c |}  {res}...11....11.1.11.1.11
+        2      0.04   67.42{txt} {c |}  {res}...11..1..1.1.11.1.11
+        2      0.04   67.46{txt} {c |}  {res}...11..1.1...........
+        2      0.04   67.50{txt} {c |}  {res}...11..1.11.1........
+        2      0.04   67.54{txt} {c |}  {res}...111...........1.1.
+        2      0.04   67.59{txt} {c |}  {res}...111...........1.11
+        2      0.04   67.63{txt} {c |}  {res}...111...11.1.1......
+        2      0.04   67.67{txt} {c |}  {res}...111...11.1.1..1.11
+        2      0.04   67.71{txt} {c |}  {res}...111...11.1.11.1..1
+        2      0.04   67.76{txt} {c |}  {res}...111...11.1.11.1.11
+        2      0.04   67.80{txt} {c |}  {res}...111.1..1..........
+        2      0.04   67.84{txt} {c |}  {res}...111.1.1.......1...
+        2      0.04   67.88{txt} {c |}  {res}...111.1.1.......1.11
+        2      0.04   67.93{txt} {c |}  {res}...111.1.1....11.1.11
+        2      0.04   67.97{txt} {c |}  {res}...111.1.11........11
+        2      0.04   68.01{txt} {c |}  {res}...111.1.11...11.....
+        2      0.04   68.05{txt} {c |}  {res}...111.1.11.1........
+        2      0.04   68.10{txt} {c |}  {res}..1...........1....11
+        2      0.04   68.14{txt} {c |}  {res}..1...........11.1.11
+        2      0.04   68.18{txt} {c |}  {res}..1.........1........
+        2      0.04   68.22{txt} {c |}  {res}..1.......1..........
+        2      0.04   68.27{txt} {c |}  {res}..1....1.11.1.11.1.11
+        2      0.04   68.31{txt} {c |}  {res}..1..1...............
+        2      0.04   68.35{txt} {c |}  {res}..1..1.1.............
+        2      0.04   68.39{txt} {c |}  {res}..1..1.1.1...........
+        2      0.04   68.44{txt} {c |}  {res}..1..1.1.11.1.11.1.11
+        2      0.04   68.48{txt} {c |}  {res}..1.1..1.11..........
+        2      0.04   68.52{txt} {c |}  {res}..1.11.1.11.1.11.1.11
+        2      0.04   68.56{txt} {c |}  {res}..11...............11
+        2      0.04   68.61{txt} {c |}  {res}..11........1........
+        2      0.04   68.65{txt} {c |}  {res}..11........1.11.1.11
+        2      0.04   68.69{txt} {c |}  {res}..11...1.........1.11
+        2      0.04   68.73{txt} {c |}  {res}..11...1.11.1.11.1.11
+        2      0.04   68.78{txt} {c |}  {res}..11.1.1.11..........
+        2      0.04   68.82{txt} {c |}  {res}..11.1.1.11...11.1.11
+        2      0.04   68.86{txt} {c |}  {res}..11.1.1.11.1.1..1.11
+        2      0.04   68.90{txt} {c |}  {res}..11.1.1.11.1.11...11
+        2      0.04   68.95{txt} {c |}  {res}..1111........1......
+        2      0.04   68.99{txt} {c |}  {res}..1111...1...........
+        2      0.04   69.03{txt} {c |}  {res}..1111...11.1.11.1.1.
+        2      0.04   69.07{txt} {c |}  {res}..1111.1.......1.1.11
+        2      0.04   69.11{txt} {c |}  {res}..1111.1.1.......1.1.
+        2      0.04   69.16{txt} {c |}  {res}..1111.1.1..1.......1
+        2      0.04   69.20{txt} {c |}  {res}..1111.1.1..1.11.....
+        2      0.04   69.24{txt} {c |}  {res}..1111.1.1..1.11.1...
+        2      0.04   69.28{txt} {c |}  {res}..1111.1.1..1.11.1.11
+        2      0.04   69.33{txt} {c |}  {res}..1111.1.11....1.1...
+        2      0.04   69.37{txt} {c |}  {res}..1111.1.11.1..1.1.11
+        2      0.04   69.41{txt} {c |}  {res}..1111.1.11.1.1....11
+        2      0.04   69.45{txt} {c |}  {res}..1111.1.11.1.11.1...
+        2      0.04   69.50{txt} {c |}  {res}.1...............1.11
+        2      0.04   69.54{txt} {c |}  {res}.1...1...............
+        2      0.04   69.58{txt} {c |}  {res}.1...1.1..1.1.11.1.11
+        2      0.04   69.62{txt} {c |}  {res}.1...1.1.1...........
+        2      0.04   69.67{txt} {c |}  {res}.1.1.1...............
+        2      0.04   69.71{txt} {c |}  {res}.1.111...............
+        2      0.04   69.75{txt} {c |}  {res}.1.111.1.............
+        2      0.04   69.79{txt} {c |}  {res}.11.......1..........
+        2      0.04   69.84{txt} {c |}  {res}.11....1.............
+        2      0.04   69.88{txt} {c |}  {res}.11.1..1.............
+        2      0.04   69.92{txt} {c |}  {res}.11.1..1.11..........
+        2      0.04   69.96{txt} {c |}  {res}.11.11.1.11..........
+        2      0.04   70.01{txt} {c |}  {res}.111.............1...
+        2      0.04   70.05{txt} {c |}  {res}.111...1.11.1.11.1.11
+        2      0.04   70.09{txt} {c |}  {res}.111.1.1.11.1.1......
+        2      0.04   70.13{txt} {c |}  {res}.111.1.1.11.1.11.1.11
+        2      0.04   70.18{txt} {c |}  {res}.11111.............1.
+        2      0.04   70.22{txt} {c |}  {res}.11111...11.1.11.1.11
+        2      0.04   70.26{txt} {c |}  {res}.11111.1...........1.
+        2      0.04   70.30{txt} {c |}  {res}.11111.1.........1.11
+        2      0.04   70.35{txt} {c |}  {res}.11111.1.11........11
+        2      0.04   70.39{txt} {c |}  {res}.11111.1.11.1........
+        2      0.04   70.43{txt} {c |}  {res}.11111.1.11.1..1.1.11
+        2      0.04   70.47{txt} {c |}  {res}.11111.1.11.1.1......
+        2      0.04   70.52{txt} {c |}  {res}.11111.1.11.1.11.1..1
+        2      0.04   70.56{txt} {c |}  {res}1...................1
+        2      0.04   70.60{txt} {c |}  {res}1................1...
+        2      0.04   70.64{txt} {c |}  {res}1................1.11
+        2      0.04   70.69{txt} {c |}  {res}1.............11.1...
+        2      0.04   70.73{txt} {c |}  {res}1...........1.11.1.11
+        2      0.04   70.77{txt} {c |}  {res}1........11...1......
+        2      0.04   70.81{txt} {c |}  {res}1........11.1.11.1.11
+        2      0.04   70.86{txt} {c |}  {res}1......1..1..........
+        2      0.04   70.90{txt} {c |}  {res}1......1.11........11
+        2      0.04   70.94{txt} {c |}  {res}1......1.11.1.11.1.11
+        2      0.04   70.98{txt} {c |}  {res}1...11...............
+        2      0.04   71.03{txt} {c |}  {res}1...11...........1.11
+        2      0.04   71.07{txt} {c |}  {res}1..1.................
+        2      0.04   71.11{txt} {c |}  {res}1..1.1.1.11.1.11.1.11
+        2      0.04   71.15{txt} {c |}  {res}1..111...............
+        2      0.04   71.20{txt} {c |}  {res}1..111.1.............
+        2      0.04   71.24{txt} {c |}  {res}1..111.1.11.1.11.1..1
+        2      0.04   71.28{txt} {c |}  {res}1.1.................1
+        2      0.04   71.32{txt} {c |}  {res}1.1.........1.11.1.11
+        2      0.04   71.36{txt} {c |}  {res}1.1.11.1.11.1.11.1.11
+        2      0.04   71.41{txt} {c |}  {res}1.11................1
+        2      0.04   71.45{txt} {c |}  {res}1.11.............1...
+        2      0.04   71.49{txt} {c |}  {res}1.1111...11.1.11.1.11
+        2      0.04   71.53{txt} {c |}  {res}1.1111.1.......1.1.11
+        2      0.04   71.58{txt} {c |}  {res}1.1111.1....1.11.1.11
+        2      0.04   71.62{txt} {c |}  {res}1.1111.1.11......1.11
+        2      0.04   71.66{txt} {c |}  {res}1.1111.1.11.1....1..1
+        2      0.04   71.70{txt} {c |}  {res}1.1111.1.11.1.1......
+        2      0.04   71.75{txt} {c |}  {res}1.1111.1.11.1.11.....
+        2      0.04   71.79{txt} {c |}  {res}1.1111.1.11.1.11.1...
+        2      0.04   71.83{txt} {c |}  {res}1.1111.1.11.1.11.1..1
+        2      0.04   71.87{txt} {c |}  {res}11.111...............
+        2      0.04   71.92{txt} {c |}  {res}111..............1.11
+        2      0.04   71.96{txt} {c |}  {res}111...........11.1.11
+        2      0.04   72.00{txt} {c |}  {res}111.......1.1.11.1.11
+        2      0.04   72.04{txt} {c |}  {res}111..1.1.11..........
+        2      0.04   72.09{txt} {c |}  {res}111.1................
+        2      0.04   72.13{txt} {c |}  {res}111.11...1..1.11.1.11
+        2      0.04   72.17{txt} {c |}  {res}111.11...11.1.11.1.11
+        2      0.04   72.21{txt} {c |}  {res}111.11.1.1..1.11.1.11
+        2      0.04   72.26{txt} {c |}  {res}111.11.1.11.1.11.1.11
+        2      0.04   72.30{txt} {c |}  {res}1111.............1...
+        2      0.04   72.34{txt} {c |}  {res}1111...1.1...........
+        2      0.04   72.38{txt} {c |}  {res}1111...1.1..1.1....11
+        2      0.04   72.43{txt} {c |}  {res}1111...1.1..1.11.1.11
+        2      0.04   72.47{txt} {c |}  {res}1111.1...11.1........
+        2      0.04   72.51{txt} {c |}  {res}1111.1...11.1.11.1.11
+        2      0.04   72.55{txt} {c |}  {res}1111.1.1.............
+        2      0.04   72.60{txt} {c |}  {res}1111.1.1.1..1.11.1.11
+        2      0.04   72.64{txt} {c |}  {res}1111.1.1.11...11.1.1.
+        2      0.04   72.68{txt} {c |}  {res}1111.1.1.11...11.1.11
+        2      0.04   72.72{txt} {c |}  {res}1111.1.1.11.1.11...11
+        2      0.04   72.77{txt} {c |}  {res}11111..............11
+        2      0.04   72.81{txt} {c |}  {res}11111............1.11
+        2      0.04   72.85{txt} {c |}  {res}111111.............11
+        2      0.04   72.89{txt} {c |}  {res}111111...........1...
+        2      0.04   72.94{txt} {c |}  {res}111111........1....11
+        2      0.04   72.98{txt} {c |}  {res}111111......1.11.1.11
+        2      0.04   73.02{txt} {c |}  {res}111111...11.1.11.....
+        2      0.04   73.06{txt} {c |}  {res}111111.1..1.1.11...11
+        2      0.04   73.11{txt} {c |}  {res}111111.1..1.1.11.1...
+        2      0.04   73.15{txt} {c |}  {res}111111.1.1.......1..1
+        2      0.04   73.19{txt} {c |}  {res}111111.1.11.........1
+        2      0.04   73.23{txt} {c |}  {res}111111.1.11........11
+        2      0.04   73.28{txt} {c |}  {res}111111.1.11......1...
+        2      0.04   73.32{txt} {c |}  {res}111111.1.11......1.11
+        2      0.04   73.36{txt} {c |}  {res}111111.1.11...11.1...
+        2      0.04   73.40{txt} {c |}  {res}111111.1.11...11.1.1.
+        2      0.04   73.45{txt} {c |}  {res}111111.1.11.1....1.11
+        2      0.04   73.49{txt} {c |}  {res}111111.1.11.1..1.1...
+        2      0.04   73.53{txt} {c |}  {res}111111.1.11.1.1....11
+        2      0.04   73.57{txt} {c |}  {res}111111.1.11.1.11...1.
+        1      0.02   73.59{txt} {c |}  {res}..............1.....1
+        1      0.02   73.61{txt} {c |}  {res}..............1..1..1
+        1      0.02   73.64{txt} {c |}  {res}............1......1.
+        1      0.02   73.66{txt} {c |}  {res}............1....1...
+        1      0.02   73.68{txt} {c |}  {res}............1....1.11
+        1      0.02   73.70{txt} {c |}  {res}............1..1...1.
+        1      0.02   73.72{txt} {c |}  {res}............1..1.1...
+        1      0.02   73.74{txt} {c |}  {res}............1..1.1..1
+        1      0.02   73.76{txt} {c |}  {res}............1.11...1.
+        1      0.02   73.78{txt} {c |}  {res}..........1.........1
+        1      0.02   73.81{txt} {c |}  {res}..........1........1.
+        1      0.02   73.83{txt} {c |}  {res}..........1......1...
+        1      0.02   73.85{txt} {c |}  {res}..........1......1.1.
+        1      0.02   73.87{txt} {c |}  {res}..........1....1.....
+        1      0.02   73.89{txt} {c |}  {res}..........1....1....1
+        1      0.02   73.91{txt} {c |}  {res}..........1....1...11
+        1      0.02   73.93{txt} {c |}  {res}..........1....1.1...
+        1      0.02   73.95{txt} {c |}  {res}..........1....1.1.1.
+        1      0.02   73.98{txt} {c |}  {res}..........1....1.1.11
+        1      0.02   74.00{txt} {c |}  {res}..........1...1......
+        1      0.02   74.02{txt} {c |}  {res}..........1...1..1...
+        1      0.02   74.04{txt} {c |}  {res}..........1...11....1
+        1      0.02   74.06{txt} {c |}  {res}..........1...11.1..1
+        1      0.02   74.08{txt} {c |}  {res}..........1...11.1.1.
+        1      0.02   74.10{txt} {c |}  {res}..........1.1......1.
+        1      0.02   74.12{txt} {c |}  {res}..........1.1......11
+        1      0.02   74.15{txt} {c |}  {res}..........1.1....1...
+        1      0.02   74.17{txt} {c |}  {res}..........1.1....1.1.
+        1      0.02   74.19{txt} {c |}  {res}..........1.1..1....1
+        1      0.02   74.21{txt} {c |}  {res}..........1.1..1.1..1
+        1      0.02   74.23{txt} {c |}  {res}..........1.1.1.....1
+        1      0.02   74.25{txt} {c |}  {res}..........1.1.1..1..1
+        1      0.02   74.27{txt} {c |}  {res}..........1.1.11....1
+        1      0.02   74.29{txt} {c |}  {res}.........1.......1..1
+        1      0.02   74.32{txt} {c |}  {res}.........1.....1.1...
+        1      0.02   74.34{txt} {c |}  {res}.........1....1.....1
+        1      0.02   74.36{txt} {c |}  {res}.........1....1....11
+        1      0.02   74.38{txt} {c |}  {res}.........1....11.....
+        1      0.02   74.40{txt} {c |}  {res}.........1....11...11
+        1      0.02   74.42{txt} {c |}  {res}.........1....11.1.1.
+        1      0.02   74.44{txt} {c |}  {res}.........1..1......11
+        1      0.02   74.46{txt} {c |}  {res}.........1..1..1...11
+        1      0.02   74.49{txt} {c |}  {res}.........1..1..1.1...
+        1      0.02   74.51{txt} {c |}  {res}.........1..1..1.1.1.
+        1      0.02   74.53{txt} {c |}  {res}.........1..1.1....1.
+        1      0.02   74.55{txt} {c |}  {res}.........1..1.1..1.1.
+        1      0.02   74.57{txt} {c |}  {res}.........1..1.1..1.11
+        1      0.02   74.59{txt} {c |}  {res}.........1..1.11.1...
+        1      0.02   74.61{txt} {c |}  {res}.........1..1.11.1.1.
+        1      0.02   74.63{txt} {c |}  {res}.........11....1.....
+        1      0.02   74.66{txt} {c |}  {res}.........11....1.1...
+        1      0.02   74.68{txt} {c |}  {res}.........11....1.1.1.
+        1      0.02   74.70{txt} {c |}  {res}.........11....1.1.11
+        1      0.02   74.72{txt} {c |}  {res}.........11...1......
+        1      0.02   74.74{txt} {c |}  {res}.........11...1....11
+        1      0.02   74.76{txt} {c |}  {res}.........11...1..1.11
+        1      0.02   74.78{txt} {c |}  {res}.........11...11....1
+        1      0.02   74.80{txt} {c |}  {res}.........11...11...1.
+        1      0.02   74.82{txt} {c |}  {res}.........11.1......1.
+        1      0.02   74.85{txt} {c |}  {res}.........11.1......11
+        1      0.02   74.87{txt} {c |}  {res}.........11.1..1.....
+        1      0.02   74.89{txt} {c |}  {res}.........11.1..1....1
+        1      0.02   74.91{txt} {c |}  {res}.........11.1..1...1.
+        1      0.02   74.93{txt} {c |}  {res}.........11.1..1.1.1.
+        1      0.02   74.95{txt} {c |}  {res}.........11.1.1.....1
+        1      0.02   74.97{txt} {c |}  {res}.......1............1
+        1      0.02   74.99{txt} {c |}  {res}.......1.......1.....
+        1      0.02   75.02{txt} {c |}  {res}.......1.......1....1
+        1      0.02   75.04{txt} {c |}  {res}.......1.......1.1.11
+        1      0.02   75.06{txt} {c |}  {res}.......1......1......
+        1      0.02   75.08{txt} {c |}  {res}.......1......1..1.11
+        1      0.02   75.10{txt} {c |}  {res}.......1......11.1.1.
+        1      0.02   75.12{txt} {c |}  {res}.......1....1....1.11
+        1      0.02   75.14{txt} {c |}  {res}.......1....1..1...1.
+        1      0.02   75.16{txt} {c |}  {res}.......1....1..1.1...
+        1      0.02   75.19{txt} {c |}  {res}.......1....1.1....1.
+        1      0.02   75.21{txt} {c |}  {res}.......1....1.11.1.11
+        1      0.02   75.23{txt} {c |}  {res}.......1..1........1.
+        1      0.02   75.25{txt} {c |}  {res}.......1..1......1..1
+        1      0.02   75.27{txt} {c |}  {res}.......1..1...1.....1
+        1      0.02   75.29{txt} {c |}  {res}.......1..1...11....1
+        1      0.02   75.31{txt} {c |}  {res}.......1..1...11...11
+        1      0.02   75.33{txt} {c |}  {res}.......1..1.1........
+        1      0.02   75.36{txt} {c |}  {res}.......1..1.1.1..1.11
+        1      0.02   75.38{txt} {c |}  {res}.......1..1.1.11...1.
+        1      0.02   75.40{txt} {c |}  {res}.......1..1.1.11.1...
+        1      0.02   75.42{txt} {c |}  {res}.......1..1.1.11.1.11
+        1      0.02   75.44{txt} {c |}  {res}.......1.1.........1.
+        1      0.02   75.46{txt} {c |}  {res}.......1.1.......1...
+        1      0.02   75.48{txt} {c |}  {res}.......1.1.....1.1..1
+        1      0.02   75.50{txt} {c |}  {res}.......1.1.....1.1.1.
+        1      0.02   75.53{txt} {c |}  {res}.......1.1....1......
+        1      0.02   75.55{txt} {c |}  {res}.......1.1....1....11
+        1      0.02   75.57{txt} {c |}  {res}.......1.1....1..1..1
+        1      0.02   75.59{txt} {c |}  {res}.......1.1....1..1.11
+        1      0.02   75.61{txt} {c |}  {res}.......1.1....11....1
+        1      0.02   75.63{txt} {c |}  {res}.......1.1....11.1...
+        1      0.02   75.65{txt} {c |}  {res}.......1.1....11.1..1
+        1      0.02   75.67{txt} {c |}  {res}.......1.1....11.1.1.
+        1      0.02   75.70{txt} {c |}  {res}.......1.1..1......11
+        1      0.02   75.72{txt} {c |}  {res}.......1.1..1....1.11
+        1      0.02   75.74{txt} {c |}  {res}.......1.1..1..1.1...
+        1      0.02   75.76{txt} {c |}  {res}.......1.1..1.1......
+        1      0.02   75.78{txt} {c |}  {res}.......1.1..1.11....1
+        1      0.02   75.80{txt} {c |}  {res}.......1.11........1.
+        1      0.02   75.82{txt} {c |}  {res}.......1.11........11
+        1      0.02   75.84{txt} {c |}  {res}.......1.11......1..1
+        1      0.02   75.86{txt} {c |}  {res}.......1.11......1.11
+        1      0.02   75.89{txt} {c |}  {res}.......1.11....1...1.
+        1      0.02   75.91{txt} {c |}  {res}.......1.11....1...11
+        1      0.02   75.93{txt} {c |}  {res}.......1.11....1.1...
+        1      0.02   75.95{txt} {c |}  {res}.......1.11...1......
+        1      0.02   75.97{txt} {c |}  {res}.......1.11...1.....1
+        1      0.02   75.99{txt} {c |}  {res}.......1.11...1....11
+        1      0.02   76.01{txt} {c |}  {res}.......1.11...1..1...
+        1      0.02   76.03{txt} {c |}  {res}.......1.11...1..1.11
+        1      0.02   76.06{txt} {c |}  {res}.......1.11...11...1.
+        1      0.02   76.08{txt} {c |}  {res}.......1.11...11.1...
+        1      0.02   76.10{txt} {c |}  {res}.......1.11.1.......1
+        1      0.02   76.12{txt} {c |}  {res}.......1.11.1......11
+        1      0.02   76.14{txt} {c |}  {res}.......1.11.1..1....1
+        1      0.02   76.16{txt} {c |}  {res}.......1.11.1..1...11
+        1      0.02   76.18{txt} {c |}  {res}.......1.11.1..1.1...
+        1      0.02   76.20{txt} {c |}  {res}.......1.11.1.1.....1
+        1      0.02   76.23{txt} {c |}  {res}.......1.11.1.1....1.
+        1      0.02   76.25{txt} {c |}  {res}.......1.11.1.11....1
+        1      0.02   76.27{txt} {c |}  {res}.....1..............1
+        1      0.02   76.29{txt} {c |}  {res}.....1.............1.
+        1      0.02   76.31{txt} {c |}  {res}.....1........1......
+        1      0.02   76.33{txt} {c |}  {res}.....1........1..1.11
+        1      0.02   76.35{txt} {c |}  {res}.....1......1.1....11
+        1      0.02   76.37{txt} {c |}  {res}.....1......1.11.....
+        1      0.02   76.40{txt} {c |}  {res}.....1....1....1.1...
+        1      0.02   76.42{txt} {c |}  {res}.....1....1.1..1.1.11
+        1      0.02   76.44{txt} {c |}  {res}.....1...1.......1...
+        1      0.02   76.46{txt} {c |}  {res}.....1...1.....1.....
+        1      0.02   76.48{txt} {c |}  {res}.....1...1....1....1.
+        1      0.02   76.50{txt} {c |}  {res}.....1...1....1..1.1.
+        1      0.02   76.52{txt} {c |}  {res}.....1...1..1........
+        1      0.02   76.54{txt} {c |}  {res}.....1...1..1..1.1.11
+        1      0.02   76.57{txt} {c |}  {res}.....1...1..1.1..1.11
+        1      0.02   76.59{txt} {c |}  {res}.....1...1..1.11...11
+        1      0.02   76.61{txt} {c |}  {res}.....1...1..1.11.1.11
+        1      0.02   76.63{txt} {c |}  {res}.....1...11........11
+        1      0.02   76.65{txt} {c |}  {res}.....1...11....1.1.11
+        1      0.02   76.67{txt} {c |}  {res}.....1...11...1......
+        1      0.02   76.69{txt} {c |}  {res}.....1...11.1....1.11
+        1      0.02   76.71{txt} {c |}  {res}.....1...11.1..1...1.
+        1      0.02   76.74{txt} {c |}  {res}.....1...11.1.1......
+        1      0.02   76.76{txt} {c |}  {res}.....1...11.1.1..1...
+        1      0.02   76.78{txt} {c |}  {res}.....1...11.1.1..1.11
+        1      0.02   76.80{txt} {c |}  {res}.....1...11.1.11.1.1.
+        1      0.02   76.82{txt} {c |}  {res}.....1.1............1
+        1      0.02   76.84{txt} {c |}  {res}.....1.1...........11
+        1      0.02   76.86{txt} {c |}  {res}.....1.1.......1....1
+        1      0.02   76.88{txt} {c |}  {res}.....1.1.......1.1..1
+        1      0.02   76.91{txt} {c |}  {res}.....1.1......1......
+        1      0.02   76.93{txt} {c |}  {res}.....1.1......11...11
+        1      0.02   76.95{txt} {c |}  {res}.....1.1......11.1.11
+        1      0.02   76.97{txt} {c |}  {res}.....1.1....1.11.....
+        1      0.02   76.99{txt} {c |}  {res}.....1.1....1.11.1.11
+        1      0.02   77.01{txt} {c |}  {res}.....1.1..1........11
+        1      0.02   77.03{txt} {c |}  {res}.....1.1..1...11.1.11
+        1      0.02   77.05{txt} {c |}  {res}.....1.1..1.1....1.11
+        1      0.02   77.07{txt} {c |}  {res}.....1.1..1.1.1....11
+        1      0.02   77.10{txt} {c |}  {res}.....1.1..1.1.1..1.11
+        1      0.02   77.12{txt} {c |}  {res}.....1.1..1.1.11....1
+        1      0.02   77.14{txt} {c |}  {res}.....1.1..1.1.11.1.11
+        1      0.02   77.16{txt} {c |}  {res}.....1.1.1.........11
+        1      0.02   77.18{txt} {c |}  {res}.....1.1.1.......1.11
+        1      0.02   77.20{txt} {c |}  {res}.....1.1.1.....1.....
+        1      0.02   77.22{txt} {c |}  {res}.....1.1.1....1....11
+        1      0.02   77.24{txt} {c |}  {res}.....1.1.1....1..1..1
+        1      0.02   77.27{txt} {c |}  {res}.....1.1.1....1..1.1.
+        1      0.02   77.29{txt} {c |}  {res}.....1.1.1....11...11
+        1      0.02   77.31{txt} {c |}  {res}.....1.1.1..1......1.
+        1      0.02   77.33{txt} {c |}  {res}.....1.1.1..1.1......
+        1      0.02   77.35{txt} {c |}  {res}.....1.1.1..1.1..1.11
+        1      0.02   77.37{txt} {c |}  {res}.....1.1.1..1.11....1
+        1      0.02   77.39{txt} {c |}  {res}.....1.1.1..1.11...11
+        1      0.02   77.41{txt} {c |}  {res}.....1.1.11.........1
+        1      0.02   77.44{txt} {c |}  {res}.....1.1.11........11
+        1      0.02   77.46{txt} {c |}  {res}.....1.1.11......1...
+        1      0.02   77.48{txt} {c |}  {res}.....1.1.11...1....1.
+        1      0.02   77.50{txt} {c |}  {res}.....1.1.11...1....11
+        1      0.02   77.52{txt} {c |}  {res}.....1.1.11...1..1.11
+        1      0.02   77.54{txt} {c |}  {res}.....1.1.11...11....1
+        1      0.02   77.56{txt} {c |}  {res}.....1.1.11...11...1.
+        1      0.02   77.58{txt} {c |}  {res}.....1.1.11...11...11
+        1      0.02   77.61{txt} {c |}  {res}.....1.1.11.1....1.11
+        1      0.02   77.63{txt} {c |}  {res}.....1.1.11.1..1....1
+        1      0.02   77.65{txt} {c |}  {res}.....1.1.11.1.1....1.
+        1      0.02   77.67{txt} {c |}  {res}.....1.1.11.1.11....1
+        1      0.02   77.69{txt} {c |}  {res}....1...............1
+        1      0.02   77.71{txt} {c |}  {res}....1..............1.
+        1      0.02   77.73{txt} {c |}  {res}....1............1..1
+        1      0.02   77.75{txt} {c |}  {res}....1............1.1.
+        1      0.02   77.78{txt} {c |}  {res}....1............1.11
+        1      0.02   77.80{txt} {c |}  {res}....1.........11.....
+        1      0.02   77.82{txt} {c |}  {res}....1.......1.11.1.11
+        1      0.02   77.84{txt} {c |}  {res}....1.....1..........
+        1      0.02   77.86{txt} {c |}  {res}....1.....1.1.11....1
+        1      0.02   77.88{txt} {c |}  {res}....1.....1.1.11.1...
+        1      0.02   77.90{txt} {c |}  {res}....1....1..........1
+        1      0.02   77.92{txt} {c |}  {res}....1....11.1.11.1..1
+        1      0.02   77.95{txt} {c |}  {res}....1....11.1.11.1.11
+        1      0.02   77.97{txt} {c |}  {res}....1..1......11.....
+        1      0.02   77.99{txt} {c |}  {res}....1..1......11.1.11
+        1      0.02   78.01{txt} {c |}  {res}....1..1..1...11.....
+        1      0.02   78.03{txt} {c |}  {res}....1..1..1...11...1.
+        1      0.02   78.05{txt} {c |}  {res}....1..1.1...........
+        1      0.02   78.07{txt} {c |}  {res}....1..1.1....1......
+        1      0.02   78.09{txt} {c |}  {res}....1..1.1....1....11
+        1      0.02   78.12{txt} {c |}  {res}....1..1.1....11.....
+        1      0.02   78.14{txt} {c |}  {res}....1..1.1..1....1.11
+        1      0.02   78.16{txt} {c |}  {res}....1..1.11..........
+        1      0.02   78.18{txt} {c |}  {res}....1..1.11...1......
+        1      0.02   78.20{txt} {c |}  {res}....1..1.11...11.1.1.
+        1      0.02   78.22{txt} {c |}  {res}....1..1.11...11.1.11
+        1      0.02   78.24{txt} {c |}  {res}....1..1.11.1....1..1
+        1      0.02   78.26{txt} {c |}  {res}....1..1.11.1.11...11
+        1      0.02   78.28{txt} {c |}  {res}....1..1.11.1.11.1...
+        1      0.02   78.31{txt} {c |}  {res}....1..1.11.1.11.1.1.
+        1      0.02   78.33{txt} {c |}  {res}....11.............11
+        1      0.02   78.35{txt} {c |}  {res}....11...........1...
+        1      0.02   78.37{txt} {c |}  {res}....11...........1..1
+        1      0.02   78.39{txt} {c |}  {res}....11...........1.11
+        1      0.02   78.41{txt} {c |}  {res}....11.........1.....
+        1      0.02   78.43{txt} {c |}  {res}....11.........1.1.11
+        1      0.02   78.45{txt} {c |}  {res}....11........11.1.1.
+        1      0.02   78.48{txt} {c |}  {res}....11......1.11...11
+        1      0.02   78.50{txt} {c |}  {res}....11....1..........
+        1      0.02   78.52{txt} {c |}  {res}....11....1......1.1.
+        1      0.02   78.54{txt} {c |}  {res}....11....1...1....11
+        1      0.02   78.56{txt} {c |}  {res}....11....1...11.1...
+        1      0.02   78.58{txt} {c |}  {res}....11....1.1.11.1...
+        1      0.02   78.60{txt} {c |}  {res}....11...1...........
+        1      0.02   78.62{txt} {c |}  {res}....11...1.......1...
+        1      0.02   78.65{txt} {c |}  {res}....11...1....1....11
+        1      0.02   78.67{txt} {c |}  {res}....11...1..1.1......
+        1      0.02   78.69{txt} {c |}  {res}....11...1..1.11...1.
+        1      0.02   78.71{txt} {c |}  {res}....11...11......1...
+        1      0.02   78.73{txt} {c |}  {res}....11...11....1.1...
+        1      0.02   78.75{txt} {c |}  {res}....11...11.1.1..1...
+        1      0.02   78.77{txt} {c |}  {res}....11...11.1.11.1...
+        1      0.02   78.79{txt} {c |}  {res}....11...11.1.11.1..1
+        1      0.02   78.82{txt} {c |}  {res}....11...11.1.11.1.1.
+        1      0.02   78.84{txt} {c |}  {res}....11.1...........11
+        1      0.02   78.86{txt} {c |}  {res}....11.1.........1...
+        1      0.02   78.88{txt} {c |}  {res}....11.1.........1.1.
+        1      0.02   78.90{txt} {c |}  {res}....11.1......1......
+        1      0.02   78.92{txt} {c |}  {res}....11.1....1..1.....
+        1      0.02   78.94{txt} {c |}  {res}....11.1....1.11.....
+        1      0.02   78.96{txt} {c |}  {res}....11.1..1......1.11
+        1      0.02   78.99{txt} {c |}  {res}....11.1..1...1......
+        1      0.02   79.01{txt} {c |}  {res}....11.1..1...11.1.11
+        1      0.02   79.03{txt} {c |}  {res}....11.1..1.1....1...
+        1      0.02   79.05{txt} {c |}  {res}....11.1..1.1..1.....
+        1      0.02   79.07{txt} {c |}  {res}....11.1..1.1..1.1.1.
+        1      0.02   79.09{txt} {c |}  {res}....11.1..1.1.1....1.
+        1      0.02   79.11{txt} {c |}  {res}....11.1..1.1.11.1.1.
+        1      0.02   79.13{txt} {c |}  {res}....11.1.1..........1
+        1      0.02   79.16{txt} {c |}  {res}....11.1.1.........1.
+        1      0.02   79.18{txt} {c |}  {res}....11.1.1.....1.1.11
+        1      0.02   79.20{txt} {c |}  {res}....11.1.1....1......
+        1      0.02   79.22{txt} {c |}  {res}....11.1.1....1..1.1.
+        1      0.02   79.24{txt} {c |}  {res}....11.1.1....11...1.
+        1      0.02   79.26{txt} {c |}  {res}....11.1.1....11.1..1
+        1      0.02   79.28{txt} {c |}  {res}....11.1.1....11.1.1.
+        1      0.02   79.30{txt} {c |}  {res}....11.1.1..1.11...11
+        1      0.02   79.32{txt} {c |}  {res}....11.1.1..1.11.1..1
+        1      0.02   79.35{txt} {c |}  {res}....11.1.11........11
+        1      0.02   79.37{txt} {c |}  {res}....11.1.11......1.11
+        1      0.02   79.39{txt} {c |}  {res}....11.1.11....1.....
+        1      0.02   79.41{txt} {c |}  {res}....11.1.11....1....1
+        1      0.02   79.43{txt} {c |}  {res}....11.1.11...1..1...
+        1      0.02   79.45{txt} {c |}  {res}....11.1.11...11...11
+        1      0.02   79.47{txt} {c |}  {res}....11.1.11.1......1.
+        1      0.02   79.49{txt} {c |}  {res}....11.1.11.1....1.11
+        1      0.02   79.52{txt} {c |}  {res}....11.1.11.1..1.....
+        1      0.02   79.54{txt} {c |}  {res}....11.1.11.1..1.1.11
+        1      0.02   79.56{txt} {c |}  {res}....11.1.11.1.1....1.
+        1      0.02   79.58{txt} {c |}  {res}....11.1.11.1.1..1...
+        1      0.02   79.60{txt} {c |}  {res}....11.1.11.1.1..1.1.
+        1      0.02   79.62{txt} {c |}  {res}....11.1.11.1.11...1.
+        1      0.02   79.64{txt} {c |}  {res}...1.............1..1
+        1      0.02   79.66{txt} {c |}  {res}...1.............1.1.
+        1      0.02   79.69{txt} {c |}  {res}...1...........1.....
+        1      0.02   79.71{txt} {c |}  {res}...1..........1.....1
+        1      0.02   79.73{txt} {c |}  {res}...1..........1..1.11
+        1      0.02   79.75{txt} {c |}  {res}...1..........11.1...
+        1      0.02   79.77{txt} {c |}  {res}...1........1.11.1..1
+        1      0.02   79.79{txt} {c |}  {res}...1......1.........1
+        1      0.02   79.81{txt} {c |}  {res}...1......1.1....1...
+        1      0.02   79.83{txt} {c |}  {res}...1.....1...........
+        1      0.02   79.86{txt} {c |}  {res}...1.....1..........1
+        1      0.02   79.88{txt} {c |}  {res}...1.....11.1........
+        1      0.02   79.90{txt} {c |}  {res}...1.....11.1.1..1...
+        1      0.02   79.92{txt} {c |}  {res}...1.....11.1.11.1.1.
+        1      0.02   79.94{txt} {c |}  {res}...1...1............1
+        1      0.02   79.96{txt} {c |}  {res}...1...1...........1.
+        1      0.02   79.98{txt} {c |}  {res}...1...1......11....1
+        1      0.02   80.00{txt} {c |}  {res}...1...1......11.1.11
+        1      0.02   80.03{txt} {c |}  {res}...1...1....1.11.....
+        1      0.02   80.05{txt} {c |}  {res}...1...1....1.11...1.
+        1      0.02   80.07{txt} {c |}  {res}...1...1....1.11.1.11
+        1      0.02   80.09{txt} {c |}  {res}...1...1.1....1..1...
+        1      0.02   80.11{txt} {c |}  {res}...1...1.1....1..1.11
+        1      0.02   80.13{txt} {c |}  {res}...1...1.1..1.......1
+        1      0.02   80.15{txt} {c |}  {res}...1...1.1..1.11.1.11
+        1      0.02   80.17{txt} {c |}  {res}...1...1.11........11
+        1      0.02   80.20{txt} {c |}  {res}...1...1.11....1....1
+        1      0.02   80.22{txt} {c |}  {res}...1...1.11.1.11.....
+        1      0.02   80.24{txt} {c |}  {res}...1...1.11.1.11.1..1
+        1      0.02   80.26{txt} {c |}  {res}...1.1...11......1.11
+        1      0.02   80.28{txt} {c |}  {res}...1.1...11.1.11.1..1
+        1      0.02   80.30{txt} {c |}  {res}...1.1...11.1.11.1.1.
+        1      0.02   80.32{txt} {c |}  {res}...1.1.1.........1.1.
+        1      0.02   80.34{txt} {c |}  {res}...1.1.1......11.1.11
+        1      0.02   80.37{txt} {c |}  {res}...1.1.1....1........
+        1      0.02   80.39{txt} {c |}  {res}...1.1.1....1.11.1...
+        1      0.02   80.41{txt} {c |}  {res}...1.1.1.1.....1.....
+        1      0.02   80.43{txt} {c |}  {res}...1.1.1.1..1.1......
+        1      0.02   80.45{txt} {c |}  {res}...1.1.1.1..1.1....11
+        1      0.02   80.47{txt} {c |}  {res}...1.1.1.1..1.11.1.1.
+        1      0.02   80.49{txt} {c |}  {res}...1.1.1.1..1.11.1.11
+        1      0.02   80.51{txt} {c |}  {res}...1.1.1.11..........
+        1      0.02   80.53{txt} {c |}  {res}...1.1.1.11...1.....1
+        1      0.02   80.56{txt} {c |}  {res}...1.1.1.11...11...11
+        1      0.02   80.58{txt} {c |}  {res}...1.1.1.11...11.1..1
+        1      0.02   80.60{txt} {c |}  {res}...1.1.1.11.1....1.1.
+        1      0.02   80.62{txt} {c |}  {res}...1.1.1.11.1..1...11
+        1      0.02   80.64{txt} {c |}  {res}...1.1.1.11.1..1.1...
+        1      0.02   80.66{txt} {c |}  {res}...1.1.1.11.1.1.....1
+        1      0.02   80.68{txt} {c |}  {res}...1.1.1.11.1.1..1...
+        1      0.02   80.70{txt} {c |}  {res}...1.1.1.11.1.1..1.1.
+        1      0.02   80.73{txt} {c |}  {res}...1.1.1.11.1.11.....
+        1      0.02   80.75{txt} {c |}  {res}...1.1.1.11.1.11.1..1
+        1      0.02   80.77{txt} {c |}  {res}...1.1.1.11.1.11.1.1.
+        1      0.02   80.79{txt} {c |}  {res}...11..............1.
+        1      0.02   80.81{txt} {c |}  {res}...11............1.1.
+        1      0.02   80.83{txt} {c |}  {res}...11..........1.1.11
+        1      0.02   80.85{txt} {c |}  {res}...11....11......1..1
+        1      0.02   80.87{txt} {c |}  {res}...11..1.............
+        1      0.02   80.90{txt} {c |}  {res}...11..1..1..........
+        1      0.02   80.92{txt} {c |}  {res}...11..1..1.1.11.1..1
+        1      0.02   80.94{txt} {c |}  {res}...11..1.1..1......11
+        1      0.02   80.96{txt} {c |}  {res}...11..1.1..1....1.11
+        1      0.02   80.98{txt} {c |}  {res}...11..1.1..1.1....11
+        1      0.02   81.00{txt} {c |}  {res}...11..1.1..1.11.1.11
+        1      0.02   81.02{txt} {c |}  {res}...11..1.11.1....1.11
+        1      0.02   81.04{txt} {c |}  {res}...11..1.11.1.11.....
+        1      0.02   81.07{txt} {c |}  {res}...11..1.11.1.11...1.
+        1      0.02   81.09{txt} {c |}  {res}...11..1.11.1.11.1..1
+        1      0.02   81.11{txt} {c |}  {res}...11..1.11.1.11.1.11
+        1      0.02   81.13{txt} {c |}  {res}...111..............1
+        1      0.02   81.15{txt} {c |}  {res}...111.............1.
+        1      0.02   81.17{txt} {c |}  {res}...111.........1.1.11
+        1      0.02   81.19{txt} {c |}  {res}...111........11.1...
+        1      0.02   81.21{txt} {c |}  {res}...111......1........
+        1      0.02   81.24{txt} {c |}  {res}...111......1..1.1.11
+        1      0.02   81.26{txt} {c |}  {res}...111......1.11...11
+        1      0.02   81.28{txt} {c |}  {res}...111......1.11.1...
+        1      0.02   81.30{txt} {c |}  {res}...111......1.11.1.11
+        1      0.02   81.32{txt} {c |}  {res}...111....1.1.1......
+        1      0.02   81.34{txt} {c |}  {res}...111...1.........11
+        1      0.02   81.36{txt} {c |}  {res}...111...1.......1.1.
+        1      0.02   81.38{txt} {c |}  {res}...111...1....11....1
+        1      0.02   81.41{txt} {c |}  {res}...111...1..1.11.1...
+        1      0.02   81.43{txt} {c |}  {res}...111...1..1.11.1.11
+        1      0.02   81.45{txt} {c |}  {res}...111...11..........
+        1      0.02   81.47{txt} {c |}  {res}...111...11...1..1.11
+        1      0.02   81.49{txt} {c |}  {res}...111...11...11.1...
+        1      0.02   81.51{txt} {c |}  {res}...111...11.1.11.....
+        1      0.02   81.53{txt} {c |}  {res}...111...11.1.11...11
+        1      0.02   81.55{txt} {c |}  {res}...111...11.1.11.1...
+        1      0.02   81.58{txt} {c |}  {res}...111...11.1.11.1.1.
+        1      0.02   81.60{txt} {c |}  {res}...111.1............1
+        1      0.02   81.62{txt} {c |}  {res}...111.1...........1.
+        1      0.02   81.64{txt} {c |}  {res}...111.1.........1.1.
+        1      0.02   81.66{txt} {c |}  {res}...111.1......1..1.11
+        1      0.02   81.68{txt} {c |}  {res}...111.1......11.1...
+        1      0.02   81.70{txt} {c |}  {res}...111.1......11.1.11
+        1      0.02   81.72{txt} {c |}  {res}...111.1....1.......1
+        1      0.02   81.74{txt} {c |}  {res}...111.1....1.1..1.11
+        1      0.02   81.77{txt} {c |}  {res}...111.1....1.11.1...
+        1      0.02   81.79{txt} {c |}  {res}...111.1....1.11.1.11
+        1      0.02   81.81{txt} {c |}  {res}...111.1..1........11
+        1      0.02   81.83{txt} {c |}  {res}...111.1..1.1.1......
+        1      0.02   81.85{txt} {c |}  {res}...111.1..1.1.11.....
+        1      0.02   81.87{txt} {c |}  {res}...111.1..1.1.11.1.11
+        1      0.02   81.89{txt} {c |}  {res}...111.1.1....11.1...
+        1      0.02   81.91{txt} {c |}  {res}...111.1.1..1....1...
+        1      0.02   81.94{txt} {c |}  {res}...111.1.1..1..1.1...
+        1      0.02   81.96{txt} {c |}  {res}...111.1.1..1.1......
+        1      0.02   81.98{txt} {c |}  {res}...111.1.1..1.1..1.11
+        1      0.02   82.00{txt} {c |}  {res}...111.1.1..1.11.1...
+        1      0.02   82.02{txt} {c |}  {res}...111.1.11......1...
+        1      0.02   82.04{txt} {c |}  {res}...111.1.11...1....11
+        1      0.02   82.06{txt} {c |}  {res}...111.1.11...11...11
+        1      0.02   82.08{txt} {c |}  {res}...111.1.11...11.1.1.
+        1      0.02   82.11{txt} {c |}  {res}...111.1.11.1.......1
+        1      0.02   82.13{txt} {c |}  {res}...111.1.11.1....1.11
+        1      0.02   82.15{txt} {c |}  {res}...111.1.11.1.1....1.
+        1      0.02   82.17{txt} {c |}  {res}...111.1.11.1.1..1..1
+        1      0.02   82.19{txt} {c |}  {res}...111.1.11.1.11...1.
+        1      0.02   82.21{txt} {c |}  {res}..1.................1
+        1      0.02   82.23{txt} {c |}  {res}..1..............1.1.
+        1      0.02   82.25{txt} {c |}  {res}..1............1.....
+        1      0.02   82.28{txt} {c |}  {res}..1............1.1.11
+        1      0.02   82.30{txt} {c |}  {res}..1...........11.....
+        1      0.02   82.32{txt} {c |}  {res}..1.........1.11...11
+        1      0.02   82.34{txt} {c |}  {res}..1.......1...11.1...
+        1      0.02   82.36{txt} {c |}  {res}..1.......1.1.1......
+        1      0.02   82.38{txt} {c |}  {res}..1.......1.1.11.1...
+        1      0.02   82.40{txt} {c |}  {res}..1......1...........
+        1      0.02   82.42{txt} {c |}  {res}..1......1....1....11
+        1      0.02   82.45{txt} {c |}  {res}..1......11...11...11
+        1      0.02   82.47{txt} {c |}  {res}..1......11.1.11.1.11
+        1      0.02   82.49{txt} {c |}  {res}..1....1.............
+        1      0.02   82.51{txt} {c |}  {res}..1....1.......1.....
+        1      0.02   82.53{txt} {c |}  {res}..1....1......1..1.11
+        1      0.02   82.55{txt} {c |}  {res}..1....1....1.11.1.11
+        1      0.02   82.57{txt} {c |}  {res}..1....1..1........11
+        1      0.02   82.59{txt} {c |}  {res}..1....1..1.1.11.1.11
+        1      0.02   82.62{txt} {c |}  {res}..1....1.1...........
+        1      0.02   82.64{txt} {c |}  {res}..1....1.1....11.1.11
+        1      0.02   82.66{txt} {c |}  {res}..1....1.11.........1
+        1      0.02   82.68{txt} {c |}  {res}..1....1.11...1....11
+        1      0.02   82.70{txt} {c |}  {res}..1....1.11...11.1.11
+        1      0.02   82.72{txt} {c |}  {res}..1....1.11.1......1.
+        1      0.02   82.74{txt} {c |}  {res}..1....1.11.1.1......
+        1      0.02   82.76{txt} {c |}  {res}..1....1.11.1.11.1.1.
+        1      0.02   82.78{txt} {c |}  {res}..1..1...1....1..1.1.
+        1      0.02   82.81{txt} {c |}  {res}..1..1...11...11...11
+        1      0.02   82.83{txt} {c |}  {res}..1..1.1...........11
+        1      0.02   82.85{txt} {c |}  {res}..1..1.1.........1.11
+        1      0.02   82.87{txt} {c |}  {res}..1..1.1......11.1.11
+        1      0.02   82.89{txt} {c |}  {res}..1..1.1....1........
+        1      0.02   82.91{txt} {c |}  {res}..1..1.1....1.1.....1
+        1      0.02   82.93{txt} {c |}  {res}..1..1.1..1........11
+        1      0.02   82.95{txt} {c |}  {res}..1..1.1..1.1....1.1.
+        1      0.02   82.98{txt} {c |}  {res}..1..1.1..1.1.11...11
+        1      0.02   83.00{txt} {c |}  {res}..1..1.1.1.......1.11
+        1      0.02   83.02{txt} {c |}  {res}..1..1.1.1.....1...11
+        1      0.02   83.04{txt} {c |}  {res}..1..1.1.1....11...11
+        1      0.02   83.06{txt} {c |}  {res}..1..1.1.1..1........
+        1      0.02   83.08{txt} {c |}  {res}..1..1.1.11.1..1....1
+        1      0.02   83.10{txt} {c |}  {res}..1..1.1.11.1.11.....
+        1      0.02   83.12{txt} {c |}  {res}..1..1.1.11.1.11...1.
+        1      0.02   83.15{txt} {c |}  {res}..1.1...............1
+        1      0.02   83.17{txt} {c |}  {res}..1.1............1.1.
+        1      0.02   83.19{txt} {c |}  {res}..1.1..........1.....
+        1      0.02   83.21{txt} {c |}  {res}..1.1....1...........
+        1      0.02   83.23{txt} {c |}  {res}..1.1..1.11......1...
+        1      0.02   83.25{txt} {c |}  {res}..1.1..1.11...1......
+        1      0.02   83.27{txt} {c |}  {res}..1.1..1.11.1.11.1.11
+        1      0.02   83.29{txt} {c |}  {res}..1.11...............
+        1      0.02   83.32{txt} {c |}  {res}..1.11......1.11.1.11
+        1      0.02   83.34{txt} {c |}  {res}..1.11....1....1.1..1
+        1      0.02   83.36{txt} {c |}  {res}..1.11.1.............
+        1      0.02   83.38{txt} {c |}  {res}..1.11.1.........1...
+        1      0.02   83.40{txt} {c |}  {res}..1.11.1.......1.1...
+        1      0.02   83.42{txt} {c |}  {res}..1.11.1......1....1.
+        1      0.02   83.44{txt} {c |}  {res}..1.11.1..1..........
+        1      0.02   83.46{txt} {c |}  {res}..1.11.1..1...11.1.11
+        1      0.02   83.49{txt} {c |}  {res}..1.11.1..1.1.11.1.11
+        1      0.02   83.51{txt} {c |}  {res}..1.11.1.11...1......
+        1      0.02   83.53{txt} {c |}  {res}..1.11.1.11.1.1......
+        1      0.02   83.55{txt} {c |}  {res}..1.11.1.11.1.1..1.11
+        1      0.02   83.57{txt} {c |}  {res}..1.11.1.11.1.11.1..1
+        1      0.02   83.59{txt} {c |}  {res}..11................1
+        1      0.02   83.61{txt} {c |}  {res}..11.............1.11
+        1      0.02   83.63{txt} {c |}  {res}..11...........1.....
+        1      0.02   83.66{txt} {c |}  {res}..11..........1......
+        1      0.02   83.68{txt} {c |}  {res}..11..........1..1.11
+        1      0.02   83.70{txt} {c |}  {res}..11..........11.1.11
+        1      0.02   83.72{txt} {c |}  {res}..11........1.1..1...
+        1      0.02   83.74{txt} {c |}  {res}..11........1.11.....
+        1      0.02   83.76{txt} {c |}  {res}..11......1......1..1
+        1      0.02   83.78{txt} {c |}  {res}..11......1......1.11
+        1      0.02   83.80{txt} {c |}  {res}..11......1....1.1.11
+        1      0.02   83.83{txt} {c |}  {res}..11......1...1....11
+        1      0.02   83.85{txt} {c |}  {res}..11......1.1.11.1...
+        1      0.02   83.87{txt} {c |}  {res}..11......1.1.11.1.11
+        1      0.02   83.89{txt} {c |}  {res}..11.....1...........
+        1      0.02   83.91{txt} {c |}  {res}..11.....1.......1..1
+        1      0.02   83.93{txt} {c |}  {res}..11.....1....11.....
+        1      0.02   83.95{txt} {c |}  {res}..11.....11..........
+        1      0.02   83.97{txt} {c |}  {res}..11.....11...11....1
+        1      0.02   83.99{txt} {c |}  {res}..11.....11...11.1.11
+        1      0.02   84.02{txt} {c |}  {res}..11.....11.1.11.1.11
+        1      0.02   84.04{txt} {c |}  {res}..11...1......11.....
+        1      0.02   84.06{txt} {c |}  {res}..11...1..1.1.1......
+        1      0.02   84.08{txt} {c |}  {res}..11...1.1...........
+        1      0.02   84.10{txt} {c |}  {res}..11...1.1..........1
+        1      0.02   84.12{txt} {c |}  {res}..11...1.1..1........
+        1      0.02   84.14{txt} {c |}  {res}..11...1.11....1.....
+        1      0.02   84.16{txt} {c |}  {res}..11...1.11.1..1.1...
+        1      0.02   84.19{txt} {c |}  {res}..11...1.11.1.1..1.11
+        1      0.02   84.21{txt} {c |}  {res}..11...1.11.1.11.1..1
+        1      0.02   84.23{txt} {c |}  {res}..11.1........11.1.1.
+        1      0.02   84.25{txt} {c |}  {res}..11.1...1.....1.....
+        1      0.02   84.27{txt} {c |}  {res}..11.1.1.........1.11
+        1      0.02   84.29{txt} {c |}  {res}..11.1.1....1..1.....
+        1      0.02   84.31{txt} {c |}  {res}..11.1.1....1.1....11
+        1      0.02   84.33{txt} {c |}  {res}..11.1.1..1..........
+        1      0.02   84.36{txt} {c |}  {res}..11.1.1..1....1.....
+        1      0.02   84.38{txt} {c |}  {res}..11.1.1..1.1........
+        1      0.02   84.40{txt} {c |}  {res}..11.1.1..1.1.11.1.11
+        1      0.02   84.42{txt} {c |}  {res}..11.1.1.1...........
+        1      0.02   84.44{txt} {c |}  {res}..11.1.1.1..........1
+        1      0.02   84.46{txt} {c |}  {res}..11.1.1.1.......1...
+        1      0.02   84.48{txt} {c |}  {res}..11.1.1.1.......1.1.
+        1      0.02   84.50{txt} {c |}  {res}..11.1.1.1.....1.1.11
+        1      0.02   84.53{txt} {c |}  {res}..11.1.1.1....11.1...
+        1      0.02   84.55{txt} {c |}  {res}..11.1.1.1..1.......1
+        1      0.02   84.57{txt} {c |}  {res}..11.1.1.11...1..1..1
+        1      0.02   84.59{txt} {c |}  {res}..11.1.1.11.1........
+        1      0.02   84.61{txt} {c |}  {res}..11.1.1.11.1.11.1..1
+        1      0.02   84.63{txt} {c |}  {res}..111....11.1.11.1..1
+        1      0.02   84.65{txt} {c |}  {res}..111....11.1.11.1.11
+        1      0.02   84.67{txt} {c |}  {res}..111..1.............
+        1      0.02   84.70{txt} {c |}  {res}..111..1...........11
+        1      0.02   84.72{txt} {c |}  {res}..111..1..1.1.11.....
+        1      0.02   84.74{txt} {c |}  {res}..111..1..1.1.11.1.11
+        1      0.02   84.76{txt} {c |}  {res}..111..1.1...........
+        1      0.02   84.78{txt} {c |}  {res}..111..1.1.........11
+        1      0.02   84.80{txt} {c |}  {res}..111..1.1.....1.....
+        1      0.02   84.82{txt} {c |}  {res}..111..1.11...1..1...
+        1      0.02   84.84{txt} {c |}  {res}..111..1.11.1.1......
+        1      0.02   84.87{txt} {c |}  {res}..111..1.11.1.1..1..1
+        1      0.02   84.89{txt} {c |}  {res}..111..1.11.1.11.1.11
+        1      0.02   84.91{txt} {c |}  {res}..1111.............11
+        1      0.02   84.93{txt} {c |}  {res}..1111...........1...
+        1      0.02   84.95{txt} {c |}  {res}..1111...........1.1.
+        1      0.02   84.97{txt} {c |}  {res}..1111........11...11
+        1      0.02   84.99{txt} {c |}  {res}..1111......1..1.....
+        1      0.02   85.01{txt} {c |}  {res}..1111......1.11.1.11
+        1      0.02   85.04{txt} {c |}  {res}..1111....1..........
+        1      0.02   85.06{txt} {c |}  {res}..1111....1......1..1
+        1      0.02   85.08{txt} {c |}  {res}..1111....1...1.....1
+        1      0.02   85.10{txt} {c |}  {res}..1111...1.........1.
+        1      0.02   85.12{txt} {c |}  {res}..1111...1.........11
+        1      0.02   85.14{txt} {c |}  {res}..1111...1.......1...
+        1      0.02   85.16{txt} {c |}  {res}..1111...1....11.....
+        1      0.02   85.18{txt} {c |}  {res}..1111...11..........
+        1      0.02   85.20{txt} {c |}  {res}..1111...11...1..1...
+        1      0.02   85.23{txt} {c |}  {res}..1111...11.1..1...11
+        1      0.02   85.25{txt} {c |}  {res}..1111...11.1.11.1...
+        1      0.02   85.27{txt} {c |}  {res}..1111.1............1
+        1      0.02   85.29{txt} {c |}  {res}..1111.1...........1.
+        1      0.02   85.31{txt} {c |}  {res}..1111.1.......1....1
+        1      0.02   85.33{txt} {c |}  {res}..1111.1......1......
+        1      0.02   85.35{txt} {c |}  {res}..1111.1......1..1.11
+        1      0.02   85.37{txt} {c |}  {res}..1111.1......11.1.11
+        1      0.02   85.40{txt} {c |}  {res}..1111.1....1.1....1.
+        1      0.02   85.42{txt} {c |}  {res}..1111.1....1.11...1.
+        1      0.02   85.44{txt} {c |}  {res}..1111.1....1.11.1.11
+        1      0.02   85.46{txt} {c |}  {res}..1111.1..1..........
+        1      0.02   85.48{txt} {c |}  {res}..1111.1..1...1......
+        1      0.02   85.50{txt} {c |}  {res}..1111.1..1...11.1.1.
+        1      0.02   85.52{txt} {c |}  {res}..1111.1..1.1......1.
+        1      0.02   85.54{txt} {c |}  {res}..1111.1..1.1..1.1..1
+        1      0.02   85.57{txt} {c |}  {res}..1111.1..1.1.1......
+        1      0.02   85.59{txt} {c |}  {res}..1111.1..1.1.11...11
+        1      0.02   85.61{txt} {c |}  {res}..1111.1.1..........1
+        1      0.02   85.63{txt} {c |}  {res}..1111.1.1.........1.
+        1      0.02   85.65{txt} {c |}  {res}..1111.1.1.........11
+        1      0.02   85.67{txt} {c |}  {res}..1111.1.1.......1..1
+        1      0.02   85.69{txt} {c |}  {res}..1111.1.1.....1.1...
+        1      0.02   85.71{txt} {c |}  {res}..1111.1.1....11.....
+        1      0.02   85.74{txt} {c |}  {res}..1111.1.1..1........
+        1      0.02   85.76{txt} {c |}  {res}..1111.1.1..1..1.1.11
+        1      0.02   85.78{txt} {c |}  {res}..1111.1.11.........1
+        1      0.02   85.80{txt} {c |}  {res}..1111.1.11........1.
+        1      0.02   85.82{txt} {c |}  {res}..1111.1.11........11
+        1      0.02   85.84{txt} {c |}  {res}..1111.1.11......1.11
+        1      0.02   85.86{txt} {c |}  {res}..1111.1.11...1..1.11
+        1      0.02   85.88{txt} {c |}  {res}..1111.1.11...11.....
+        1      0.02   85.91{txt} {c |}  {res}..1111.1.11...11.1...
+        1      0.02   85.93{txt} {c |}  {res}..1111.1.11...11.1..1
+        1      0.02   85.95{txt} {c |}  {res}..1111.1.11...11.1.1.
+        1      0.02   85.97{txt} {c |}  {res}..1111.1.11.1.......1
+        1      0.02   85.99{txt} {c |}  {res}..1111.1.11.1......11
+        1      0.02   86.01{txt} {c |}  {res}..1111.1.11.1..1.....
+        1      0.02   86.03{txt} {c |}  {res}..1111.1.11.1.1..1...
+        1      0.02   86.05{txt} {c |}  {res}..1111.1.11.1.1..1.1.
+        1      0.02   86.08{txt} {c |}  {res}..1111.1.11.1.11...1.
+        1      0.02   86.10{txt} {c |}  {res}..1111.1.11.1.11...11
+        1      0.02   86.12{txt} {c |}  {res}.1..................1
+        1      0.02   86.14{txt} {c |}  {res}.1.................1.
+        1      0.02   86.16{txt} {c |}  {res}.1............1.....1
+        1      0.02   86.18{txt} {c |}  {res}.1............11.1...
+        1      0.02   86.20{txt} {c |}  {res}.1............11.1.11
+        1      0.02   86.22{txt} {c |}  {res}.1..........1..1.....
+        1      0.02   86.24{txt} {c |}  {res}.1..........1.11.....
+        1      0.02   86.27{txt} {c |}  {res}.1..........1.11.1..1
+        1      0.02   86.29{txt} {c |}  {res}.1........1.1.11.1.1.
+        1      0.02   86.31{txt} {c |}  {res}.1.......1...........
+        1      0.02   86.33{txt} {c |}  {res}.1.......1..1........
+        1      0.02   86.35{txt} {c |}  {res}.1.....1.............
+        1      0.02   86.37{txt} {c |}  {res}.1.....1......11.1.1.
+        1      0.02   86.39{txt} {c |}  {res}.1.....1....1.11.1...
+        1      0.02   86.41{txt} {c |}  {res}.1.....1....1.11.1..1
+        1      0.02   86.44{txt} {c |}  {res}.1.....1.11...11.....
+        1      0.02   86.46{txt} {c |}  {res}.1.....1.11.1.11.1..1
+        1      0.02   86.48{txt} {c |}  {res}.1.....1.11.1.11.1.1.
+        1      0.02   86.50{txt} {c |}  {res}.1.....1.11.1.11.1.11
+        1      0.02   86.52{txt} {c |}  {res}.1...1...11...11....1
+        1      0.02   86.54{txt} {c |}  {res}.1...1...11.1.1..1.11
+        1      0.02   86.56{txt} {c |}  {res}.1...1.1.11.1......11
+        1      0.02   86.58{txt} {c |}  {res}.1...1.1.11.1.1..1.11
+        1      0.02   86.61{txt} {c |}  {res}.1...1.1.11.1.11.1.11
+        1      0.02   86.63{txt} {c |}  {res}.1..1....11...11....1
+        1      0.02   86.65{txt} {c |}  {res}.1..11...11....1.....
+        1      0.02   86.67{txt} {c |}  {res}.1..11.1.1....11.1.11
+        1      0.02   86.69{txt} {c |}  {res}.1..11.1.1..1........
+        1      0.02   86.71{txt} {c |}  {res}.1..11.1.1..1.11.....
+        1      0.02   86.73{txt} {c |}  {res}.1..11.1.11.1........
+        1      0.02   86.75{txt} {c |}  {res}.1..11.1.11.1.1....11
+        1      0.02   86.78{txt} {c |}  {res}.1..11.1.11.1.1..1...
+        1      0.02   86.80{txt} {c |}  {res}.1..11.1.11.1.11.1.11
+        1      0.02   86.82{txt} {c |}  {res}.1.1................1
+        1      0.02   86.84{txt} {c |}  {res}.1.1.............1.11
+        1      0.02   86.86{txt} {c |}  {res}.1.1..........1......
+        1      0.02   86.88{txt} {c |}  {res}.1.1......1.1.......1
+        1      0.02   86.90{txt} {c |}  {res}.1.1.....1.......1.1.
+        1      0.02   86.92{txt} {c |}  {res}.1.1.....11.1.11.....
+        1      0.02   86.95{txt} {c |}  {res}.1.1...1.11...11.1.11
+        1      0.02   86.97{txt} {c |}  {res}.1.1...1.11.1......11
+        1      0.02   86.99{txt} {c |}  {res}.1.1.1.1.11.1......11
+        1      0.02   87.01{txt} {c |}  {res}.1.1.1.1.11.1.1..1.1.
+        1      0.02   87.03{txt} {c |}  {res}.1.11..1.............
+        1      0.02   87.05{txt} {c |}  {res}.1.11..1.11.1.1..1.1.
+        1      0.02   87.07{txt} {c |}  {res}.1.111........11.1...
+        1      0.02   87.09{txt} {c |}  {res}.1.111.1....1.11.....
+        1      0.02   87.12{txt} {c |}  {res}.1.111.1.1...........
+        1      0.02   87.14{txt} {c |}  {res}.1.111.1.11........1.
+        1      0.02   87.16{txt} {c |}  {res}.1.111.1.11.1.1......
+        1      0.02   87.18{txt} {c |}  {res}.1.111.1.11.1.11.1.1.
+        1      0.02   87.20{txt} {c |}  {res}.11.................1
+        1      0.02   87.22{txt} {c |}  {res}.11............1...11
+        1      0.02   87.24{txt} {c |}  {res}.11...........11.1.1.
+        1      0.02   87.26{txt} {c |}  {res}.11.........1......11
+        1      0.02   87.29{txt} {c |}  {res}.11.........1..1.1.11
+        1      0.02   87.31{txt} {c |}  {res}.11.......1.1.11.....
+        1      0.02   87.33{txt} {c |}  {res}.11......1..1........
+        1      0.02   87.35{txt} {c |}  {res}.11......11.1.......1
+        1      0.02   87.37{txt} {c |}  {res}.11......11.1.11.....
+        1      0.02   87.39{txt} {c |}  {res}.11....1...........1.
+        1      0.02   87.41{txt} {c |}  {res}.11....1......1..1.1.
+        1      0.02   87.43{txt} {c |}  {res}.11....1.11..........
+        1      0.02   87.45{txt} {c |}  {res}.11....1.11.1..1....1
+        1      0.02   87.48{txt} {c |}  {res}.11....1.11.1.11.....
+        1      0.02   87.50{txt} {c |}  {res}.11..1...1..1.1..1.1.
+        1      0.02   87.52{txt} {c |}  {res}.11..1.1.1.......1.11
+        1      0.02   87.54{txt} {c |}  {res}.11..1.1.11.1.11.....
+        1      0.02   87.56{txt} {c |}  {res}.11..1.1.11.1.11...11
+        1      0.02   87.58{txt} {c |}  {res}.11..1.1.11.1.11.1.11
+        1      0.02   87.60{txt} {c |}  {res}.11.1.....1........1.
+        1      0.02   87.62{txt} {c |}  {res}.11.1..1.1....11.1.11
+        1      0.02   87.65{txt} {c |}  {res}.11.1..1.11.1.11.1.11
+        1      0.02   87.67{txt} {c |}  {res}.11.11...............
+        1      0.02   87.69{txt} {c |}  {res}.11.11...........1.11
+        1      0.02   87.71{txt} {c |}  {res}.11.11...11.1........
+        1      0.02   87.73{txt} {c |}  {res}.11.11.1...........11
+        1      0.02   87.75{txt} {c |}  {res}.11.11.1......1....11
+        1      0.02   87.77{txt} {c |}  {res}.11.11.1.1.........1.
+        1      0.02   87.79{txt} {c |}  {res}.11.11.1.1..1....1.11
+        1      0.02   87.82{txt} {c |}  {res}.11.11.1.11......1..1
+        1      0.02   87.84{txt} {c |}  {res}.11.11.1.11....1.....
+        1      0.02   87.86{txt} {c |}  {res}.11.11.1.11.1..1.1.11
+        1      0.02   87.88{txt} {c |}  {res}.11.11.1.11.1.11.1...
+        1      0.02   87.90{txt} {c |}  {res}.11.11.1.11.1.11.1.11
+        1      0.02   87.92{txt} {c |}  {res}.111...............11
+        1      0.02   87.94{txt} {c |}  {res}.111.............1.11
+        1      0.02   87.96{txt} {c |}  {res}.111..........1......
+        1      0.02   87.99{txt} {c |}  {res}.111........1........
+        1      0.02   88.01{txt} {c |}  {res}.111........1.11.1.11
+        1      0.02   88.03{txt} {c |}  {res}.111......1..........
+        1      0.02   88.05{txt} {c |}  {res}.111......1.1.11.1...
+        1      0.02   88.07{txt} {c |}  {res}.111......1.1.11.1.11
+        1      0.02   88.09{txt} {c |}  {res}.111.....1..1......11
+        1      0.02   88.11{txt} {c |}  {res}.111.....11........11
+        1      0.02   88.13{txt} {c |}  {res}.111.....11...11.1.1.
+        1      0.02   88.16{txt} {c |}  {res}.111.....11.1.11.1...
+        1      0.02   88.18{txt} {c |}  {res}.111.....11.1.11.1.11
+        1      0.02   88.20{txt} {c |}  {res}.111...1....1.11....1
+        1      0.02   88.22{txt} {c |}  {res}.111...1..1..........
+        1      0.02   88.24{txt} {c |}  {res}.111...1..1.1.11.....
+        1      0.02   88.26{txt} {c |}  {res}.111...1.1..1.11.1.11
+        1      0.02   88.28{txt} {c |}  {res}.111...1.11..........
+        1      0.02   88.30{txt} {c |}  {res}.111...1.11.1.1..1.11
+        1      0.02   88.33{txt} {c |}  {res}.111...1.11.1.11...11
+        1      0.02   88.35{txt} {c |}  {res}.111...1.11.1.11.1...
+        1      0.02   88.37{txt} {c |}  {res}.111.1........11.....
+        1      0.02   88.39{txt} {c |}  {res}.111.1........11.1..1
+        1      0.02   88.41{txt} {c |}  {res}.111.1......1........
+        1      0.02   88.43{txt} {c |}  {res}.111.1....1..........
+        1      0.02   88.45{txt} {c |}  {res}.111.1...1.....1.....
+        1      0.02   88.47{txt} {c |}  {res}.111.1...1....11.1.11
+        1      0.02   88.50{txt} {c |}  {res}.111.1...11....1.1.11
+        1      0.02   88.52{txt} {c |}  {res}.111.1...11.1.11.....
+        1      0.02   88.54{txt} {c |}  {res}.111.1.1...........11
+        1      0.02   88.56{txt} {c |}  {res}.111.1.1..1..........
+        1      0.02   88.58{txt} {c |}  {res}.111.1.1..1.1.11.1.11
+        1      0.02   88.60{txt} {c |}  {res}.111.1.1.1....11.1.11
+        1      0.02   88.62{txt} {c |}  {res}.111.1.1.11....1.1.11
+        1      0.02   88.64{txt} {c |}  {res}.111.1.1.11.1........
+        1      0.02   88.66{txt} {c |}  {res}.111.1.1.11.1.1....1.
+        1      0.02   88.69{txt} {c |}  {res}.1111..............11
+        1      0.02   88.71{txt} {c |}  {res}.1111.......1........
+        1      0.02   88.73{txt} {c |}  {res}.1111....11....1.1.11
+        1      0.02   88.75{txt} {c |}  {res}.1111....11.1.11.....
+        1      0.02   88.77{txt} {c |}  {res}.1111..1.1...........
+        1      0.02   88.79{txt} {c |}  {res}.1111..1.11...11.1.11
+        1      0.02   88.81{txt} {c |}  {res}.1111..1.11.1........
+        1      0.02   88.83{txt} {c |}  {res}.1111..1.11.1.1......
+        1      0.02   88.86{txt} {c |}  {res}.1111..1.11.1.11.1.11
+        1      0.02   88.88{txt} {c |}  {res}.11111..............1
+        1      0.02   88.90{txt} {c |}  {res}.11111.............11
+        1      0.02   88.92{txt} {c |}  {res}.11111...........1...
+        1      0.02   88.94{txt} {c |}  {res}.11111.........1.....
+        1      0.02   88.96{txt} {c |}  {res}.11111.........1.1.1.
+        1      0.02   88.98{txt} {c |}  {res}.11111........1....11
+        1      0.02   89.00{txt} {c |}  {res}.11111......1..1.1.11
+        1      0.02   89.03{txt} {c |}  {res}.11111......1.1......
+        1      0.02   89.05{txt} {c |}  {res}.11111...1...........
+        1      0.02   89.07{txt} {c |}  {res}.11111...1..1.11.1.11
+        1      0.02   89.09{txt} {c |}  {res}.11111...11........11
+        1      0.02   89.11{txt} {c |}  {res}.11111...11....1.....
+        1      0.02   89.13{txt} {c |}  {res}.11111.1.........1...
+        1      0.02   89.15{txt} {c |}  {res}.11111.1.......1.1.1.
+        1      0.02   89.17{txt} {c |}  {res}.11111.1.......1.1.11
+        1      0.02   89.20{txt} {c |}  {res}.11111.1......1......
+        1      0.02   89.22{txt} {c |}  {res}.11111.1......11.1..1
+        1      0.02   89.24{txt} {c |}  {res}.11111.1......11.1.11
+        1      0.02   89.26{txt} {c |}  {res}.11111.1....1.1..1...
+        1      0.02   89.28{txt} {c |}  {res}.11111.1....1.11.....
+        1      0.02   89.30{txt} {c |}  {res}.11111.1..1......1...
+        1      0.02   89.32{txt} {c |}  {res}.11111.1..1......1.11
+        1      0.02   89.34{txt} {c |}  {res}.11111.1..1.1.1....11
+        1      0.02   89.37{txt} {c |}  {res}.11111.1..1.1.11.....
+        1      0.02   89.39{txt} {c |}  {res}.11111.1..1.1.11.1..1
+        1      0.02   89.41{txt} {c |}  {res}.11111.1..1.1.11.1.11
+        1      0.02   89.43{txt} {c |}  {res}.11111.1.1.........11
+        1      0.02   89.45{txt} {c |}  {res}.11111.1.1..1........
+        1      0.02   89.47{txt} {c |}  {res}.11111.1.1..1.1......
+        1      0.02   89.49{txt} {c |}  {res}.11111.1.1..1.11...11
+        1      0.02   89.51{txt} {c |}  {res}.11111.1.11......1...
+        1      0.02   89.54{txt} {c |}  {res}.11111.1.11...11.....
+        1      0.02   89.56{txt} {c |}  {res}.11111.1.11...11.1..1
+        1      0.02   89.58{txt} {c |}  {res}.11111.1.11...11.1.1.
+        1      0.02   89.60{txt} {c |}  {res}.11111.1.11.1......11
+        1      0.02   89.62{txt} {c |}  {res}.11111.1.11.1..1.....
+        1      0.02   89.64{txt} {c |}  {res}.11111.1.11.1.11.....
+        1      0.02   89.66{txt} {c |}  {res}.11111.1.11.1.11....1
+        1      0.02   89.68{txt} {c |}  {res}1..................1.
+        1      0.02   89.70{txt} {c |}  {res}1..............1...11
+        1      0.02   89.73{txt} {c |}  {res}1..............1.1..1
+        1      0.02   89.75{txt} {c |}  {res}1.............1......
+        1      0.02   89.77{txt} {c |}  {res}1.............1..1.1.
+        1      0.02   89.79{txt} {c |}  {res}1.............1..1.11
+        1      0.02   89.81{txt} {c |}  {res}1.............11.....
+        1      0.02   89.83{txt} {c |}  {res}1.............11...11
+        1      0.02   89.85{txt} {c |}  {res}1.............11.1.11
+        1      0.02   89.87{txt} {c |}  {res}1...........1....1.11
+        1      0.02   89.90{txt} {c |}  {res}1...........1.1....11
+        1      0.02   89.92{txt} {c |}  {res}1...........1.1..1.11
+        1      0.02   89.94{txt} {c |}  {res}1...........1.11...1.
+        1      0.02   89.96{txt} {c |}  {res}1...........1.11.1..1
+        1      0.02   89.98{txt} {c |}  {res}1...........1.11.1.1.
+        1      0.02   90.00{txt} {c |}  {res}1.........1.1.11.....
+        1      0.02   90.02{txt} {c |}  {res}1........1..1......1.
+        1      0.02   90.04{txt} {c |}  {res}1........11..........
+        1      0.02   90.07{txt} {c |}  {res}1........11......1.11
+        1      0.02   90.09{txt} {c |}  {res}1........11.1.11....1
+        1      0.02   90.11{txt} {c |}  {res}1......1.........1...
+        1      0.02   90.13{txt} {c |}  {res}1......1......1......
+        1      0.02   90.15{txt} {c |}  {res}1......1......11.1.11
+        1      0.02   90.17{txt} {c |}  {res}1......1....1........
+        1      0.02   90.19{txt} {c |}  {res}1......1....1.11.1...
+        1      0.02   90.21{txt} {c |}  {res}1......1..1.1.11.....
+        1      0.02   90.24{txt} {c |}  {res}1......1..1.1.11.1.11
+        1      0.02   90.26{txt} {c |}  {res}1......1.1....1.....1
+        1      0.02   90.28{txt} {c |}  {res}1......1.1....11.1.11
+        1      0.02   90.30{txt} {c |}  {res}1......1.11..........
+        1      0.02   90.32{txt} {c |}  {res}1......1.11...1......
+        1      0.02   90.34{txt} {c |}  {res}1......1.11...11...1.
+        1      0.02   90.36{txt} {c |}  {res}1......1.11.1........
+        1      0.02   90.38{txt} {c |}  {res}1......1.11.1..1.1.11
+        1      0.02   90.41{txt} {c |}  {res}1......1.11.1.1..1...
+        1      0.02   90.43{txt} {c |}  {res}1......1.11.1.1..1.1.
+        1      0.02   90.45{txt} {c |}  {res}1......1.11.1.11....1
+        1      0.02   90.47{txt} {c |}  {res}1......1.11.1.11...11
+        1      0.02   90.49{txt} {c |}  {res}1......1.11.1.11.1..1
+        1      0.02   90.51{txt} {c |}  {res}1....1...............
+        1      0.02   90.53{txt} {c |}  {res}1....1..............1
+        1      0.02   90.55{txt} {c |}  {res}1....1......1........
+        1      0.02   90.58{txt} {c |}  {res}1....1.1.............
+        1      0.02   90.60{txt} {c |}  {res}1....1.1...........11
+        1      0.02   90.62{txt} {c |}  {res}1....1.1.........1.11
+        1      0.02   90.64{txt} {c |}  {res}1....1.1......11.1.11
+        1      0.02   90.66{txt} {c |}  {res}1....1.1....1.11.1...
+        1      0.02   90.68{txt} {c |}  {res}1....1.1..1....1.1...
+        1      0.02   90.70{txt} {c |}  {res}1....1.1.1...........
+        1      0.02   90.72{txt} {c |}  {res}1....1.1.1.........11
+        1      0.02   90.75{txt} {c |}  {res}1....1.1.1....1......
+        1      0.02   90.77{txt} {c |}  {res}1....1.1.1..1.11.1.11
+        1      0.02   90.79{txt} {c |}  {res}1....1.1.11.1........
+        1      0.02   90.81{txt} {c |}  {res}1....1.1.11.1..1.1.11
+        1      0.02   90.83{txt} {c |}  {res}1....1.1.11.1.11.1...
+        1      0.02   90.85{txt} {c |}  {res}1....1.1.11.1.11.1..1
+        1      0.02   90.87{txt} {c |}  {res}1....1.1.11.1.11.1.1.
+        1      0.02   90.89{txt} {c |}  {res}1...1................
+        1      0.02   90.91{txt} {c |}  {res}1...1..........1.1.11
+        1      0.02   90.94{txt} {c |}  {res}1...1....1..1..1.....
+        1      0.02   90.96{txt} {c |}  {res}1...1..1.............
+        1      0.02   90.98{txt} {c |}  {res}1...1..1.11...11.1...
+        1      0.02   91.00{txt} {c |}  {res}1...1..1.11.1.11...11
+        1      0.02   91.02{txt} {c |}  {res}1...11...1...........
+        1      0.02   91.04{txt} {c |}  {res}1...11.1...........11
+        1      0.02   91.06{txt} {c |}  {res}1...11.1......11.1.11
+        1      0.02   91.08{txt} {c |}  {res}1...11.1....1.11.1.11
+        1      0.02   91.11{txt} {c |}  {res}1...11.1..1.1.11.1..1
+        1      0.02   91.13{txt} {c |}  {res}1...11.1.11....1....1
+        1      0.02   91.15{txt} {c |}  {res}1...11.1.11....1.1.11
+        1      0.02   91.17{txt} {c |}  {res}1...11.1.11.1.11.....
+        1      0.02   91.19{txt} {c |}  {res}1...11.1.11.1.11.1.11
+        1      0.02   91.21{txt} {c |}  {res}1..1...........1.....
+        1      0.02   91.23{txt} {c |}  {res}1..1...........1....1
+        1      0.02   91.25{txt} {c |}  {res}1..1........1........
+        1      0.02   91.28{txt} {c |}  {res}1..1........1.11.1..1
+        1      0.02   91.30{txt} {c |}  {res}1..1.....11.1........
+        1      0.02   91.32{txt} {c |}  {res}1..1...1.11.1........
+        1      0.02   91.34{txt} {c |}  {res}1..1...1.11.1.11.1...
+        1      0.02   91.36{txt} {c |}  {res}1..1...1.11.1.11.1.11
+        1      0.02   91.38{txt} {c |}  {res}1..1.1...1.......1.1.
+        1      0.02   91.40{txt} {c |}  {res}1..1.1...11..........
+        1      0.02   91.42{txt} {c |}  {res}1..1.1...11...11.....
+        1      0.02   91.45{txt} {c |}  {res}1..1.1.1.............
+        1      0.02   91.47{txt} {c |}  {res}1..1.1.1.1..1....1...
+        1      0.02   91.49{txt} {c |}  {res}1..1.1.1.11.1.11.....
+        1      0.02   91.51{txt} {c |}  {res}1..11................
+        1      0.02   91.53{txt} {c |}  {res}1..11...............1
+        1      0.02   91.55{txt} {c |}  {res}1..11..............11
+        1      0.02   91.57{txt} {c |}  {res}1..11............1.11
+        1      0.02   91.59{txt} {c |}  {res}1..11..........1.1.11
+        1      0.02   91.62{txt} {c |}  {res}1..11.....1.1.11.1.11
+        1      0.02   91.64{txt} {c |}  {res}1..11..1.......1.1.11
+        1      0.02   91.66{txt} {c |}  {res}1..11..1.11....1....1
+        1      0.02   91.68{txt} {c |}  {res}1..11..1.11...11.....
+        1      0.02   91.70{txt} {c |}  {res}1..111......1.11.1.11
+        1      0.02   91.72{txt} {c |}  {res}1..111....1.1.11...11
+        1      0.02   91.74{txt} {c |}  {res}1..111...1...........
+        1      0.02   91.76{txt} {c |}  {res}1..111...1.....1.....
+        1      0.02   91.79{txt} {c |}  {res}1..111...1....11.1.11
+        1      0.02   91.81{txt} {c |}  {res}1..111...11..........
+        1      0.02   91.83{txt} {c |}  {res}1..111...11.1..1.1..1
+        1      0.02   91.85{txt} {c |}  {res}1..111...11.1.11.1.11
+        1      0.02   91.87{txt} {c |}  {res}1..111.1.........1.11
+        1      0.02   91.89{txt} {c |}  {res}1..111.1......1..1.11
+        1      0.02   91.91{txt} {c |}  {res}1..111.1..1...11.1.11
+        1      0.02   91.93{txt} {c |}  {res}1..111.1..1.1......11
+        1      0.02   91.95{txt} {c |}  {res}1..111.1..1.1..1.1...
+        1      0.02   91.98{txt} {c |}  {res}1..111.1..1.1.11.1.11
+        1      0.02   92.00{txt} {c |}  {res}1..111.1.1...........
+        1      0.02   92.02{txt} {c |}  {res}1..111.1.1....11.....
+        1      0.02   92.04{txt} {c |}  {res}1..111.1.11..........
+        1      0.02   92.06{txt} {c |}  {res}1..111.1.11......1.11
+        1      0.02   92.08{txt} {c |}  {res}1..111.1.11...1..1.11
+        1      0.02   92.10{txt} {c |}  {res}1..111.1.11.1..1...11
+        1      0.02   92.12{txt} {c |}  {res}1..111.1.11.1.1..1..1
+        1      0.02   92.15{txt} {c |}  {res}1..111.1.11.1.1..1.11
+        1      0.02   92.17{txt} {c |}  {res}1..111.1.11.1.11...1.
+        1      0.02   92.19{txt} {c |}  {res}1..111.1.11.1.11.1...
+        1      0.02   92.21{txt} {c |}  {res}1.1............1.....
+        1      0.02   92.23{txt} {c |}  {res}1.1...........11.1.11
+        1      0.02   92.25{txt} {c |}  {res}1.1......1.....1.1.11
+        1      0.02   92.27{txt} {c |}  {res}1.1......1....11.1.11
+        1      0.02   92.29{txt} {c |}  {res}1.1......1..1........
+        1      0.02   92.32{txt} {c |}  {res}1.1......1..1.1......
+        1      0.02   92.34{txt} {c |}  {res}1.1......11.1........
+        1      0.02   92.36{txt} {c |}  {res}1.1......11.1.11...11
+        1      0.02   92.38{txt} {c |}  {res}1.1....1.1...........
+        1      0.02   92.40{txt} {c |}  {res}1.1....1.1.....1....1
+        1      0.02   92.42{txt} {c |}  {res}1.1....1.1....1......
+        1      0.02   92.44{txt} {c |}  {res}1.1....1.1..1.11.1.1.
+        1      0.02   92.46{txt} {c |}  {res}1.1....1.11.........1
+        1      0.02   92.49{txt} {c |}  {res}1.1....1.11.1..1.1.1.
+        1      0.02   92.51{txt} {c |}  {res}1.1....1.11.1.11.1.1.
+        1      0.02   92.53{txt} {c |}  {res}1.1....1.11.1.11.1.11
+        1      0.02   92.55{txt} {c |}  {res}1.1..1...........1.11
+        1      0.02   92.57{txt} {c |}  {res}1.1..1...11.1....1.11
+        1      0.02   92.59{txt} {c |}  {res}1.1..1...11.1.11.1.11
+        1      0.02   92.61{txt} {c |}  {res}1.1..1.1......11.1.11
+        1      0.02   92.63{txt} {c |}  {res}1.1..1.1....1.11.1.11
+        1      0.02   92.66{txt} {c |}  {res}1.1..1.1.1....1.....1
+        1      0.02   92.68{txt} {c |}  {res}1.1..1.1.11.1.1......
+        1      0.02   92.70{txt} {c |}  {res}1.1..1.1.11.1.11.1.11
+        1      0.02   92.72{txt} {c |}  {res}1.1.1.........1..1..1
+        1      0.02   92.74{txt} {c |}  {res}1.1.11...11.1........
+        1      0.02   92.76{txt} {c |}  {res}1.1.11.1.........1.11
+        1      0.02   92.78{txt} {c |}  {res}1.1.11.1.1.......1.11
+        1      0.02   92.80{txt} {c |}  {res}1.1.11.1.11..........
+        1      0.02   92.83{txt} {c |}  {res}1.1.11.1.11.........1
+        1      0.02   92.85{txt} {c |}  {res}1.1.11.1.11....1...11
+        1      0.02   92.87{txt} {c |}  {res}1.1.11.1.11...11.1.11
+        1      0.02   92.89{txt} {c |}  {res}1.11.............1.1.
+        1      0.02   92.91{txt} {c |}  {res}1.11.............1.11
+        1      0.02   92.93{txt} {c |}  {res}1.11...........1...11
+        1      0.02   92.95{txt} {c |}  {res}1.11..........11.1.11
+        1      0.02   92.97{txt} {c |}  {res}1.11........1.11...11
+        1      0.02   93.00{txt} {c |}  {res}1.11......1....1...11
+        1      0.02   93.02{txt} {c |}  {res}1.11......1...11.1.11
+        1      0.02   93.04{txt} {c |}  {res}1.11......1.1........
+        1      0.02   93.06{txt} {c |}  {res}1.11.....1.........11
+        1      0.02   93.08{txt} {c |}  {res}1.11.....11..........
+        1      0.02   93.10{txt} {c |}  {res}1.11.....11....1.1...
+        1      0.02   93.12{txt} {c |}  {res}1.11.....11.1.11...11
+        1      0.02   93.14{txt} {c |}  {res}1.11...1.1...........
+        1      0.02   93.16{txt} {c |}  {res}1.11...1.1.......1...
+        1      0.02   93.19{txt} {c |}  {res}1.11...1.1....11...11
+        1      0.02   93.21{txt} {c |}  {res}1.11...1.11..........
+        1      0.02   93.23{txt} {c |}  {res}1.11...1.11...1..1..1
+        1      0.02   93.25{txt} {c |}  {res}1.11...1.11.1.11...11
+        1      0.02   93.27{txt} {c |}  {res}1.11...1.11.1.11.1.11
+        1      0.02   93.29{txt} {c |}  {res}1.11.1...............
+        1      0.02   93.31{txt} {c |}  {res}1.11.1...........1.11
+        1      0.02   93.33{txt} {c |}  {res}1.11.1...11.1.11.1.11
+        1      0.02   93.36{txt} {c |}  {res}1.11.1.1..1.........1
+        1      0.02   93.38{txt} {c |}  {res}1.11.1.1.1...........
+        1      0.02   93.40{txt} {c |}  {res}1.11.1.1.1..1........
+        1      0.02   93.42{txt} {c |}  {res}1.11.1.1.11.1..1.....
+        1      0.02   93.44{txt} {c |}  {res}1.11.1.1.11.1.1......
+        1      0.02   93.46{txt} {c |}  {res}1.11.1.1.11.1.11....1
+        1      0.02   93.48{txt} {c |}  {res}1.11.1.1.11.1.11.1..1
+        1      0.02   93.50{txt} {c |}  {res}1.111............1...
+        1      0.02   93.53{txt} {c |}  {res}1.111............1.11
+        1      0.02   93.55{txt} {c |}  {res}1.111.........11...11
+        1      0.02   93.57{txt} {c |}  {res}1.111.....1.1.11.1.11
+        1      0.02   93.59{txt} {c |}  {res}1.111....1.......1.11
+        1      0.02   93.61{txt} {c |}  {res}1.111....11........11
+        1      0.02   93.63{txt} {c |}  {res}1.111..1.............
+        1      0.02   93.65{txt} {c |}  {res}1.111..1...........11
+        1      0.02   93.67{txt} {c |}  {res}1.111..1......11.1.11
+        1      0.02   93.70{txt} {c |}  {res}1.111..1.11....1.1.11
+        1      0.02   93.72{txt} {c |}  {res}1.111..1.11.1.11.1.11
+        1      0.02   93.74{txt} {c |}  {res}1.1111...1...........
+        1      0.02   93.76{txt} {c |}  {res}1.1111...1.......1...
+        1      0.02   93.78{txt} {c |}  {res}1.1111...1..1....1.1.
+        1      0.02   93.80{txt} {c |}  {res}1.1111...11.1.1..1.11
+        1      0.02   93.82{txt} {c |}  {res}1.1111...11.1.11...11
+        1      0.02   93.84{txt} {c |}  {res}1.1111.1...........1.
+        1      0.02   93.87{txt} {c |}  {res}1.1111.1...........11
+        1      0.02   93.89{txt} {c |}  {res}1.1111.1....1.11...11
+        1      0.02   93.91{txt} {c |}  {res}1.1111.1..1..........
+        1      0.02   93.93{txt} {c |}  {res}1.1111.1.1.........11
+        1      0.02   93.95{txt} {c |}  {res}1.1111.1.1..1........
+        1      0.02   93.97{txt} {c |}  {res}1.1111.1.1..1..1.1.1.
+        1      0.02   93.99{txt} {c |}  {res}1.1111.1.1..1.1..1.11
+        1      0.02   94.01{txt} {c |}  {res}1.1111.1.1..1.11...11
+        1      0.02   94.04{txt} {c |}  {res}1.1111.1.1..1.11.1.11
+        1      0.02   94.06{txt} {c |}  {res}1.1111.1.11......1..1
+        1      0.02   94.08{txt} {c |}  {res}1.1111.1.11....1.....
+        1      0.02   94.10{txt} {c |}  {res}1.1111.1.11...1....11
+        1      0.02   94.12{txt} {c |}  {res}1.1111.1.11...11.....
+        1      0.02   94.14{txt} {c |}  {res}1.1111.1.11.1........
+        1      0.02   94.16{txt} {c |}  {res}1.1111.1.11.1.......1
+        1      0.02   94.18{txt} {c |}  {res}1.1111.1.11.1..1.1.1.
+        1      0.02   94.21{txt} {c |}  {res}1.1111.1.11.1..1.1.11
+        1      0.02   94.23{txt} {c |}  {res}1.1111.1.11.1.1..1.11
+        1      0.02   94.25{txt} {c |}  {res}1.1111.1.11.1.11....1
+        1      0.02   94.27{txt} {c |}  {res}11.................1.
+        1      0.02   94.29{txt} {c |}  {res}11.................11
+        1      0.02   94.31{txt} {c |}  {res}11...............1...
+        1      0.02   94.33{txt} {c |}  {res}11...............1.11
+        1      0.02   94.35{txt} {c |}  {res}11............11.....
+        1      0.02   94.37{txt} {c |}  {res}11..........1..1.1...
+        1      0.02   94.40{txt} {c |}  {res}11..........1.11.....
+        1      0.02   94.42{txt} {c |}  {res}11........1.1.1..1.11
+        1      0.02   94.44{txt} {c |}  {res}11.......11.1.11.....
+        1      0.02   94.46{txt} {c |}  {res}11.....1..1...11.1.11
+        1      0.02   94.48{txt} {c |}  {res}11...1...1....11...1.
+        1      0.02   94.50{txt} {c |}  {res}11...1...11.1.1.....1
+        1      0.02   94.52{txt} {c |}  {res}11...1.1.........1..1
+        1      0.02   94.54{txt} {c |}  {res}11...1.1.1.......1.11
+        1      0.02   94.57{txt} {c |}  {res}11...1.1.1....1....11
+        1      0.02   94.59{txt} {c |}  {res}11...1.1.11...11.1...
+        1      0.02   94.61{txt} {c |}  {res}11...1.1.11.1.1......
+        1      0.02   94.63{txt} {c |}  {res}11..11...11.1.1....11
+        1      0.02   94.65{txt} {c |}  {res}11..11.1.1...........
+        1      0.02   94.67{txt} {c |}  {res}11..11.1.11..........
+        1      0.02   94.69{txt} {c |}  {res}11..11.1.11.1.1....11
+        1      0.02   94.71{txt} {c |}  {res}11..11.1.11.1.11.....
+        1      0.02   94.74{txt} {c |}  {res}11..11.1.11.1.11.1.11
+        1      0.02   94.76{txt} {c |}  {res}11.1...........1.1..1
+        1      0.02   94.78{txt} {c |}  {res}11.1.....11..........
+        1      0.02   94.80{txt} {c |}  {res}11.1...1....1....1.1.
+        1      0.02   94.82{txt} {c |}  {res}11.1...1.1.......1..1
+        1      0.02   94.84{txt} {c |}  {res}11.1...1.11..........
+        1      0.02   94.86{txt} {c |}  {res}11.1...1.11.1.1......
+        1      0.02   94.88{txt} {c |}  {res}11.1...1.11.1.11.1.11
+        1      0.02   94.91{txt} {c |}  {res}11.1.1........11.1..1
+        1      0.02   94.93{txt} {c |}  {res}11.1.1...11.1.11.1...
+        1      0.02   94.95{txt} {c |}  {res}11.1.1.1.1..1.1..1...
+        1      0.02   94.97{txt} {c |}  {res}11.1.1.1.11.1..1.1.11
+        1      0.02   94.99{txt} {c |}  {res}11.1.1.1.11.1.1......
+        1      0.02   95.01{txt} {c |}  {res}11.1.1.1.11.1.1..1.11
+        1      0.02   95.03{txt} {c |}  {res}11.11..............11
+        1      0.02   95.05{txt} {c |}  {res}11.11....1..1..1...1.
+        1      0.02   95.08{txt} {c |}  {res}11.11..1.11.1.1.....1
+        1      0.02   95.10{txt} {c |}  {res}11.111.............1.
+        1      0.02   95.12{txt} {c |}  {res}11.111.........1.....
+        1      0.02   95.14{txt} {c |}  {res}11.111....1.1.11.1.1.
+        1      0.02   95.16{txt} {c |}  {res}11.111...1...........
+        1      0.02   95.18{txt} {c |}  {res}11.111...11...11.1.1.
+        1      0.02   95.20{txt} {c |}  {res}11.111...11.1.11.1.11
+        1      0.02   95.22{txt} {c |}  {res}11.111.1.1...........
+        1      0.02   95.25{txt} {c |}  {res}11.111.1.1..1.1..1.11
+        1      0.02   95.27{txt} {c |}  {res}11.111.1.11...1..1.1.
+        1      0.02   95.29{txt} {c |}  {res}11.111.1.11.1.11....1
+        1      0.02   95.31{txt} {c |}  {res}11.111.1.11.1.11...11
+        1      0.02   95.33{txt} {c |}  {res}11.111.1.11.1.11.1...
+        1      0.02   95.35{txt} {c |}  {res}111.................1
+        1      0.02   95.37{txt} {c |}  {res}111................1.
+        1      0.02   95.39{txt} {c |}  {res}111................11
+        1      0.02   95.41{txt} {c |}  {res}111..............1...
+        1      0.02   95.44{txt} {c |}  {res}111...........1..1.11
+        1      0.02   95.46{txt} {c |}  {res}111.........1........
+        1      0.02   95.48{txt} {c |}  {res}111.........1.1....11
+        1      0.02   95.50{txt} {c |}  {res}111.........1.11.....
+        1      0.02   95.52{txt} {c |}  {res}111.........1.11.1...
+        1      0.02   95.54{txt} {c |}  {res}111.......1..........
+        1      0.02   95.56{txt} {c |}  {res}111.......1...11...11
+        1      0.02   95.58{txt} {c |}  {res}111.......1.1........
+        1      0.02   95.61{txt} {c |}  {res}111.......1.1.11.1.1.
+        1      0.02   95.63{txt} {c |}  {res}111......1...........
+        1      0.02   95.65{txt} {c |}  {res}111......1....1..1.11
+        1      0.02   95.67{txt} {c |}  {res}111......1....11.1.11
+        1      0.02   95.69{txt} {c |}  {res}111......1..1.1.....1
+        1      0.02   95.71{txt} {c |}  {res}111......1..1.11.....
+        1      0.02   95.73{txt} {c |}  {res}111......1..1.11.1...
+        1      0.02   95.75{txt} {c |}  {res}111......11........1.
+        1      0.02   95.78{txt} {c |}  {res}111......11.1........
+        1      0.02   95.80{txt} {c |}  {res}111......11.1.1..1...
+        1      0.02   95.82{txt} {c |}  {res}111......11.1.11.1...
+        1      0.02   95.84{txt} {c |}  {res}111....1............1
+        1      0.02   95.86{txt} {c |}  {res}111....1.........1.11
+        1      0.02   95.88{txt} {c |}  {res}111....1....1......1.
+        1      0.02   95.90{txt} {c |}  {res}111....1.1...........
+        1      0.02   95.92{txt} {c |}  {res}111....1.1..1.1..1.11
+        1      0.02   95.95{txt} {c |}  {res}111....1.11...1..1.1.
+        1      0.02   95.97{txt} {c |}  {res}111....1.11.1.1..1...
+        1      0.02   95.99{txt} {c |}  {res}111..1...............
+        1      0.02   96.01{txt} {c |}  {res}111..1.............11
+        1      0.02   96.03{txt} {c |}  {res}111..1...........1.11
+        1      0.02   96.05{txt} {c |}  {res}111..1........11.1..1
+        1      0.02   96.07{txt} {c |}  {res}111..1......1.11.1.1.
+        1      0.02   96.09{txt} {c |}  {res}111..1....1.1.1..1...
+        1      0.02   96.12{txt} {c |}  {res}111..1...11.1........
+        1      0.02   96.14{txt} {c |}  {res}111..1.1.........1.11
+        1      0.02   96.16{txt} {c |}  {res}111..1.1......11.1.11
+        1      0.02   96.18{txt} {c |}  {res}111..1.1....1.1..1.1.
+        1      0.02   96.20{txt} {c |}  {res}111..1.1....1.1..1.11
+        1      0.02   96.22{txt} {c |}  {res}111..1.1.1.........1.
+        1      0.02   96.24{txt} {c |}  {res}111..1.1.1....11...11
+        1      0.02   96.26{txt} {c |}  {res}111..1.1.11.1.......1
+        1      0.02   96.29{txt} {c |}  {res}111.1.....1.1.11.1.11
+        1      0.02   96.31{txt} {c |}  {res}111.1....1.........11
+        1      0.02   96.33{txt} {c |}  {res}111.1....11.1.11.1.11
+        1      0.02   96.35{txt} {c |}  {res}111.1..1.............
+        1      0.02   96.37{txt} {c |}  {res}111.11.........1.1.1.
+        1      0.02   96.39{txt} {c |}  {res}111.11......1.11.1.11
+        1      0.02   96.41{txt} {c |}  {res}111.11...1...........
+        1      0.02   96.43{txt} {c |}  {res}111.11.1.............
+        1      0.02   96.46{txt} {c |}  {res}111.11.1....1.11.1...
+        1      0.02   96.48{txt} {c |}  {res}111.11.1..1.1........
+        1      0.02   96.50{txt} {c |}  {res}111.11.1.1...........
+        1      0.02   96.52{txt} {c |}  {res}111.11.1.1.........1.
+        1      0.02   96.54{txt} {c |}  {res}111.11.1.1....11.....
+        1      0.02   96.56{txt} {c |}  {res}111.11.1.1..1.11.....
+        1      0.02   96.58{txt} {c |}  {res}111.11.1.11..........
+        1      0.02   96.60{txt} {c |}  {res}111.11.1.11.1........
+        1      0.02   96.62{txt} {c |}  {res}111.11.1.11.1.1.....1
+        1      0.02   96.65{txt} {c |}  {res}111.11.1.11.1.1..1.11
+        1      0.02   96.67{txt} {c |}  {res}111.11.1.11.1.11...11
+        1      0.02   96.69{txt} {c |}  {res}111.11.1.11.1.11.1..1
+        1      0.02   96.71{txt} {c |}  {res}1111...............1.
+        1      0.02   96.73{txt} {c |}  {res}1111.............1.1.
+        1      0.02   96.75{txt} {c |}  {res}1111...........1...1.
+        1      0.02   96.77{txt} {c |}  {res}1111..........11.....
+        1      0.02   96.79{txt} {c |}  {res}1111..........11...11
+        1      0.02   96.82{txt} {c |}  {res}1111........1..1.....
+        1      0.02   96.84{txt} {c |}  {res}1111........1.1..1.11
+        1      0.02   96.86{txt} {c |}  {res}1111........1.11.1.11
+        1      0.02   96.88{txt} {c |}  {res}1111......1..........
+        1      0.02   96.90{txt} {c |}  {res}1111......1......1.11
+        1      0.02   96.92{txt} {c |}  {res}1111......1.1.11.....
+        1      0.02   96.94{txt} {c |}  {res}1111......1.1.11...1.
+        1      0.02   96.96{txt} {c |}  {res}1111......1.1.11.1...
+        1      0.02   96.99{txt} {c |}  {res}1111......1.1.11.1.1.
+        1      0.02   97.01{txt} {c |}  {res}1111......1.1.11.1.11
+        1      0.02   97.03{txt} {c |}  {res}1111.....1.......1.11
+        1      0.02   97.05{txt} {c |}  {res}1111.....1....1..1.11
+        1      0.02   97.07{txt} {c |}  {res}1111.....1....11.1.11
+        1      0.02   97.09{txt} {c |}  {res}1111.....1..1..1.1..1
+        1      0.02   97.11{txt} {c |}  {res}1111.....1..1.11.....
+        1      0.02   97.13{txt} {c |}  {res}1111.....11...1..1.11
+        1      0.02   97.16{txt} {c |}  {res}1111.....11.1........
+        1      0.02   97.18{txt} {c |}  {res}1111.....11.1.1..1.11
+        1      0.02   97.20{txt} {c |}  {res}1111.....11.1.11...11
+        1      0.02   97.22{txt} {c |}  {res}1111.....11.1.11.1..1
+        1      0.02   97.24{txt} {c |}  {res}1111...1.........1.11
+        1      0.02   97.26{txt} {c |}  {res}1111...1......1......
+        1      0.02   97.28{txt} {c |}  {res}1111...1..1..........
+        1      0.02   97.30{txt} {c |}  {res}1111...1..1.1.1.....1
+        1      0.02   97.33{txt} {c |}  {res}1111...1..1.1.11.1.11
+        1      0.02   97.35{txt} {c |}  {res}1111...1.1.........1.
+        1      0.02   97.37{txt} {c |}  {res}1111...1.1.....1.1.1.
+        1      0.02   97.39{txt} {c |}  {res}1111...1.1....11.1.1.
+        1      0.02   97.41{txt} {c |}  {res}1111...1.1..1.1..1.11
+        1      0.02   97.43{txt} {c |}  {res}1111...1.1..1.11.1...
+        1      0.02   97.45{txt} {c |}  {res}1111...1.11..........
+        1      0.02   97.47{txt} {c |}  {res}1111...1.11...11....1
+        1      0.02   97.50{txt} {c |}  {res}1111...1.11.1.1....11
+        1      0.02   97.52{txt} {c |}  {res}1111...1.11.1.11....1
+        1      0.02   97.54{txt} {c |}  {res}1111.1.............11
+        1      0.02   97.56{txt} {c |}  {res}1111.1...........1...
+        1      0.02   97.58{txt} {c |}  {res}1111.1...........1.1.
+        1      0.02   97.60{txt} {c |}  {res}1111.1......1.11.....
+        1      0.02   97.62{txt} {c |}  {res}1111.1....1.1......11
+        1      0.02   97.64{txt} {c |}  {res}1111.1...1...........
+        1      0.02   97.67{txt} {c |}  {res}1111.1...1..........1
+        1      0.02   97.69{txt} {c |}  {res}1111.1...11......1.11
+        1      0.02   97.71{txt} {c |}  {res}1111.1.1.........1...
+        1      0.02   97.73{txt} {c |}  {res}1111.1.1......1.....1
+        1      0.02   97.75{txt} {c |}  {res}1111.1.1....1....1.11
+        1      0.02   97.77{txt} {c |}  {res}1111.1.1....1.1..1.11
+        1      0.02   97.79{txt} {c |}  {res}1111.1.1..1..........
+        1      0.02   97.81{txt} {c |}  {res}1111.1.1..1......1..1
+        1      0.02   97.83{txt} {c |}  {res}1111.1.1..1.1.11.1.11
+        1      0.02   97.86{txt} {c |}  {res}1111.1.1.1.......1...
+        1      0.02   97.88{txt} {c |}  {res}1111.1.1.1....11.1..1
+        1      0.02   97.90{txt} {c |}  {res}1111.1.1.1..1........
+        1      0.02   97.92{txt} {c |}  {res}1111.1.1.1..1.11...11
+        1      0.02   97.94{txt} {c |}  {res}1111.1.1.11..........
+        1      0.02   97.96{txt} {c |}  {res}1111.1.1.11.........1
+        1      0.02   97.98{txt} {c |}  {res}1111.1.1.11......1.11
+        1      0.02   98.00{txt} {c |}  {res}1111.1.1.11...1.....1
+        1      0.02   98.03{txt} {c |}  {res}1111.1.1.11...1....11
+        1      0.02   98.05{txt} {c |}  {res}1111.1.1.11.1........
+        1      0.02   98.07{txt} {c |}  {res}1111.1.1.11.1....1.11
+        1      0.02   98.09{txt} {c |}  {res}1111.1.1.11.1.1..1..1
+        1      0.02   98.11{txt} {c |}  {res}1111.1.1.11.1.11....1
+        1      0.02   98.13{txt} {c |}  {res}11111..............1.
+        1      0.02   98.15{txt} {c |}  {res}11111............1...
+        1      0.02   98.17{txt} {c |}  {res}11111............1..1
+        1      0.02   98.20{txt} {c |}  {res}11111.........11.1.11
+        1      0.02   98.22{txt} {c |}  {res}11111....1..1........
+        1      0.02   98.24{txt} {c |}  {res}11111....11...1......
+        1      0.02   98.26{txt} {c |}  {res}11111....11.1.1..1...
+        1      0.02   98.28{txt} {c |}  {res}11111..1.........1...
+        1      0.02   98.30{txt} {c |}  {res}11111..1......1......
+        1      0.02   98.32{txt} {c |}  {res}11111..1.1...........
+        1      0.02   98.34{txt} {c |}  {res}11111..1.1.........11
+        1      0.02   98.37{txt} {c |}  {res}11111..1.1....1......
+        1      0.02   98.39{txt} {c |}  {res}11111..1.1..1..1.....
+        1      0.02   98.41{txt} {c |}  {res}11111..1.11........11
+        1      0.02   98.43{txt} {c |}  {res}11111..1.11...11.1...
+        1      0.02   98.45{txt} {c |}  {res}11111..1.11.1..1.1.11
+        1      0.02   98.47{txt} {c |}  {res}11111..1.11.1.1....11
+        1      0.02   98.49{txt} {c |}  {res}11111..1.11.1.11.1..1
+        1      0.02   98.51{txt} {c |}  {res}11111..1.11.1.11.1.1.
+        1      0.02   98.54{txt} {c |}  {res}11111..1.11.1.11.1.11
+        1      0.02   98.56{txt} {c |}  {res}111111...........1.1.
+        1      0.02   98.58{txt} {c |}  {res}111111.........1.1.11
+        1      0.02   98.60{txt} {c |}  {res}111111........1.....1
+        1      0.02   98.62{txt} {c |}  {res}111111........1..1...
+        1      0.02   98.64{txt} {c |}  {res}111111........1..1.1.
+        1      0.02   98.66{txt} {c |}  {res}111111........11.1.11
+        1      0.02   98.68{txt} {c |}  {res}111111......1........
+        1      0.02   98.71{txt} {c |}  {res}111111......1.......1
+        1      0.02   98.73{txt} {c |}  {res}111111......1.1..1.11
+        1      0.02   98.75{txt} {c |}  {res}111111......1.11.....
+        1      0.02   98.77{txt} {c |}  {res}111111......1.11.1.1.
+        1      0.02   98.79{txt} {c |}  {res}111111....1..........
+        1      0.02   98.81{txt} {c |}  {res}111111....1.1.11....1
+        1      0.02   98.83{txt} {c |}  {res}111111...1...........
+        1      0.02   98.85{txt} {c |}  {res}111111...1.........11
+        1      0.02   98.87{txt} {c |}  {res}111111...1.......1...
+        1      0.02   98.90{txt} {c |}  {res}111111...1....1..1.1.
+        1      0.02   98.92{txt} {c |}  {res}111111...1....11...11
+        1      0.02   98.94{txt} {c |}  {res}111111...1....11.1.11
+        1      0.02   98.96{txt} {c |}  {res}111111...1..1......1.
+        1      0.02   98.98{txt} {c |}  {res}111111...11..........
+        1      0.02   99.00{txt} {c |}  {res}111111...11.1......11
+        1      0.02   99.02{txt} {c |}  {res}111111...11.1.11...11
+        1      0.02   99.04{txt} {c |}  {res}111111...11.1.11.1...
+        1      0.02   99.07{txt} {c |}  {res}111111...11.1.11.1..1
+        1      0.02   99.09{txt} {c |}  {res}111111...11.1.11.1.1.
+        1      0.02   99.11{txt} {c |}  {res}111111.1............1
+        1      0.02   99.13{txt} {c |}  {res}111111.1...........1.
+        1      0.02   99.15{txt} {c |}  {res}111111.1.........1...
+        1      0.02   99.17{txt} {c |}  {res}111111.1.........1..1
+        1      0.02   99.19{txt} {c |}  {res}111111.1......1......
+        1      0.02   99.21{txt} {c |}  {res}111111.1......11.....
+        1      0.02   99.24{txt} {c |}  {res}111111.1......11.1.11
+        1      0.02   99.26{txt} {c |}  {res}111111.1....1........
+        1      0.02   99.28{txt} {c |}  {res}111111.1....1.1.....1
+        1      0.02   99.30{txt} {c |}  {res}111111.1....1.1..1...
+        1      0.02   99.32{txt} {c |}  {res}111111.1....1.11.....
+        1      0.02   99.34{txt} {c |}  {res}111111.1....1.11.1...
+        1      0.02   99.36{txt} {c |}  {res}111111.1....1.11.1.11
+        1      0.02   99.38{txt} {c |}  {res}111111.1..1..........
+        1      0.02   99.41{txt} {c |}  {res}111111.1..1...11...11
+        1      0.02   99.43{txt} {c |}  {res}111111.1..1.1....1...
+        1      0.02   99.45{txt} {c |}  {res}111111.1..1.1.1..1...
+        1      0.02   99.47{txt} {c |}  {res}111111.1..1.1.11.....
+        1      0.02   99.49{txt} {c |}  {res}111111.1..1.1.11.1..1
+        1      0.02   99.51{txt} {c |}  {res}111111.1..1.1.11.1.1.
+        1      0.02   99.53{txt} {c |}  {res}111111.1.1..........1
+        1      0.02   99.55{txt} {c |}  {res}111111.1.1.......1...
+        1      0.02   99.58{txt} {c |}  {res}111111.1.1.......1.1.
+        1      0.02   99.60{txt} {c |}  {res}111111.1.1.....1.1.1.
+        1      0.02   99.62{txt} {c |}  {res}111111.1.1....1......
+        1      0.02   99.64{txt} {c |}  {res}111111.1.1....1....11
+        1      0.02   99.66{txt} {c |}  {res}111111.1.1....1..1...
+        1      0.02   99.68{txt} {c |}  {res}111111.1.1....11.1...
+        1      0.02   99.70{txt} {c |}  {res}111111.1.1....11.1.11
+        1      0.02   99.72{txt} {c |}  {res}111111.1.1..1.1.....1
+        1      0.02   99.75{txt} {c |}  {res}111111.1.1..1.1....11
+        1      0.02   99.77{txt} {c |}  {res}111111.1.11........1.
+        1      0.02   99.79{txt} {c |}  {res}111111.1.11......1.1.
+        1      0.02   99.81{txt} {c |}  {res}111111.1.11....1.....
+        1      0.02   99.83{txt} {c |}  {res}111111.1.11....1.1.11
+        1      0.02   99.85{txt} {c |}  {res}111111.1.11...1......
+        1      0.02   99.87{txt} {c |}  {res}111111.1.11...1....1.
+        1      0.02   99.89{txt} {c |}  {res}111111.1.11...11...1.
+        1      0.02   99.92{txt} {c |}  {res}111111.1.11.1......1.
+        1      0.02   99.94{txt} {c |}  {res}111111.1.11.1....1...
+        1      0.02   99.96{txt} {c |}  {res}111111.1.11.1..1.....
+        1      0.02   99.98{txt} {c |}  {res}111111.1.11.1.1.....1
+        1      0.02  100.00{txt} {c |}  {res}111111.1.11.1.1..1..1
+{txt} {hline 27}{c +}{c -}{c -}{hline 21}
+{res}     4711    100.00        {txt} {c |}  {res}XXXXXX.X.XX.X.XX.X.XX
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtdescribe,  patterns(9)
+
+  {txt}idcode:  {res}1{txt}, {res}2{txt}, ..., {res}5159                                   {txt}n ={res}       4711
+    {txt}year:  {res}68, 69, ..., 88                                   {txt}T ={res}         15
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}21 periods
+           {txt}(idcode*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}     1       1       3         5         9      13      15
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}      136      2.89    2.89{txt} {c |}  {res}1....................
+      114      2.42    5.31{txt} {c |}  {res}....................1
+       89      1.89    7.20{txt} {c |}  {res}.................1.11
+       87      1.85    9.04{txt} {c |}  {res}...................11
+       86      1.83   10.87{txt} {c |}  {res}111111.1.11.1.11.1.11
+       61      1.29   12.16{txt} {c |}  {res}..............11.1.11
+       56      1.19   13.35{txt} {c |}  {res}11...................
+       54      1.15   14.50{txt} {c |}  {res}...............1.1.11
+       54      1.15   15.64{txt} {c |}  {res}.......1.11.1.11.1.11
+     3974     84.36  100.00{txt} {c |} (other patterns)
+ {hline 27}{c +}{c -}{c -}{hline 21}
+{res}     4711    100.00        {txt} {c |}  {res}XXXXXX.X.XX.X.XX.X.XX
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use "F:\data\pf\traffic.dta",clear
+{txt}
+{com}. xtset state year
+{res}{txt}{col 8}panel variable:  {res}state (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 1982 to 1988
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. rename perincK perinck
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. reg fatal beertax spircons unrate perinck,vce(cluster state)   
+
+{txt}Linear regression                               Number of obs     = {res}       336
+                                                {txt}F(4, 47)          =  {res}    17.43
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.3019
+                                                {txt}Root MSE          =    {res} .47929
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:48} clusters in state)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2} .0971997{col 26}{space 2}  .116884{col 37}{space 1}    0.83{col 46}{space 3}0.410{col 54}{space 4}-.1379406{col 67}{space 3}   .33234
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .1623471{col 26}{space 2} .1070988{col 37}{space 1}    1.52{col 46}{space 3}0.136{col 54}{space 4} -.053108{col 67}{space 3} .3778021
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0291014{col 26}{space 2} .0208687{col 37}{space 1}   -1.39{col 46}{space 3}0.170{col 54}{space 4}-.0710838{col 67}{space 3}  .012881
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2}-.1584291{col 26}{space 2} .0371404{col 37}{space 1}   -4.27{col 46}{space 3}0.000{col 54}{space 4} -.233146{col 67}{space 3}-.0837122
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 4.118674{col 26}{space 2} .6765746{col 37}{space 1}    6.09{col 46}{space 3}0.000{col 54}{space 4} 2.757581{col 67}{space 3} 5.479766
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perinck,fe vce(cluster state)   
+
+{txt}Fixed-effects (within) regression               Number of obs      = {res}      336
+{txt}Group variable: {res}state                           {txt}Number of groups   = {res}       48
+
+{txt}R-sq:  within  = {res}0.3526                         {txt}Obs per group: min = {res}        7
+{txt}       between = {res}0.1146                                        {txt}avg = {res}      7.0
+{txt}       overall = {res}0.0863                                        {txt}max = {res}        7
+
+                                                {txt}F({res}4{txt},{res}47{txt})            = {res}    21.27
+{txt}corr(u_i, Xb)  = {res}-0.8804                        {txt}Prob > F           =    {res}0.0000
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:48} clusters in state)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2}-.4840728{col 26}{space 2} .2218754{col 37}{space 1}   -2.18{col 46}{space 3}0.034{col 54}{space 4}-.9304285{col 67}{space 3} -.037717
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .8169652{col 26}{space 2} .1272627{col 37}{space 1}    6.42{col 46}{space 3}0.000{col 54}{space 4} .5609456{col 67}{space 3} 1.072985
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0290499{col 26}{space 2} .0094581{col 37}{space 1}   -3.07{col 46}{space 3}0.004{col 54}{space 4}-.0480772{col 67}{space 3}-.0100227
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2} .1047103{col 26}{space 2} .0341455{col 37}{space 1}    3.07{col 46}{space 3}0.004{col 54}{space 4} .0360184{col 67}{space 3} .1734022
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -.383783{col 26}{space 2} .7091738{col 37}{space 1}   -0.54{col 46}{space 3}0.591{col 54}{space 4}-1.810457{col 67}{space 3} 1.042891
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 1.1181913
+     {txt}sigma_e {c |} {res} .15678965
+         {txt}rho {c |} {res} .98071823{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perinck,re vce(cluster state)   
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}       336
+{txt}Group variable: {res}state                           {txt}Number of groups  = {res}        48
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.2263                                         {txt}min = {res}         7
+{txt}     between = {res}0.0123                                         {txt}avg = {res}       7.0
+{txt}     overall = {res}0.0042                                         {txt}max = {res}         7
+
+                                                {txt}Wald chi2({res}4{txt})      =  {res}    42.30
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}0.0000
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:48} clusters in state)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2} .0442768{col 26}{space 2} .1283189{col 37}{space 1}    0.35{col 46}{space 3}0.730{col 54}{space 4}-.2072237{col 67}{space 3} .2957772
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .3024711{col 26}{space 2} .1080475{col 37}{space 1}    2.80{col 46}{space 3}0.005{col 54}{space 4} .0907019{col 67}{space 3} .5142404
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0491381{col 26}{space 2}  .009052{col 37}{space 1}   -5.43{col 46}{space 3}0.000{col 54}{space 4}-.0668798{col 67}{space 3}-.0313964
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2}-.0110727{col 26}{space 2}  .024949{col 37}{space 1}   -0.44{col 46}{space 3}0.657{col 54}{space 4}-.0599718{col 67}{space 3} .0378263
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.001973{col 26}{space 2} .5226507{col 37}{space 1}    3.83{col 46}{space 3}0.000{col 54}{space 4}  .977597{col 67}{space 3}  3.02635
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} .41675665
+     {txt}sigma_e {c |} {res} .15678965
+         {txt}rho {c |} {res} .87601197{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. xtreg fatal beertax spircons unrate perinck, mle   
+
+{txt}Fitting constant-only model:
+Iteration 0:   log likelihood = {res}-41.203499
+{txt}Iteration 1:   log likelihood = {res}-23.030446
+{txt}Iteration 2:   log likelihood = {res}-21.043333
+{txt}Iteration 3:   log likelihood = {res}-20.912732
+{txt}Iteration 4:   log likelihood = {res}-20.911211
+
+{txt}Fitting full model:
+Iteration 0:   log likelihood = {res}-74.726121
+{txt}Iteration 1:   log likelihood = {res}-42.772858
+{txt}Iteration 2:   log likelihood = {res}  3.512137
+{txt}Iteration 3:   log likelihood = {res} 12.059609
+{txt}Iteration 4:   log likelihood = {res} 12.767954
+{txt}Iteration 5:   log likelihood = {res} 12.784004
+{txt}Iteration 6:   log likelihood = {res} 12.784035
+
+{txt}Random-effects ML regression{col 49}Number of obs{col 67}={col 69}{res}       336
+{txt}Group variable: {res}state{col 49}{txt}Number of groups{col 67}={col 69}{res}        48
+
+{txt}Random effects u_i ~ {res}Gaussian{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         7
+{txt}{col 63}avg{col 67}={col 69}{res}       7.0
+{txt}{col 63}max{col 67}={col 69}{res}         7
+
+{txt}{col 49}LR chi2({res}4{txt}){col 67}={col 70}{res}    67.39
+{txt}Log likelihood  = {res} 12.784035{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       fatal{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}beertax {c |}{col 14}{res}{space 2}-.1982558{col 26}{space 2} .1505869{col 37}{space 1}   -1.32{col 46}{space 3}0.188{col 54}{space 4}-.4934007{col 67}{space 3} .0968891
+{txt}{space 4}spircons {c |}{col 14}{res}{space 2} .5815301{col 26}{space 2} .0871644{col 37}{space 1}    6.67{col 46}{space 3}0.000{col 54}{space 4} .4106909{col 67}{space 3} .7523692
+{txt}{space 6}unrate {c |}{col 14}{res}{space 2}-.0381467{col 26}{space 2} .0091776{col 37}{space 1}   -4.16{col 46}{space 3}0.000{col 54}{space 4}-.0561344{col 67}{space 3}-.0201589
+{txt}{space 5}perinck {c |}{col 14}{res}{space 2} .0543694{col 26}{space 2} .0223621{col 37}{space 1}    2.43{col 46}{space 3}0.015{col 54}{space 4} .0105405{col 67}{space 3} .0981984
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6479714{col 26}{space 2} .4682047{col 37}{space 1}    1.38{col 46}{space 3}0.166{col 54}{space 4}-.2696929{col 67}{space 3} 1.565636
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+    /sigma_u {c |}{col 14}{res}{space 2} .8559797{col 26}{space 2} .1147673{col 54}{space 4} .6581681{col 67}{space 3} 1.113243
+{txt}    /sigma_e {c |}{col 14}{res}{space 2}  .159379{col 26}{space 2} .0070215{col 54}{space 4} .1461946{col 67}{space 3} .1737525
+{col 1}{txt}         rho{col 14}{c |}{res}{space 2} .9664931{col 26}{space 2} .0096949{col 54}{space 4} .9425673{col 67}{space 3} .9815318
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}LR test of sigma_u=0: {help j_chibar##|_new:chibar2(01) = }{res}479.84{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. ssc install xttest3
+{txt}checking {hilite:xttest3} consistency and verifying not already installed...
+installing into c:\ado\plus\...
+installation complete.
+
+{com}. ssc install xttest2
+{txt}checking {hilite:xttest2} consistency and verifying not already installed...
+installing into c:\ado\plus\...
+installation complete.
+
+{com}. ssc install diff
+{txt}checking {hilite:diff} consistency and verifying not already installed...
+installing into c:\ado\plus\...
+installation complete.
+
+{com}. ssc install outreg2
+{txt}checking {hilite:outreg2} consistency and verifying not already installed...
+installing into c:\ado\plus\...
+installation complete.
+
+{com}. help outreg2
+
+. ssc install outreg
+{txt}checking {hilite:outreg} consistency and verifying not already installed...
+installing into c:\ado\plus\...
+installation complete.
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. qui reg fatal beertax spircons unrate perinck
+{txt}
+{com}. est store a1
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perinck, fe
+{txt}
+{com}. est store a2
+{txt}
+{com}. qui xtreg fatal beertax spircons unrate perinck, re
+{txt}
+{com}. est store a3
+{txt}
+{com}. qui reg fatal beertax spircons unrate perinck,vce(cluster state)
+{txt}
+{com}. est store a4
+{txt}
+{com}. ourreg2 a* using output.xlsx   
+{err}command {bf}ourreg2{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+end of do-file
+
+{search r(199):r(199);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. outreg2 a* using output.xlsx   
+{txt}c:\ado\plus/o/outreg2.ado
+{browse `"output.xlsx"'}
+{browse `"F:\git\stata\output\15May2017"' :dir}{com} : {txt}{stata `"seeout using "output.txt""':seeout}
+
+{com}. 
+{txt}end of do-file
+
+{com}. dir
+{txt}  <dir>   5/15/17 12:00  {res}.                 
+{txt}  <dir>   5/15/17 12:00  {res}..                
+{txt} 172.7k   5/15/17 11:35  {res}logfile.txt       
+{txt}   0.3k   5/15/17 12:00  {res}output.txt        
+{txt}   4.9k   5/15/17 12:00  {res}output.xlsx       
+{txt}   3.0k   5/15/17 11:50  {res}pf_panel_1.do     
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. outreg2 a* using output.xls  
+{txt}{browse `"output.xls"'}
+{browse `"F:\git\stata\output\15May2017"' :dir}{com} : {txt}{stata `"seeout using "output.txt""':seeout}
+
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear

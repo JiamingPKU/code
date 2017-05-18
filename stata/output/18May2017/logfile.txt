@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}F:\git\stata\output\18May2017\logfile.txt
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 May 2017, 15:03:13
+ {txt}opened on:  {res}18 May 2017, 16:14:44
 {txt}
 {com}. * -------------------------------------------------------
 . 
@@ -18,174 +18,310 @@
 
 {txt}end of do-file
 
-{com}. help reshape
+{com}. help duplicate
 
-. help reshape
+. dir
+{txt}  <dir>   5/18/17 16:14  {res}.                 
+{txt}  <dir>   5/18/17 16:14  {res}..                
+{txt}   0.0k   5/18/17 16:14  {res}logfile.txt       
+{txt}   2.1k   5/18/17 11:25  {res}test1.do          
+{txt}   9.6k   5/18/17 10:59  {res}test1.dta         
+{txt}  14.3k   5/18/17 11:15  {res}test2.dta         
+{txt}  14.3k   5/18/17 11:16  {res}test3.dta         
+{txt}  14.1k   5/18/17 11:18  {res}test4.dta         
 
-. edit
+{com}. doedit test1.do
 
-. set obs 1
+. use test2.dta
+
+. clear
+
+. del test1.dta
+{err}command {bf}del{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. rm test1.dta
+
+. dir
+{txt}  <dir>   5/18/17 16:31  {res}.                 
+{txt}  <dir>   5/18/17 16:31  {res}..                
+{txt}   0.0k   5/18/17 16:14  {res}logfile.txt       
+{txt}   2.1k   5/18/17 11:25  {res}test1.do          
+{txt}  14.3k   5/18/17 11:15  {res}test2.dta         
+{txt}  14.3k   5/18/17 11:16  {res}test3.dta         
+{txt}  14.1k   5/18/17 11:18  {res}test4.dta         
+
+{com}. rm test2.dta
+
+. rm test3.dta
+
+. rm test4.dta
+
+. dir
+{txt}  <dir>   5/18/17 16:31  {res}.                 
+{txt}  <dir>   5/18/17 16:31  {res}..                
+{txt}   0.0k   5/18/17 16:14  {res}logfile.txt       
+{txt}   2.1k   5/18/17 11:25  {res}test1.do          
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. set obs 1000
 {txt}{p}
 number of observations (_N)  was 0,
-now 1
+now 1,000
 {p_end}
 
-{com}. generate var1 = 1 in 1
+{com}. gen x  = _n
+{txt}
+{com}. gen y2 = runiform()
+{txt}
+{com}. label var x "编号"
+{txt}
+{com}. gen z2 = (y2>0.5)
+{txt}
+{com}. label value z2 z2lb
+{txt}
+{com}. label define z2lb 1 "gr" 0 "lr"
+{txt}
+{com}. gen m = z2
+{txt}
+{com}. save test2.dta, replace
+{txt}(note: file test2.dta not found)
+file test2.dta saved
 
-. set obs 2
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. set obs 1000
 {txt}{p}
-number of observations (_N)  was 1,
-now 2
+number of observations (_N)  was 0,
+now 1,000
 {p_end}
 
-{com}. replace var1 = 2 in 2
-{txt}(1 real change made)
+{com}. gen x  = _n
+{txt}
+{com}. gen y4 = runiform()
+{txt}
+{com}. gen z4 = (y4>0.5)
+{txt}
+{com}. label value z4 z2lb
+{txt}
+{com}. label define z2lb 1 "gr" 0 "lr"
+{txt}
+{com}. save test4.dta, replace
+{txt}(note: file test4.dta not found)
+file test4.dta saved
 
-{com}. generate str var2 = "a" in 1
-{txt}(1 missing value generated)
+{com}. 
+{txt}end of do-file
 
-{com}. generate str var3 = "b" in 1
-{txt}(1 missing value generated)
+{com}. tab z4
 
-{com}. replace var2 = "c" in 2
-{txt}(1 real change made)
+         {txt}z4 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         lr {c |}{res}        468       46.80       46.80
+{txt}         gr {c |}{res}        532       53.20      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
 
-{com}. replace var3 = "d" in 2
-{txt}(1 real change made)
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen m = z4
+{txt}
+{com}. 
+{txt}end of do-file
 
-{com}. reshape var2 var3, i(var1)
-{err}invalid syntax
-{p 4 4 2}
-In the {bf:reshape} command that you typed, you omitted the word {bf:wide} or {bf:long},
-or substituted some other word for it.  You should have typed
+{com}. tab m
 
-        . {bf:reshape wide} {it:varlist}{bf:, ...}
-    or
-        . {bf:reshape long} {it:varlist}, ...
+          {txt}m {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        468       46.80       46.80
+{txt}          1 {c |}{res}        532       53.20      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
 
-{p 4 4 2}
-You might have omitted {it:varlist}, too.
-The basic syntax of {bf:reshape} is
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label value z4 z2lb
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label value m z2lb
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab m
+
+          {txt}m {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         lr {c |}{res}        468       46.80       46.80
+{txt}         gr {c |}{res}        532       53.20      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
 {p_end}
 
-{col 9} {it:long}                                {it:wide}
-{col 9}{c TLC}{hline 15}{c TRC}                   {c TLC}{hline 18}{c TRC}
-{col 9}{c |} {it:i   j}   a   b {c |}                   {c |} {it:i}   a1 a2  b1 b2 {c |}
-{col 9}{c |}{hline 15}{c |} <--- {bf:reshape} ---> {c |}{hline 18}{c |}
-{col 9}{c |} 1   1   1   2 {c |}                   {c |} 1   1   3   2  4 {c |}
-{col 9}{c |} 1   2   3   4 {c |}                   {c |} 2   5   7   6  8 {c |}
-{col 9}{c |} 2   1   5   6 {c |}                   {c BLC}{hline 18}{c BRC}
-{col 9}{c |} 2   2   7   8 {c |}
-{col 9}{c BLC}{hline 15}{c BRC}
+{com}. gen x  = _n
+{txt}
+{com}. gen y2 = runiform()
+{txt}
+{com}. label var x "编号"
+{txt}
+{com}. gen z2 = (y2>0.5)
+{txt}
+{com}. label value z2 z2lb
+{txt}
+{com}. label define z2lb 1 "gr" 0 "lr"
+{txt}
+{com}. gen m = z2
+{txt}
+{com}. save test2.dta, replace
+{txt}file test2.dta saved
 
-{col 9}long to wide: {bf:reshape wide a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j} existing variable)
-{col 9}wide to long: {bf:reshape long a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j}    new   variable)
-{txt}{search r(198):r(198);}
+{com}. 
+{txt}end of do-file
 
-{com}. reshape long var2 var3, i(var1)
-{err}no xij variables found
-{p 4 4 2}
-You typed something like
-{bf:reshape wide a b, i(i) j(j)}.{break}
-{bf:reshape} looked for existing variables
-named {bf:a}{it:#} and {bf:b}{it:#} but
-could not find any.  Remember this picture:
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label value m z2lb
+{txt}
+{com}. 
+{txt}end of do-file
 
-{col 9} {it:long}                                {it:wide}
-{col 9}{c TLC}{hline 15}{c TRC}                   {c TLC}{hline 18}{c TRC}
-{col 9}{c |} {it:i   j}   a   b {c |}                   {c |} {it:i}   a1 a2  b1 b2 {c |}
-{col 9}{c |}{hline 15}{c |} <--- {bf:reshape} ---> {c |}{hline 18}{c |}
-{col 9}{c |} 1   1   1   2 {c |}                   {c |} 1   1   3   2  4 {c |}
-{col 9}{c |} 1   2   3   4 {c |}                   {c |} 2   5   7   6  8 {c |}
-{col 9}{c |} 2   1   5   6 {c |}                   {c BLC}{hline 18}{c BRC}
-{col 9}{c |} 2   2   7   8 {c |}
-{col 9}{c BLC}{hline 15}{c BRC}
+{com}. tab m
 
-{col 9}long to wide: {bf:reshape wide a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j} existing variable)
-{col 9}wide to long: {bf:reshape long a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j}    new   variable)
+          {txt}m {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         lr {c |}{res}        482       48.20       48.20
+{txt}         gr {c |}{res}        518       51.80      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save test2.dta, replace
+{txt}file test2.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. merge m using test4.dta
+{txt}{p}
+(note: you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+{err}master data not sorted
+{txt}{search r(5):r(5);}
+
+{com}. sort m
+
+. merge m using test4.dta
+{txt}{p}
+(note: you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+{p 0 4 2}
+variable{txt} m
+does not uniquely identify observations in
+the master data
+{p_end}
+{err}variable m not found in using data
 {txt}{search r(111):r(111);}
 
-{com}. reshape long var2 var3, i(var1) j(c)
-{err}no xij variables found
-{p 4 4 2}
-You typed something like
-{bf:reshape wide a b, i(i) j(j)}.{break}
-{bf:reshape} looked for existing variables
-named {bf:a}{it:#} and {bf:b}{it:#} but
-could not find any.  Remember this picture:
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
 
-{col 9} {it:long}                                {it:wide}
-{col 9}{c TLC}{hline 15}{c TRC}                   {c TLC}{hline 18}{c TRC}
-{col 9}{c |} {it:i   j}   a   b {c |}                   {c |} {it:i}   a1 a2  b1 b2 {c |}
-{col 9}{c |}{hline 15}{c |} <--- {bf:reshape} ---> {c |}{hline 18}{c |}
-{col 9}{c |} 1   1   1   2 {c |}                   {c |} 1   1   3   2  4 {c |}
-{col 9}{c |} 1   2   3   4 {c |}                   {c |} 2   5   7   6  8 {c |}
-{col 9}{c |} 2   1   5   6 {c |}                   {c BLC}{hline 18}{c BRC}
-{col 9}{c |} 2   2   7   8 {c |}
-{col 9}{c BLC}{hline 15}{c BRC}
+{com}. gen x  = _n
+{txt}
+{com}. gen y4 = runiform()
+{txt}
+{com}. gen z4 = (y4>0.5)
+{txt}
+{com}. label value z4 z2lb
+{txt}
+{com}. label define z2lb 1 "gr" 0 "lr"
+{txt}
+{com}. gen m = z4
+{txt}
+{com}. label value m z2lb
+{txt}
+{com}. save test4.dta, replace
+{txt}file test4.dta saved
 
-{col 9}long to wide: {bf:reshape wide a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j} existing variable)
-{col 9}wide to long: {bf:reshape long a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j}    new   variable)
-{txt}{search r(111):r(111);}
-
-{com}. rename var1 v
-{res}
-{com}. reshape long var#, i(var1) j(c)
-{err}variable {bf}var1{sf} not found
-{txt}{search r(111):r(111);}
-
-{com}. reshape long var#, i(v) j(c)
-{err}no xij variables found
-{p 4 4 2}
-You typed something like
-{bf:reshape wide a b, i(i) j(j)}.{break}
-{bf:reshape} looked for existing variables
-named {bf:a}{it:#} and {bf:b}{it:#} but
-could not find any.  Remember this picture:
-
-{col 9} {it:long}                                {it:wide}
-{col 9}{c TLC}{hline 15}{c TRC}                   {c TLC}{hline 18}{c TRC}
-{col 9}{c |} {it:i   j}   a   b {c |}                   {c |} {it:i}   a1 a2  b1 b2 {c |}
-{col 9}{c |}{hline 15}{c |} <--- {bf:reshape} ---> {c |}{hline 18}{c |}
-{col 9}{c |} 1   1   1   2 {c |}                   {c |} 1   1   3   2  4 {c |}
-{col 9}{c |} 1   2   3   4 {c |}                   {c |} 2   5   7   6  8 {c |}
-{col 9}{c |} 2   1   5   6 {c |}                   {c BLC}{hline 18}{c BRC}
-{col 9}{c |} 2   2   7   8 {c |}
-{col 9}{c BLC}{hline 15}{c BRC}
-
-{col 9}long to wide: {bf:reshape wide a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j} existing variable)
-{col 9}wide to long: {bf:reshape long a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j}    new   variable)
-{txt}{search r(111):r(111);}
-
-{com}. reshape long var#
-{err}option {bf:i()} required
-
-{col 9} {it:long}                                {it:wide}
-{col 9}{c TLC}{hline 15}{c TRC}                   {c TLC}{hline 18}{c TRC}
-{col 9}{c |} {it:i   j}   a   b {c |}                   {c |} {it:i}   a1 a2  b1 b2 {c |}
-{col 9}{c |}{hline 15}{c |} <--- {bf:reshape} ---> {c |}{hline 18}{c |}
-{col 9}{c |} 1   1   1   2 {c |}                   {c |} 1   1   3   2  4 {c |}
-{col 9}{c |} 1   2   3   4 {c |}                   {c |} 2   5   7   6  8 {c |}
-{col 9}{c |} 2   1   5   6 {c |}                   {c BLC}{hline 18}{c BRC}
-{col 9}{c |} 2   2   7   8 {c |}
-{col 9}{c BLC}{hline 15}{c BRC}
-
-{col 9}long to wide: {bf:reshape wide a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j} existing variable)
-{col 9}wide to long: {bf:reshape long a b, i(}{it:i}{bf:) j(}{it:j}{bf:)}    ({it:j}    new   variable)
-{txt}{search r(198):r(198);}
-
-{com}. reshape long var, i(v) j(c)
-{txt}(note: j = 2 3)
-
-Data{col 36}wide{col 43}->{col 48}long
-{hline 77}
-Number of obs.                 {res}       2   {txt}->{res}       4
-{txt}Number of variables            {res}       3   {txt}->{res}       3
-{txt}j variable (2 values)                     ->   {res}c
-{txt}xij variables:
-                              {res}var2 var3   {txt}->   {res}var
-{txt}{hline 77}
+{com}. 
+{txt}end of do-file
 
 {com}. br
 
-. exit, clear
+. merge x using test2.dta
+{txt}{p}
+(note: you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+{err}master data not sorted
+{txt}{search r(5):r(5);}
+
+{com}. sort x
+
+. merge x using test2.dta
+{txt}{p}
+(note: you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+{err}using data not sorted
+{txt}{search r(5):r(5);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save test4.dta, replace
+{txt}file test4.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. use test2.dta
+
+. sort x
+
+. merge x using test4.dta
+{txt}{p}
+(note: you are using old
+{bf:merge} syntax; see
+{bf:{help merge:[D] merge}} for new syntax)
+{p_end}
+(label z2lb already defined)
+
+{com}. clear
+
+. help random
+
+. exit

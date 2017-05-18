@@ -1,0 +1,442 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\18May2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}18 May 2017, 10:54:10
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. dir
+{txt}  <dir>   5/18/17 10:54  {res}.                 
+{txt}  <dir>   5/18/17 10:54  {res}..                
+{txt}   0.0k   5/18/17 10:54  {res}logfile.txt       
+{txt}   1.2k   5/18/17 10:54  {res}test1.do          
+
+{com}. help random
+
+. di runiform()
+{res}.3488717
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. *观测值1000， X为merge时参考的序列
+. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. gen x = _n
+{txt}
+{com}. * 生成一个y1便于merge
+. gen y1 = x*2
+{txt}
+{com}. label var x "编号"
+{txt}
+{com}. save test1.dta, replace
+{txt}(note: file test1.dta not found)
+file test1.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. gen x  = _n
+{txt}
+{com}. gen y2 = runiform()
+{txt}
+{com}. label var x "编号"
+{txt}
+{com}. save test2.dta, replace
+{txt}(note: file test2.dta not found)
+file test2.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. gen x  = _n
+{txt}
+{com}. gen y3 = rnormal()
+{txt}
+{com}. label var x "序号"
+{txt}
+{com}. save test3.dta, replace
+{txt}(note: file test3.dta not found)
+file test3.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. dir
+{txt}  <dir>   5/18/17 10:59  {res}.                 
+{txt}  <dir>   5/18/17 10:59  {res}..                
+{txt}   0.0k   5/18/17 10:54  {res}logfile.txt       
+{txt}   1.6k   5/18/17 10:59  {res}test1.do          
+{txt}   9.6k   5/18/17 10:59  {res}test1.dta         
+{txt}   9.6k   5/18/17 10:59  {res}test2.dta         
+{txt}   9.6k   5/18/17 10:59  {res}test3.dta         
+
+{com}. help merge
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use test1.dta, clear
+{txt}
+{com}. merge 1:1 x using test2.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. merge 1:1 x using test3.dta
+{res}{err}variable {bf}_merge{sf} already defined
+{txt}{search r(110):r(110);}
+
+end of do-file
+
+{search r(110):r(110);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. merge 1:1 x using test3.dta
+{res}{err}variable {bf}_merge{sf} already defined
+{txt}{search r(110):r(110);}
+
+end of do-file
+
+{search r(110):r(110);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. merge 1:1 x using test3.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+{txt}end of do-file
+
+{com}. clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use test1.dta, clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. gen x  = _n
+{txt}
+{com}. gen y4 = runiform()
+{txt}
+{com}. save test4.dta, replace
+{txt}(note: file test4.dta not found)
+file test4.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use test4.dta, clear
+{txt}
+{com}. merge 1:1 x using test2.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. merge 1:1 x using test3.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. clear
+
+. version 11
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use test4.dta, clear
+{txt}
+{com}. merge 1:1 x using test2.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. version 14
+
+. use test1.dta, clear
+
+. plot y1
+{res}
+{err}too few variables specified
+{txt}{search r(102):r(102);}
+
+{com}. hist y1
+{txt}(bin={res}29{txt}, start={res}2{txt}, width={res}68.896552{txt})
+{res}
+{com}. summary y1
+{err}command {bf}summary{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. sum y1, d
+
+                             {txt}y1
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}       21              2
+{txt} 5%    {res}      101              4
+{txt}10%    {res}      201              6       {txt}Obs         {res}      1,000
+{txt}25%    {res}      501              8       {txt}Sum of Wgt. {res}      1,000
+
+{txt}50%    {res}     1001                      {txt}Mean          {res}     1001
+                        {txt}Largest       Std. Dev.     {res} 577.6389
+{txt}75%    {res}     1501           1994
+{txt}90%    {res}     1801           1996       {txt}Variance      {res} 333666.7
+{txt}95%    {res}     1901           1998       {txt}Skewness      {res}        0
+{txt}99%    {res}     1981           2000       {txt}Kurtosis      {res} 1.799998
+
+{com}. sum y1
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}y1 {c |}{res}      1,000        1001    577.6389          2       2000
+
+{com}. br
+
+. use y2, d
+{err}option {bf:d} not allowed
+{txt}{search r(198):r(198);}
+
+{com}. use test2.dta, clear
+
+. br
+
+. sum y2
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}y2 {c |}{res}      1,000     .494688    .2915337   .0001847   .9997507
+
+{com}. help label
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen z2 = (y2>0.5)
+{txt}
+{com}. label value z2 z2lb
+{txt}
+{com}. label define z2lb 1 "gr" 0 "lr"
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab z2
+
+         {txt}z2 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         lr {c |}{res}        505       50.50       50.50
+{txt}         gr {c |}{res}        495       49.50      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save test2.dta, replace
+{txt}file test2.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. use test3.dta, clear
+
+. sum y3
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}y3 {c |}{res}      1,000   -.0073454    .9945731  -3.134875   2.698964
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen z3 = (y3>0)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label value z3 z3lb
+{txt}
+{com}. label define z3lb 1 "gr" 0 "lr"
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab z3
+
+         {txt}z3 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         lr {c |}{res}        500       50.00       50.00
+{txt}         gr {c |}{res}        500       50.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save test3.dta, replace
+{txt}file test3.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. use test4.dta, clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen z4 = (y4>0.5)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. save test4.dta, replace
+{txt}file test4.dta saved
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. use test2.dta, clear
+{txt}
+{com}. merge 1:1 x using test3.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. 
+. merge 1:1 x using test4.dta
+{res}
+{txt}{col 5}Result{col 38}# of obs.
+{col 5}{hline 41}
+{col 5}not matched{col 30}{res}               0
+{txt}{col 5}matched{col 30}{res}           1,000{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. drop _merge
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. use test2.dta, clear
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen m = z2
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab m
+
+          {txt}m {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        505       50.50       50.50
+{txt}          1 {c |}{res}        495       49.50      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,000      100.00
+
+{com}. help merge
+
+. 

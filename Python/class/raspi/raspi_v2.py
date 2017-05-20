@@ -2,7 +2,7 @@
 # @Author: Ren Qingjie
 # @Date:   2017-05-14 15:48:55
 # @Last Modified by:   Ren Qingjie
-# @Last Modified time: 2017-05-14 18:23:00
+# @Last Modified time: 2017-05-19 00:33:03
 
 
 import time
@@ -11,7 +11,8 @@ import sakshat
 import picamera
 import face_recognition
 import PIL
-
+import dlib
+import RPi
 
 # 设置相机和扩展版
 s = sakshat.SAKSHAT()
@@ -21,6 +22,7 @@ c = picamera.PiCamera()
 # 总体名单及对应的编号
 leaders = {0: 'DengXiaoping', 1: 'HuaGuofeng', 2: 'HuJintao', 3: 'HuYaobang', 4: 'JiangZeMin',
            5: 'LiKeqiang', 6: 'MaoZedong', 7: 'WenJiabao', 8: 'XijinPing', 9: 'Zhaoziyang'}
+inv_leaders = {value: key for key, value in leaders.items() }
 
 
 # 识别照片的函数

@@ -51,3 +51,26 @@ summary(ur.df(diff(retire),lags=3)) #拒绝
 summary(ur.kpss(diff(retire))) #不拒绝
 summary(ur.pp(diff(retire))) #小于临界值
 
+
+summary(ur.df(fof)) #不拒绝
+summary(ur.kpss(fof)) # 拒绝
+summary(ur.pp(fof)) # 不拒绝
+
+summary(ur.df(diff(fof))) #拒绝
+summary(ur.kpss(diff(fof))) #不拒绝
+summary(ur.pp(diff(fof))) #拒绝
+
+#### Model 1 ####
+# 模型m1, 得到残差序列 r1
+# m1 = fof ~ retire
+m1 = lm(fof~retire)
+# r1 = m1$residuals
+r1 <- m1$residuals
+par(mfrow=c(1,1))
+plot(r1, xlab = 'time (seasonal)')
+# t = adf.test(resid, alternative = 'explosive')
+print(summary(m1))
+
+summary(ur.df(r1)) #拒绝
+summary(ur.kpss(r1)) #不拒绝
+summary(ur.pp(r1)) #不拒绝

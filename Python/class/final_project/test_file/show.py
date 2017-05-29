@@ -12,8 +12,9 @@
 from table import *
 import pygame
 from pygame.locals import *
-import shelve
+import shelve,time
 import sys
+Clock= pygame.time.Clock()
 
 # 这个参数用来调整时间流逝的速率
 # game_speed=1时, 一来回需要3.6秒
@@ -137,12 +138,26 @@ def draw_card(screen, cards, font):
         x -= image.get_width() / 2
         y -= image.get_height() / 2
         screen.blit(image, (x, y))
-
+        
+#画道具箱
+def draw_card_box(screen, player):
+    i = 0
+    for card in player['West'].card_box:
+        image = pygame.image.load('%s.png'%card.code.lower()).convert_alpha()
+        screen.blit(image, (150-image.get_width()/2, 170+i))
+        i+=image.get_height()+10
+    i = 0
+    for card in player['East'].card_box:
+        image = pygame.image.load('%s.png'%card.code.lower()).convert_alpha()
+        screen.blit(image, (s_size[0]-150-image.get_width()/2, 170+i))
+        i+=image.get_height()+10
 
 def main():
     # 判断有无命令行参数
     if len(sys.argv) == 2:
         logname = sys.argv[1]
+        # 兼容原来的命令行参数查找模式
+        namelist = [logname]
     else:
         # 这里对当前目录进行搜索，找到一个字节数不为0的dat文件
         import os, re
@@ -161,15 +176,31 @@ def main():
                 # else:
                 # 没找到，说明本目录下没有这个测试文件
                 #   raise NameError("No Test File in this directory.")
-
-    for i in range(len(namelist)):
-        print('第', i, '个', namelist[i])
-    ssssss = int(input('请输入你想看的对战的序号，从0开始，到%d结束\n' % (len(namelist) - 1)))  # 序号
-    logname = namelist[ssssss]
-
+    while True:
+        try:
+            if not namelist:
+                raise NameError
+            for i in range(len(namelist)):
+                print('第', i, '个', namelist[i])
+            ssssss = int(input('请输入你想看的对战的序号，从0开始，到%d结束\n' % (len(namelist) - 1)))  # 序号
+            
+            logname = namelist[ssssss]
+            break
+        except ValueError as e:
+            # 输入了一个非数字
+            print('请输入合法数字！')
+        except IndexError as e:
+            # 列表越界
+            print('请输入范围内的数字（0-%d）'%(len(namelist)-1))
+        except NameError as e:
+            print('没有测试文件！')
+            input('请输入回车键退出程序')
+            exit()
+            
     # 读出log, winner, reason
     log, winner, reason = readlog(logname)
-
+    over = False
+    
     # pygame初始化
     pygame.init()
     screen = pygame.display.set_mode(s_size)
@@ -179,15 +210,22 @@ def main():
     # 读取两轮数据
     d_current = getdata(log.pop(0))
     player = d_current['player']
-    d_next = getdata(log.pop(0))
     ball_pos = d_current['ball_pos']
     ball_v = d_current['ball_v']
     tick = d_current['tick']
-    next_tick = d_next['tick']
+    
+    next_tick = 0
+    
+    if len(log)>1:
+        d_next = getdata(log.pop(0))
+        next_tick = d_next['tick']
+    else:
+        over = True
 
     clock.tick()
-    over = False
+    
     while True:
+        Clock.tick(100)#限制FPS
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
@@ -196,6 +234,7 @@ def main():
         screen.fill((255, 255, 255))
         writeinfo(screen, player, font)
         draw_card(screen, d_current['cards'], font)
+        draw_card_box(screen, player)
         draw_all(screen, ball_pos, player['West'], player['East'])
 
         t_passed = clock.tick() * game_speed

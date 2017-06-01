@@ -1,0 +1,58 @@
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{l | lll}
+\begin{tabular}[c]{@{}l@{}}TEST\\   Method\end{tabular} & ADF   & KPSS & PP    \\ \hline
+FOF                                                     & 2.53  & 1.07 & -0.16 \\
+diff(FOF)                                               & -3.4  & 0.11 & 40    \\
+Retire                                                  & 1.64  & 1.01 & 0.23  \\
+diff(Retire)                                            & -2.31 & 0.18 & 1.55  \\ \hline
+10pct                                                   & -1.61 & 0.35 & *     \\
+5pct                                                    & -1.95 & 0.46 & 0.26  \\
+1pct                                                    & -2.62 & 0.74 & *    
+\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{l | llll}
+Coefficients: &          &            &         &                     \\
+              & Estimate & Std. Error & t value & Pr(\textgreater|t|) \\  \hline
+(Intercept)   & 22.13335 & 11.14436   & 1.986   & 0.0573              \\
+L(y, 1)       & -0.46108 & 0.19994    & -2.306  & 0.029 *             \\
+L(y, 2)       & -0.01601 & 0.12908    & -0.124  & 0.9022              \\
+L(y, 3)       & -0.03563 & 0.12999    & -0.274  & 0.7861              \\
+L(y, 4)       & -0.02875 & 0.13862    & -0.207  & 0.8373              \\
+L(x, 1)       & 0.05842  & 0.02549    & 2.292   & 0.03 *              \\
+L(x, 0)       & 0.09517  & 0.01852    & 5.138   & 0.000021 ***        \\
+L(r, 1)       & -0.38373 & 0.16855    & -2.277  & 0.0309 *           
+\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{l | llll}
+Coefficients: &            &            &         &                     \\
+              & Estimate   & Std. Error & t value & Pr(\textgreater|t|) \\  \hline
+(Intercept)   & -7.552e+02 & 5.632e+01  & -13.41  & 5.51e-16 ***        \\
+Retire        & 1.524e-01  & 5.042e-03  & 30.22   & \textless 2e-16 ***
+\end{tabular}
+\end{table}
+
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{l | llll}
+Tests        & ADF-Test       & KPSS-Test      & PP-Test   			\\  \hline
+Statistics   & -3.1799 (<1pct & 0.2674(<10pct) & -10.0379 (<Z-tau)  
+\end{tabular}
+\end{table}

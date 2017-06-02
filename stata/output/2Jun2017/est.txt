@@ -1,0 +1,20 @@
+	(1)
+VARIABLES	govsize
+	
+open	0.355*
+	(0.185)
+lngdppc	-0.207***
+	(0.0160)
+lnpop	-0.109***
+	(0.0110)
+anr	0.0649***
+	(0.0249)
+o.mun	-
+	
+Constant	3.022***
+	(0.184)
+	
+Observations	312
+R-squared	0.489
+Standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	

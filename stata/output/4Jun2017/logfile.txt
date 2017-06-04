@@ -1,0 +1,142 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\4Jun2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 4 Jun 2017, 00:41:31
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. sysuse auto, clear
+{txt}(1978 Automobile Data)
+
+{com}. local n = r(N)
+
+. di `n'
+{res}.
+
+{com}. help r
+
+. local n =r(10)
+{err}10 invalid name
+{txt}{search r(198):r(198);}
+
+{com}. local n = r(a)
+
+. n
+
+. local  a = 2
+
+. di `n
+{res}{err}`n invalid name
+{txt}{search r(198):r(198);}
+
+{com}. di `n'
+{res}.
+
+{com}. di `a'
+{res}2
+
+{com}. forvalues i = 1/`n'{c -(}
+{txt}  2{com}. di `i'
+{txt}  3{com}. {c )-}
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+{com}. forvalues i = 1/`a'{c -(}
+{txt}  2{com}. di `i'
+{txt}  3{com}. {c )-}
+1
+2
+
+. di 4+3
+{res}7
+
+{com}. local n = r(N)
+
+. di `n'
+{res}.
+
+{com}. local n = r(N)
+
+. di 4+3
+{res}7
+
+{com}. di `n
+{res}{err}`n invalid name
+{txt}{search r(198):r(198);}
+
+{com}. di `n'
+{res}.
+
+{com}. sum price
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}price {c |}{res}         74    6165.257    2949.496       3291      15906
+
+{com}. count if price < 5000
+  {res}37
+
+{com}. local n =r(N)
+
+. di `n'
+{res}37
+
+{com}. count if price < 5000
+  {res}37
+
+{com}. local n = r(mean)
+
+. di `n'
+{res}.
+
+{com}. sum price
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}price {c |}{res}         74    6165.257    2949.496       3291      15906
+
+{com}. local n = r(Obs)
+
+. di `n'
+{res}.
+
+{com}. sum price
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}price {c |}{res}         74    6165.257    2949.496       3291      15906
+
+{com}. local n = r(mean)
+
+. di `n'
+{res}6165.2568
+
+{com}. sum price
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 7}price {c |}{res}         74    6165.257    2949.496       3291      15906
+
+{com}. local n  = r(min)
+
+. di `n'
+{res}3291
+
+{com}. doedit
+
+. help ren
+
+. exit

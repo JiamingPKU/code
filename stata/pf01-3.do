@@ -1,7 +1,7 @@
 *-------------------------------------------------------
 * project: 财政学研究方法，学期论文
-* dofile name: pf01-2.do
-* Jun 2nd, 2017, Version 01-2.
+* dofile name: pf01-3.do
+* Jun 4th, 2017, Version 01-3.
 * Ren Qingjie, Peking University, renqingjie@pku.edu.cn
 *-------------------------------------------------------
 
@@ -13,7 +13,7 @@ version 14              // Set Version number for backward compatibility
 set more off            // Disable partitioned output
 clear all               // Start with a clean slate
 set linesize 80         // Line size limit to make output more readable
-*set matsize 5000		// Set Workspace 
+set matsize 5000		// Set Workspace 
 						// Set Work Directory
 
 global root "F:\git\stata"
@@ -250,7 +250,11 @@ tab year, gen(y)
 * 省份固定效应
 tab prov, gen(p)
 
+*** 滞后项
+gen lgovsize = L.govsize
+gen lopen = L.open
 
+save city.dta, replace
 
 ****** 描述统计
 sum govsize govedu govedu1 govsec govsec1 open open1 lngdppc lnpop
@@ -270,17 +274,57 @@ forvalues i= 2006/2013{
 	di `i'
 }
 
+*** 截面回归2
+forvalues i= 2006/2013{
+	reg govsize open1 lngdppc lnpop anr p1-p27 if year == `i'
+	if `i' == 2006 {
+		outreg2 using estcross2, tex drop(p* o.p*) ctitle(`i') replace title("安")
+	}
+	else{
+		outreg2 using estcross2, tex drop(p* o.p*) ctitle(`i') append
+	}
+	di `i'
+}
+
+*** 截面回归3
+forvalues i= 2007/2013{
+	reg lgovsize open lngdppc lnpop anr p1-p27 if year == `i'
+	if `i' == 2007 {
+		outreg2 using estcross3, tex drop(p* o.p*) ctitle(`i') replace title("安")
+	}
+	else{
+		outreg2 using estcross3, tex drop(p* o.p*) ctitle(`i') append
+	}
+	di `i'
+}
+
+*** 截面估计4
+forvalues i= 2007/2013{
+	reg govsize lopen lngdppc lnpop anr p1-p27 if year == `i'
+	if `i' == 2007 {
+		outreg2 using estcross4, tex drop(p* o.p*) ctitle(`i') replace title("安")
+	}
+	else{
+		outreg2 using estcross4, tex drop(p* o.p*) ctitle(`i') append
+	}
+	di `i'
+}
+
+
 
 *** pooled 估计, 只放入一个回归结果即可
+/*
 * robust回归
 reg govsize open lngdppc lnpop anr p1-p27 y1-y8, robust
 est store est1
-outreg2 using est, tex replace ctitle(pool robust) drop(p* o.p* y* o.y
-/*
+outreg2 using est, tex replace ctitle(pool robust) drop(p* o.p* y* o.y)
+*/
+
 * cluster回归
 reg govsize open lngdppc lnpop anr p1-p27 y1-y8, vce(cluster prov)
 est store est2
-outreg2 using est, tex append  ctitle(pool P_clus) drop(p* o.p* y* o.y*)
+outreg2 using est, tex replace  ctitle(pool P_clus) drop(p* o.p* y* o.y*)
+/*
 * cluster回归
 reg govsize open lngdppc lnpop anr p1-p27 y1-y8, vce(cluster year)
 est store est3
@@ -289,17 +333,32 @@ outreg2 using est, tex append  ctitle(pool Y_clus) drop(p* o.p* y* o.y*)
 
 
 *** 面板估计,固定效应模型
+* Hausman 检验, P值很小，固定效应
+xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8, fe
+est store est4
+xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8, re
+est store est5
+hausman est4 est5, constant sigmamore
+
+* 双向固定效应
+xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8, fe vce(cluster prov)
+est store est6
+outreg2 using est, tex append	ctitle(FE P_clus) drop(p* o.p* y* o.y*)
+
+
+/*
 *	同时加入了省份固定效应,
 xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8, fe robust
 est store est4
 outreg2 using est, tex append	ctitle(FE robust) drop(p* o.p* y* op*)
+*/
+*	横向和纵向的固定效应,
 /*
-*	横向和纵向的固定效应, 
-xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8, fe vce(cluster prov)
-est store est5
-outreg2 using est, tex append	ctitle(FE P_clus) drop(p* o.p* y* o.y*)
-
-*	随机效应模型,考虑到现实意义,舍去
+*	随机效应模型,考虑到现实意义和豪斯曼检验,舍去
+xtreg govsize open lngdppc lnpop anr p1-p27 y1-y8  //, re vce(cluster prov)
+xttest0
+est store est6
+outreg2 using est, tex append	ctitle(RE P_clus) drop(p* o.p* y* o.y*)
 xtreg govsize open lngdppc lnpop anr p1-p27, re vce(cluster prov)
 est store est6
 outreg2 using est, tex append	ctitle(RE P_clus) drop(p* o.p* y* o.y*)
@@ -309,12 +368,15 @@ outreg2 using est, tex append	ctitle(RE P_clus) drop(p* o.p* y* o.y*)
 * 组间异方差问题 xttest3
 xttest3 
 * 序列自相关检验 xtserial
-xtserial govsize 
+xtserial govsize open lngdppc lnpop
+xtserial govsize
 xtserial open
 xtserial lngdppc
 xtserial lnpop		//不显著
 
+
 ***随机效应的FGLS估计
+/*
 xtgls govsize open lngdppc lnpop anr p1-p27, i(code) t(year) panels(hetero) corr(i) force
 est store est7
 outreg2 using est, tex append ctitle(FGLS AR(1)) drop(p* o.p* y* o.y*)
@@ -322,19 +384,27 @@ outreg2 using est, tex append ctitle(FGLS AR(1)) drop(p* o.p* y* o.y*)
 xtgls govsize open lngdppc lnpop anr p1-p27, i(code) t(year) panels(hetero) corr(ar1) force
 est store est8
 outreg2 using est, tex append ctitle(FGLS PSAR(1)) drop(p* o.p* y* o.y*)
-
-*** GMM估计
-
-
-
-
+*/
+*** 至此得到了 
 
 ******* 面板协整
 
 *** 平稳性检验
 *** 协整关系建立
-*** 格兰杰因果检验
+* MG 结果I(0) 但是检验方法不对
+xtmg govsize open lngdppc , trend res(r_mg)   
+est store est21
+outreg2 using est, tex append ctitle(MG) drop(_*)
 
+* CCE 结果I(0) 但是检验方法不对
+xtmg govsize open lngdppc, cce res(r_cmg) 
+est store est22
+outreg2 using est, tex append ctitle(CMG) drop(_*)
+
+* CCE2 结果I(0) 但是检验方法不对
+xtmg govsize open lngdppc, cce trend res(r_cmg2)
+est store est23
+outreg2 using est, tex append ctitle(CMG) drop(_*)
 
 
 /*

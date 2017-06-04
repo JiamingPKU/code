@@ -183,3 +183,32 @@ def get_op_acc(op_v: Vector, op_pos, pos_last, run_last, dim, ds):
 ###### predict_run:预测对方跑位
 
 ###### predict_acc:预测对方触球变速
+
+### 传入参数
+
+```
+tick_step = tb.step
+turns = tb.tick // (2 * tb.step) + 1
+vbond = secureVelocity(tb.ball['position'].y)
+ball_pos = (tb.ball['position'].x, tb.ball['position'].y)
+ball_vel = (tb.ball['velocity'].x, tb.ball['velocity'].y)
+pos0 = tb.ball['position'].y.__int__()
+vel0 = tb.ball['velocity'].y.__int__()
+op_card = tb.op_side['active_card']
+cards = tuple(tb.side['cards'])
+tb_cards = tuple(tb.cards['cards'])
+op_pos = ds['op_pos']
+op_run = tb.op_side['run_vector']
+op_life = tb.op_side['life']
+life = tb.side['life']
+
+deck = tb.side['cards']
+
+
+ds['op_prevrun'] = 0
+ds['op_prevacc'] = vel0 + ds['prevvel']
+ds['op_prevlife'] = op_life
+ds['op_pos'] = op_nextpos
+ds['op_prevpos'] = op_pos
+ds['prevvel'] = vel0 + accmin
+```

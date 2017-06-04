@@ -1,7 +1,7 @@
 PWD F:/git/tex/0529
 INPUT d:/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt
-INPUT ./pf01_v3.tex
-OUTPUT pf01_v3.log
+INPUT ./pf01_v4.tex
+OUTPUT pf01_v4.log
 INPUT d:/texlive/2016/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2016/texmf-dist/tex/latex/base/article.cls
 INPUT d:/texlive/2016/texmf-dist/tex/latex/base/size10.clo
@@ -128,6 +128,8 @@ INPUT d:/texlive/2016/texmf-dist/tex/latex/oberdiek/pdfcolmk.sty
 INPUT d:/texlive/2016/texmf-dist/tex/latex/oberdiek/pdfcolmk.sty
 INPUT d:/texlive/2016/texmf-dist/tex/latex/truncate/truncate.sty
 INPUT d:/texlive/2016/texmf-dist/tex/latex/truncate/truncate.sty
+INPUT d:/texlive/2016/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+INPUT d:/texlive/2016/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 INPUT d:/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT d:/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT d:/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -136,9 +138,9 @@ INPUT d:/texlive/2016/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 INPUT d:/texlive/2016/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 INPUT d:/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 INPUT d:/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-INPUT pf01_v3.aux
-INPUT pf01_v3.aux
-OUTPUT pf01_v3.aux
+INPUT pf01_v4.aux
+INPUT pf01_v4.aux
+OUTPUT pf01_v4.aux
 INPUT d:/texlive/2016/texmf-dist/tex/latex/tipa/t3cmr.fd
 INPUT d:/texlive/2016/texmf-dist/tex/latex/tipa/t3cmr.fd
 INPUT d:/texlive/2016/texmf-dist/tex/latex/apacite/english.apc
@@ -152,8 +154,8 @@ INPUT d:/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT d:/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT d:/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT d:/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
-OUTPUT pf01_v3.xdv
-INPUT pf01_v3.bbl
-INPUT pf01_v3.bbl
-OUTPUT pf01_v3.soc
-INPUT pf01_v3.aux
+OUTPUT pf01_v4.xdv
+INPUT pf01_v4.bbl
+INPUT pf01_v4.bbl
+OUTPUT pf01_v4.soc
+INPUT pf01_v4.aux

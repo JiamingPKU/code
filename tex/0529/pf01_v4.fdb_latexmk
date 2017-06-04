@@ -1,16 +1,16 @@
 # Fdb version 3
-["bibtex pf01_v3"] 1496593844 "pf01_v3.aux" "pf01_v3.bbl" "pf01_v3" 1496593894
+["bibtex pf01_v4"] 1496599526 "pf01_v4.aux" "pf01_v4.bbl" "pf01_v4" 1496599580
   "bib1.bib" 1494490726 4202 e6b0ef4bc3dd398b75a498192ccf6829 ""
   "d:/texlive/2016/texmf-dist/bibtex/bst/apacite/apacite.bst" 1494031855 141073 9d7b79dbf9d91133318126032cff8c27 ""
-  "pf01_v3.aux" 1496593892 5858 73c1c47a84b9294efd9781e15a6c1397 ""
+  "pf01_v4.aux" 1496599578 5425 f5bca15c21481b272a67bb857ae4f9a2 ""
   (generated)
-  "pf01_v3.bbl"
-  "pf01_v3.blg"
-["xdvipdfmx"] 1496593893 "pf01_v3.xdv" "pf01_v3.pdf" "pf01_v3" 1496593894
-  "pf01_v3.xdv" 1496593892 86636 8be23081495ff7562b075685f36aaf2f "xelatex"
+  "pf01_v4.bbl"
+  "pf01_v4.blg"
+["xdvipdfmx"] 1496599579 "pf01_v4.xdv" "pf01_v4.pdf" "pf01_v4" 1496599580
+  "pf01_v4.xdv" 1496599578 119104 38239b4f52da4686717ada12c1c52889 "xelatex"
   (generated)
-  "pf01_v3.pdf"
-["xelatex"] 1496593844 "pf01_v3.tex" "pf01_v3.xdv" "pf01_v3" 1496593894
+  "pf01_v4.pdf"
+["xelatex"] 1496599527 "pf01_v4.tex" "pf01_v4.xdv" "pf01_v4" 1496599580
   "c:/Windows/Fonts/msyh.ttc" 1489870690 23648676 047af456dd394be780f438b07aff25cc ""
   "d:/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1494033907 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "d:/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1494032565 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -74,6 +74,7 @@
   "d:/texlive/2016/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty" 1494034788 48882 c969a7405466356be8e32a7b5d99864b ""
   "d:/texlive/2016/texmf-dist/tex/latex/ms/everysel.sty" 1494035610 4623 936bfb87af7b91b6496a2317f80db16b ""
   "d:/texlive/2016/texmf-dist/tex/latex/oberdiek/pdfcolmk.sty" 1494035860 11548 5747071fb49b31177f7d600e84775322 ""
+  "d:/texlive/2016/texmf-dist/tex/latex/threeparttable/threeparttable.sty" 1494038110 13506 a4e71a27db1a69b6fabada5beebf0844 ""
   "d:/texlive/2016/texmf-dist/tex/latex/tipa/t3cmr.fd" 1494038234 1257 fd5b1c2f0106f9cf12cdb2ff961987c5 ""
   "d:/texlive/2016/texmf-dist/tex/latex/tipa/t3enc.def" 1494038234 26483 c461a68c34040cb0d96c43e86c012a6d ""
   "d:/texlive/2016/texmf-dist/tex/latex/tools/calc.sty" 1494038369 10214 d03d065f799d54f6b7e9b175f8d84279 ""
@@ -92,11 +93,11 @@
   "d:/texlive/2016/texmf-dist/tex/xelatex/xecjk/xunicode-extra.def" 1494038985 61599 1f10e3ce9873a7d780d70d2ff885a9d6 ""
   "d:/texlive/2016/texmf-dist/tex/xelatex/xunicode/xunicode.sty" 1494039123 205722 8027ed7ab2230086d647802c25f3ee42 ""
   "d:/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1494039361 3746720 cc908207f863d9f41e6923def597ba48 ""
-  "pf01_v3.aux" 1496593892 5858 73c1c47a84b9294efd9781e15a6c1397 ""
-  "pf01_v3.bbl" 1496593844 9282 1d444ee7672d06c9eeff3315c287f7fc "bibtex pf01_v3"
-  "pf01_v3.tex" 1496307935 10831 b2bef3fd96ed1be020d4ec7479573f80 ""
+  "pf01_v4.aux" 1496599578 5425 f5bca15c21481b272a67bb857ae4f9a2 ""
+  "pf01_v4.bbl" 1496599527 9282 1d444ee7672d06c9eeff3315c287f7fc "bibtex pf01_v4"
+  "pf01_v4.tex" 1496599502 16883 6920a4ee792e32c9e7dc38580646ee91 ""
   (generated)
-  "pf01_v3.log"
-  "pf01_v3.soc"
-  "pf01_v3.xdv"
-  "pf01_v3.aux"
+  "pf01_v4.xdv"
+  "pf01_v4.aux"
+  "pf01_v4.soc"
+  "pf01_v4.log"

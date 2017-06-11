@@ -1,0 +1,690 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}F:\git\stata\output\11Jun2017\logfile.txt
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 Jun 2017, 15:24:13
+{txt}
+{com}. * -------------------------------------------------------
+. 
+. 
+. 
+. 
+. /*
+> * -------------------------------------------------------
+> // Close the log, end the file
+> log close
+> exit
+
+{txt}end of do-file
+
+{com}. set more off
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. import excel using "F:\data\ts\fund\工银瑞信国企.xlsx", clear
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. import excel using "F:\data\ts\fund\fund.xlsx", clear
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. replace B = "长安鑫利" in 1
+{txt}variable {bf}B{sf} was {bf}{res}str6{sf}{txt} now {bf}{res}str12{sf}
+{txt}(1 real change made)
+
+{com}. replace C = "华夏大盘" in 1
+{txt}(1 real change made)
+
+{com}. replace D = "工银瑞信国企" in 1
+{txt}variable {bf}D{sf} was {bf}{res}str17{sf}{txt} now {bf}{res}str18{sf}
+{txt}(1 real change made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label var B B[1]
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+end of do-file
+
+{search r(198):r(198);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label var B `=B[1]'
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label var D `=D[1]'
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label var C `=C[1]'
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. label var A `=A[1]'
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. drop in 1
+{txt}(1 observation deleted)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. destring B, replace
+{txt}B has all characters numeric; {res}replaced {txt}as {res}double
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. destring B, replace
+{txt}B already numeric; no {res}replace
+{txt}
+{com}. destring C, replace
+{txt}C has all characters numeric; {res}replaced {txt}as {res}double
+{txt}
+{com}. destring D, replace
+{txt}D has all characters numeric; {res}replaced {txt}as {res}double
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. runtest B
+{txt} N({res}B{txt} <= {res}1.082{txt}) = {res}185
+{txt} N({res}B{txt} >  {res}1.082{txt}) = {res}164
+       {txt}obs = {res}349
+   {txt}N(runs) = {res}14
+        {txt}z  = {res}-17.31
+  {txt}Prob>|z| = {res}0
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. help runtest
+
+. runtest B
+{txt} N({res}B{txt} <= {res}1.082{txt}) = {res}185
+{txt} N({res}B{txt} >  {res}1.082{txt}) = {res}164
+       {txt}obs = {res}349
+   {txt}N(runs) = {res}14
+        {txt}z  = {res}-17.31
+  {txt}Prob>|z| = {res}0
+
+{com}. di r(N)
+{res}349
+
+{com}. di r(mean)
+{res}174.86819
+
+{com}. di  r(n_runs)
+{res}14
+
+{com}. reg B C D
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       349
+{txt}{hline 13}{c +}{hline 34}   F(2, 346)       = {res}   182.18
+{txt}       Model {c |} {res} .563536756         2  .281768378   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  .53515149       346  .001546681   {txt}R-squared       ={res}    0.5129
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.5101
+{txt}       Total {c |} {res} 1.09868825       348   .00315715   {txt}Root MSE        =   {res} .03933
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}           B{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}C {c |}{col 14}{res}{space 2}  .079085{col 26}{space 2}  .007964{col 37}{space 1}    9.93{col 46}{space 3}0.000{col 54}{space 4} .0634211{col 67}{space 3}  .094749
+{txt}{space 11}D {c |}{col 14}{res}{space 2}-.1327378{col 26}{space 2} .0988914{col 37}{space 1}   -1.34{col 46}{space 3}0.180{col 54}{space 4}-.3272418{col 67}{space 3} .0617662
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  .411227{col 26}{space 2} .0403309{col 37}{space 1}   10.20{col 46}{space 3}0.000{col 54}{space 4} .3319025{col 67}{space 3} .4905515
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. help reg
+
+. di e(rank)
+{res}3
+
+{com}. help count
+
+. gen b = B-B[-1]
+{txt}(349 missing values generated)
+
+{com}. drop b
+
+. gen b = d.B
+{err}time variable not set
+{txt}{search r(111):r(111);}
+
+{com}. tsset A
+{err}string variables not allowed in varlist;
+{bf}A{sf} is a string variable
+{txt}{search r(109):r(109);}
+
+{com}. gen t = _n
+
+. tsset  t
+{res}{txt}{col 9}time variable:  {res}{col 25}t, 1 to 349
+{txt}{col 17}delta:  {res}1 unit
+
+{com}. gen b = d.B
+{txt}(1 missing value generated)
+
+{com}. gen c = d.C
+{txt}(1 missing value generated)
+
+{com}. gen d=d.D
+{txt}(1 missing value generated)
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lb = d.log(B)
+{err}unknown function d.log()
+{txt}{search r(133):r(133);}
+
+end of do-file
+
+{search r(133):r(133);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lB = log(B)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lb = d.lB
+{txt}(1 missing value generated)
+
+{com}. gen lc = d.lC
+{err}variable {bf}lC{sf} not found
+{txt}{search r(111):r(111);}
+
+end of do-file
+
+{search r(111):r(111);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lC = log(C)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lD = log(D)
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lb = d.lB
+{err}variable {bf}lb{sf} already defined
+{txt}{search r(110):r(110);}
+
+end of do-file
+
+{search r(110):r(110);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lc = d.lC
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen ld = d.lD
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. help sungmoo
+
+. findit sungmoo
+
+. help wntestq
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. wntestq b
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}   62.3096
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0135
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. replace b = b/B
+{txt}(260 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. replace c = c/C
+{txt}(348 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. replace d = d/D
+{txt}(334 real changes made)
+
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. drop b-d
+
+. drop lc-ld
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen b = d.B/ l.B
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen c = d.C/l.C
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen d = d.D/l.D
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lb = d.lB
+{err}variable {bf}lb{sf} already defined
+{txt}{search r(110):r(110);}
+
+end of do-file
+
+{search r(110):r(110);}
+
+{com}. drop lb
+
+. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. gen lb = d.lB
+{txt}(1 missing value generated)
+
+{com}. gen lc = d.lC
+{txt}(1 missing value generated)
+
+{com}. gen ld = d.lD
+{txt}(1 missing value generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. br
+
+. wntestq b
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}   58.1925
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0314
+
+{com}. help wntestq
+
+. wntestq c
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}  119.3146
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0000
+
+{com}. wntestq lb
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}   57.3449
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0371
+
+{com}. wntestq lc
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}  121.0963
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0000
+
+{com}. wntestq d
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}   93.9558
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0000
+
+{com}. wntestq ld
+
+{txt}Portmanteau test for white noise
+{hline 39}
+ Portmanteau (Q) statistic = {res}   95.3342
+{txt} Prob > chi2({res}40{txt})           = {res}    0.0000
+
+{com}. help adf
+
+. acf b
+{err}command {bf}acf{sf} is unrecognized
+{txt}{search r(199):r(199);}
+
+{com}. help acf
+
+. help ac
+
+. cor b
+{txt}(obs=348)
+
+             {c |}        b
+{hline 13}{c +}{hline 9}
+           b {c |}{res}   1.0000
+
+
+{com}. cor b l.b
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}        b        b
+{hline 13}{c +}{hline 18}
+           b {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}   0.0921   1.0000
+
+
+{com}. cor b l.l.l.l.l.b
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}        b        b
+{hline 13}{c +}{hline 18}
+           b {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}   0.0228   1.0000
+
+
+{com}. cor b l.l.l.l.l.l.l.l.l.l.b
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}        b        b
+{hline 13}{c +}{hline 18}
+           b {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}   0.1088   1.0000
+
+
+{com}. cor lb l.l.l.l.l.l.l.l.l.l.lb
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}       lb       lb
+{hline 13}{c +}{hline 18}
+          lb {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}   0.1079   1.0000
+
+
+{com}. cor lc l.l.l.l.l.l.l.l.l.l.lc
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}       lc       lc
+{hline 13}{c +}{hline 18}
+          lc {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}  -0.0716   1.0000
+
+
+{com}. cor ld l.l.l.l.l.l.l.l.l.l.ld
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}       ld       ld
+{hline 13}{c +}{hline 18}
+          ld {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}  -0.0601   1.0000
+
+
+{com}. cor d l.l.l.l.l.l.l.l.l.l.d
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}        d        d
+{hline 13}{c +}{hline 18}
+           d {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}  -0.0618   1.0000
+
+
+{com}. cor c l.l.l.l.l.l.l.l.l.l.c
+{txt}(obs=338)
+
+             {c |}               L10.
+             {c |}        c        c
+{hline 13}{c +}{hline 18}
+           c {c |}
+         --. {c |}{res}   1.0000
+        {txt}L10. {c |}{res}  -0.0736   1.0000
+
+
+{com}. cor lb l.l.l.l.l.lb
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}       lb       lb
+{hline 13}{c +}{hline 18}
+          lb {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}   0.0221   1.0000
+
+
+{com}. cor lc l.l.l.l.l.lc
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}       lc       lc
+{hline 13}{c +}{hline 18}
+          lc {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}  -0.1868   1.0000
+
+
+{com}. cor ld l.l.l.l.l.ld
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}       ld       ld
+{hline 13}{c +}{hline 18}
+          ld {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}  -0.1784   1.0000
+
+
+{com}. cor d l.l.l.l.l.d
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}        d        d
+{hline 13}{c +}{hline 18}
+           d {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}  -0.1792   1.0000
+
+
+{com}. cor c l.l.l.l.l.c
+{txt}(obs=343)
+
+             {c |}                L5.
+             {c |}        c        c
+{hline 13}{c +}{hline 18}
+           c {c |}
+         --. {c |}{res}   1.0000
+         {txt}L5. {c |}{res}  -0.1874   1.0000
+
+
+{com}. cor lb l.lb
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}       lb       lb
+{hline 13}{c +}{hline 18}
+          lb {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}   0.0905   1.0000
+
+
+{com}. cor c l.c
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}        c        c
+{hline 13}{c +}{hline 18}
+           c {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}  -0.1792   1.0000
+
+
+{com}. cor lc l.lc
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}       lc       lc
+{hline 13}{c +}{hline 18}
+          lc {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}  -0.1789   1.0000
+
+
+{com}. cor d l.d
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}        d        d
+{hline 13}{c +}{hline 18}
+           d {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}  -0.1211   1.0000
+
+
+{com}. cor ld l.ld
+{txt}(obs=347)
+
+             {c |}                 L.
+             {c |}       ld       ld
+{hline 13}{c +}{hline 18}
+          ld {c |}
+         --. {c |}{res}   1.0000
+         {txt}L1. {c |}{res}  -0.1213   1.0000
+
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. run test b
+{err}{p 0 4 2}
+file test.do
+not found
+{p_end}
+{txt}{search r(601):r(601);}
+
+end of do-file
+
+{search r(601):r(601);}
+
+{com}. do "C:\Users\renqi\AppData\Local\Temp\STD00000000.tmp"
+{txt}
+{com}. runtest b
+{txt} N({res}b{txt} <= {res}0{txt}) = {res}201
+{txt} N({res}b{txt} >  {res}0{txt}) = {res}147
+       {txt}obs = {res}348
+   {txt}N(runs) = {res}180
+        {txt}z  = {res}1.01
+  {txt}Prob>|z| = {res}.31
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. runtest lb
+{txt} N({res}lb{txt} <= {res}0{txt}) = {res}201
+{txt} N({res}lb{txt} >  {res}0{txt}) = {res}147
+        {txt}obs = {res}348
+    {txt}N(runs) = {res}180
+         {txt}z  = {res}1.01
+   {txt}Prob>|z| = {res}.31
+
+{com}. runtest c
+{txt} N({res}c{txt} <= {res}.0011972735519521{txt}) = {res}174
+{txt} N({res}c{txt} >  {res}.0011972735519521{txt}) = {res}174
+       {txt}obs = {res}348
+   {txt}N(runs) = {res}174
+        {txt}z  = {res}-.11
+  {txt}Prob>|z| = {res}.91
+
+{com}. runtest d
+{txt} N({res}d{txt} <= {res}.0010555150802247{txt}) = {res}174
+{txt} N({res}d{txt} >  {res}.0010555150802247{txt}) = {res}174
+       {txt}obs = {res}348
+   {txt}N(runs) = {res}191
+        {txt}z  = {res}1.72
+  {txt}Prob>|z| = {res}.09
+
+{com}. clear
+
+. exit

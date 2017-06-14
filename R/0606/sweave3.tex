@@ -1,0 +1,2129 @@
+\documentclass{article}
+
+\usepackage{Sweave}
+\begin{document}
+\input{sweave3-concordance}
+
+\begin{Schunk}
+\begin{Sinput}
+> ####### FOF市场和养老金协整关系分析 #######
+> 
+> #### import the data ####
+> getwd()
+\end{Sinput}
+\begin{Soutput}
+[1] "F:/git/R/0606"
+\end{Soutput}
+\begin{Sinput}
+> x=c("readxl","TSA","forecast", "FinTS","e1071","fGarch","MTS", "urca", "dynlm")
+> lapply(x, require, character.only = T)
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] TRUE
+
+[[2]]
+[1] TRUE
+
+[[3]]
+[1] TRUE
+
+[[4]]
+[1] TRUE
+
+[[5]]
+[1] TRUE
+
+[[6]]
+[1] TRUE
+
+[[7]]
+[1] TRUE
+
+[[8]]
+[1] TRUE
+
+[[9]]
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> rm(list=ls())
+> data2 <- read_excel("F:\\data\\ts\\API.xlsx", sheet = "RR", col_types = c("skip", "skip", "skip", "skip", "numeric", "numeric", "skip"))
+> # 提取协整分析的数据，养老金和fof数量，从2007年开始
+> retire = ts(data2[1], frequency = 4,start = c(2007,1),names = 'retire')
+> fof = ts(data2[2], frequency = 4,start = c(2007,1),names = 'fof')
+> # 描述性统计
+> FinTS.stats(retire)
+\end{Sinput}
+\begin{Soutput}
+  Start Size     Mean Standard.Deviation  Skewness Excess.Kurtosis Minimum
+1  2007   40 10926.12           2355.952 0.1958747       -1.398626    6965
+  Maximum
+1   14878
+\end{Soutput}
+\begin{Sinput}
+> FinTS.stats(fof)
+\end{Sinput}
+\begin{Soutput}
+  Start Size     Mean Standard.Deviation  Skewness Excess.Kurtosis  Minimum
+1  2007   40 909.7876           366.4115 0.1585325       -1.574529 413.1352
+   Maximum
+1 1459.184
+\end{Soutput}
+\begin{Sinput}
+> # 获得增长率
+> GR_retire = diff(log(retire))
+> GR_fof = diff(log(fof))
+> ####### FOF市场和养老金协整关系分析 #######
+> 
+> #### import the data ####
+> getwd()
+\end{Sinput}
+\begin{Soutput}
+[1] "F:/git/R/0606"
+\end{Soutput}
+\begin{Sinput}
+> x=c("readxl","TSA","forecast", "FinTS","e1071","fGarch","MTS", "urca", "dynlm")
+> lapply(x, require, character.only = T)
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] TRUE
+
+[[2]]
+[1] TRUE
+
+[[3]]
+[1] TRUE
+
+[[4]]
+[1] TRUE
+
+[[5]]
+[1] TRUE
+
+[[6]]
+[1] TRUE
+
+[[7]]
+[1] TRUE
+
+[[8]]
+[1] TRUE
+
+[[9]]
+[1] TRUE
+\end{Soutput}
+\begin{Sinput}
+> rm(list=ls())
+> data2 <- read_excel("F:\\data\\ts\\API.xlsx", sheet = "RR", col_types = c("skip", "skip", "skip", "skip", "numeric", "numeric", "skip"))
+> # 提取协整分析的数据，养老金和fof数量，从2007年开始
+> retire = ts(data2[1], frequency = 4,start = c(2007,1),names = 'retire')
+> fof = ts(data2[2], frequency = 4,start = c(2007,1),names = 'fof')
+> # 描述性统计
+> FinTS.stats(retire)
+\end{Sinput}
+\begin{Soutput}
+  Start Size     Mean Standard.Deviation  Skewness Excess.Kurtosis Minimum
+1  2007   40 10926.12           2355.952 0.1958747       -1.398626    6965
+  Maximum
+1   14878
+\end{Soutput}
+\begin{Sinput}
+> FinTS.stats(fof)
+\end{Sinput}
+\begin{Soutput}
+  Start Size     Mean Standard.Deviation  Skewness Excess.Kurtosis  Minimum
+1  2007   40 909.7876           366.4115 0.1585325       -1.574529 413.1352
+   Maximum
+1 1459.184
+\end{Soutput}
+\begin{Sinput}
+> # 获得增长率
+> GR_retire = diff(log(retire))
+> GR_fof = diff(log(fof))
+> par(mfrow=c(1,1))
+> # 基数的协整关系比较复杂，不容易查看
+> ts.plot(retire, fof*10, col = rainbow(8), gpars = list(xlab="year", ylab="number" ))
+> #title("Time Trends of Retire and FOF in Last 10 Years")
+> # legend(x=2007,y=9000, c("Retire","FOF*10"), text.col = rainbow(8), bty="n")
+> legend(x=2007, y= 9500, c("Retire"), text.col=rainbow(8)[1], bty="n")
+> legend(x=2007, y= 7500, c("FOF * 10"), text.col=rainbow(8)[2], bty="n")
+> # 增长率之间趋势相同，可以猜测有协整关系
+> ts.plot(GR_retire, GR_fof, col=rainbow(8))
+> #title("Growth Rates of Retire and FOF in Last 10 years")
+> legend(x=2010, y= -0.05, c("the Growth Rate of Retire"), text.col=rainbow(8)[1], bty="n")
+> legend(x=2007, y= 0.22, c("the Growth Rate of FOF"), text.col=rainbow(8)[2], bty="n")
+> # ts.plot(diff(fof), diff(retire),col=rainbow(8))
+> 
+> #### ADF-Test/PP-Test/KPSS-Test ####
+> 
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> adf.test(diff(retire))
+\end{Sinput}
+\begin{Soutput}
+	Augmented Dickey-Fuller Test
+
+data:  diff(retire)
+Dickey-Fuller = -3.0769, Lag order = 3, p-value = 0.1517
+alternative hypothesis: stationary
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(diff(retire),lags=3)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-855.05  -41.91  163.29  469.74  770.84 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     -0.64920    0.28057  -2.314   0.0275 *
+z.diff.lag1 -0.05236    0.25661  -0.204   0.8397  
+z.diff.lag2 -0.07284    0.21765  -0.335   0.7401  
+z.diff.lag3 -0.04216    0.17733  -0.238   0.8136  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 477.6 on 31 degrees of freedom
+Multiple R-squared:  0.3587,	Adjusted R-squared:  0.2759 
+F-statistic: 4.334 on 4 and 31 DF,  p-value: 0.00671
+
+
+Value of test-statistic is: -2.3138 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(diff(retire))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1809 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(diff(retire))) #小于临界值
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1036.46  -146.86    38.13   352.54   635.49 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 117.0365    75.0543   1.559    0.128
+y.l1          0.2149     0.1618   1.328    0.192
+
+Residual standard error: 435 on 36 degrees of freedom
+Multiple R-squared:  0.04672,	Adjusted R-squared:  0.02024 
+F-statistic: 1.764 on 1 and 36 DF,  p-value: 0.1925
+
+
+Value of test-statistic, type: Z-alpha  is: -28.6452 
+
+         aux. Z statistics
+Z-tau-mu             1.546
+\end{Soutput}
+\begin{Sinput}
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> summary(ur.df(retire, lags = 3)) # 不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1045.81  -178.96    42.52   376.46   673.75 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+z.lag.1      0.013056   0.007953   1.642    0.110
+z.diff.lag1  0.216847   0.178196   1.217    0.233
+z.diff.lag2 -0.090237   0.181572  -0.497    0.623
+z.diff.lag3 -0.064484   0.177694  -0.363    0.719
+
+Residual standard error: 456.3 on 32 degrees of freedom
+Multiple R-squared:  0.1611,	Adjusted R-squared:  0.05628 
+F-statistic: 1.537 on 4 and 32 DF,  p-value: 0.2151
+
+
+Value of test-statistic is: 1.6417 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(retire)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0145 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(retire)) # 不拒绝 （临界值附近）
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1201.00  -177.74    43.92   298.78   598.23 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  58.28597  344.82205   0.169    0.867    
+y.l1          1.00925    0.03118  32.370   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 441.4 on 37 degrees of freedom
+Multiple R-squared:  0.9659,	Adjusted R-squared:  0.965 
+F-statistic:  1048 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: 0.2273 
+
+         aux. Z statistics
+Z-tau-mu            0.2576
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(log(retire),lags=3)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.126809 -0.016630  0.006701  0.032565  0.083800 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+z.lag.1      0.0013069  0.0009398   1.391   0.1739  
+z.diff.lag1  0.3110140  0.1760780   1.766   0.0869 .
+z.diff.lag2 -0.1607714  0.1820882  -0.883   0.3839  
+z.diff.lag3 -0.0741273  0.1749416  -0.424   0.6746  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04828 on 32 degrees of freedom
+Multiple R-squared:  0.1731,	Adjusted R-squared:  0.06973 
+F-statistic: 1.675 on 4 and 32 DF,  p-value: 0.1801
+
+
+Value of test-statistic is: 1.3907 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(log(retire))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.9983 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(log(retire))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.152481 -0.011965  0.004189  0.030196  0.079509 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.05752    0.33970   0.169    0.866    
+y.l1         0.99528    0.03665  27.160   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04822 on 37 degrees of freedom
+Multiple R-squared:  0.9522,	Adjusted R-squared:  0.9509 
+F-statistic: 737.7 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -0.4137 
+
+         aux. Z statistics
+Z-tau-mu            0.3023
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(GR_retire,lags=3)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.108118 -0.005006  0.018043  0.040857  0.093453 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     -0.760940   0.285093  -2.669    0.012 *
+z.diff.lag1  0.122135   0.251060   0.486    0.630  
+z.diff.lag2 -0.005352   0.209715  -0.026    0.980  
+z.diff.lag3 -0.007293   0.176462  -0.041    0.967  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.0501 on 31 degrees of freedom
+Multiple R-squared:  0.3559,	Adjusted R-squared:  0.2728 
+F-statistic: 4.282 on 4 and 31 DF,  p-value: 0.00713
+
+
+Value of test-statistic is: -2.6691 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(GR_retire)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1218 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(GR_retire)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.124986 -0.013397  0.003571  0.026942  0.096347 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept) 0.009042   0.007879   1.148   0.2587  
+y.l1        0.273667   0.158995   1.721   0.0938 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04664 on 36 degrees of freedom
+Multiple R-squared:  0.07604,	Adjusted R-squared:  0.05037 
+F-statistic: 2.963 on 1 and 36 DF,  p-value: 0.09379
+
+
+Value of test-statistic, type: Z-alpha  is: -25.5607 
+
+         aux. Z statistics
+Z-tau-mu            1.1248
+\end{Soutput}
+\begin{Sinput}
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> # 拒绝说明平稳，不拒绝说明不平稳
+> summary(ur.df(fof)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-115.824  -25.939    8.554   30.464  182.785 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     0.02646    0.01046   2.531   0.0159 *
+z.diff.lag -0.09110    0.17204  -0.530   0.5997  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 55.28 on 36 degrees of freedom
+Multiple R-squared:  0.1626,	Adjusted R-squared:  0.116 
+F-statistic: 3.494 on 2 and 36 DF,  p-value: 0.04103
+
+
+Value of test-statistic is: 2.5305 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(fof)) # 拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0743 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(fof)) # 不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-127.92  -27.91   10.26   25.18  179.03 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 31.90547   23.30711   1.369    0.179    
+y.l1         0.99354    0.02417  41.110   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 53.76 on 37 degrees of freedom
+Multiple R-squared:  0.9786,	Adjusted R-squared:  0.978 
+F-statistic:  1690 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -0.1639 
+
+         aux. Z statistics
+Z-tau-mu              1.44
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(diff(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-101.21  -20.73   25.62   41.98  190.07 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)   
+z.lag.1     -0.7513     0.2208  -3.403  0.00168 **
+z.diff.lag  -0.1589     0.1662  -0.956  0.34566   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 59.99 on 35 degrees of freedom
+Multiple R-squared:  0.4597,	Adjusted R-squared:  0.4289 
+F-statistic: 14.89 on 2 and 35 DF,  p-value: 2.091e-05
+
+
+Value of test-statistic is: -3.4031 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(diff(fof))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1161 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(diff(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-131.109  -34.671    9.996   26.495  180.409 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  28.3908     9.8944   2.869  0.00684 **
+y.l1         -0.1052     0.1670  -0.630  0.53280   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 54.12 on 36 degrees of freedom
+Multiple R-squared:  0.0109,	Adjusted R-squared:  -0.01658 
+F-statistic: 0.3966 on 1 and 36 DF,  p-value: 0.5328
+
+
+Value of test-statistic, type: Z-alpha  is: -40.0703 
+
+         aux. Z statistics
+Z-tau-mu            2.8849
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(log(fof),lags=3)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.235654 -0.029210  0.009452  0.041083  0.160717 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+z.lag.1      0.004970   0.002183   2.277   0.0296 *
+z.diff.lag1  0.138442   0.173385   0.798   0.4305  
+z.diff.lag2 -0.137916   0.173951  -0.793   0.4337  
+z.diff.lag3 -0.192555   0.170644  -1.128   0.2675  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07144 on 32 degrees of freedom
+Multiple R-squared:  0.2051,	Adjusted R-squared:  0.1057 
+F-statistic: 2.064 on 4 and 32 DF,  p-value: 0.1088
+
+
+Value of test-statistic is: 2.2765 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(log(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0743 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(log(fof))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.25946 -0.03200  0.01179  0.03291  0.16546 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.20848    0.17977    1.16    0.254    
+y.l1         0.97364    0.02673   36.43   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07 on 37 degrees of freedom
+Multiple R-squared:  0.9729,	Adjusted R-squared:  0.9721 
+F-statistic:  1327 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -1.0362 
+
+         aux. Z statistics
+Z-tau-mu            1.1587
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(GR_fof)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.19661 -0.00530  0.02530  0.06323  0.18321 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)    
+z.lag.1    -0.74202    0.19820  -3.744  0.00065 ***
+z.diff.lag  0.02615    0.16466   0.159  0.87471    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07448 on 35 degrees of freedom
+Multiple R-squared:  0.3649,	Adjusted R-squared:  0.3286 
+F-statistic: 10.05 on 2 and 35 DF,  p-value: 0.000355
+
+
+Value of test-statistic is: -3.7439 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(GR_fof)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.0954 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(GR_fof)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.230951 -0.023625  0.005496  0.038821  0.162127 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  0.02459    0.01252   1.964   0.0573 .
+y.l1         0.14885    0.16290   0.914   0.3669  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.06988 on 36 degrees of freedom
+Multiple R-squared:  0.02267,	Adjusted R-squared:  -0.004481 
+F-statistic: 0.8349 on 1 and 36 DF,  p-value: 0.3669
+
+
+Value of test-statistic, type: Z-alpha  is: -28.5833 
+
+         aux. Z statistics
+Z-tau-mu            1.9269
+\end{Soutput}
+\begin{Sinput}
+> #### 协整模型 ####
+> # 模型m1, 得到残差序列 r1
+> # m1 = fof ~ retire
+> m1 = lm(fof~retire)
+> # r1 = m1$residuals
+> r1 <- m1$residuals
+> par(mfrow=c(1,1))
+> plot(r1, xlab = 'time (seasonal)')
+> # t = adf.test(resid, alternative = 'explosive')
+> print(summary(m1))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = fof ~ retire)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-182.482  -26.622    1.348   38.330  145.811 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -7.552e+02  5.632e+01  -13.41 5.51e-16 ***
+retire       1.524e-01  5.042e-03   30.22  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 74.18 on 38 degrees of freedom
+Multiple R-squared:  0.9601,	Adjusted R-squared:  0.959 
+F-statistic: 913.5 on 1 and 38 DF,  p-value: < 2.2e-16
+\end{Soutput}
+\begin{Sinput}
+> # print(t)
+> 
+> # 对残差序列进行 单位根检验
+> summary(ur.df(r1)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-79.277 -27.154   0.878  35.364 119.339 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)   
+z.lag.1     -0.3536     0.1112   -3.18  0.00303 **
+z.diff.lag   0.1376     0.1547    0.89  0.37948   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 45.54 on 36 degrees of freedom
+Multiple R-squared:  0.2193,	Adjusted R-squared:  0.1759 
+F-statistic: 5.056 on 2 and 36 DF,  p-value: 0.01161
+
+
+Value of test-statistic is: -3.1799 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(r1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.2674 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(r1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-90.241 -29.743  -1.644  27.651 116.425 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    2.488      7.450   0.334     0.74    
+y.l1           0.722      0.103   7.006 2.78e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 46.51 on 37 degrees of freedom
+Multiple R-squared:  0.5702,	Adjusted R-squared:  0.5586 
+F-statistic: 49.09 on 1 and 37 DF,  p-value: 2.78e-08
+
+
+Value of test-statistic, type: Z-alpha  is: -10.0379 
+
+         aux. Z statistics
+Z-tau-mu            0.3398
+\end{Soutput}
+\begin{Sinput}
+> # r1 可以认为是平稳的，说明二者之间存在协整关系。
+> # 系数为 0.1524，则协整向量为 (1, -0.15)
+> 
+> 
+> #### 误差修正模型 ####
+> 
+> # bind the data
+> y = diff(fof); x = diff(retire)
+> r <- r1[1:39]
+> ecmdat1 <- cbind(y,x, r)
+> # 建立ECM模型
+> # ecm1 <- dynlm(d1~  L(d1, 1) + L(d2, 1) + L(d2,0)+L(r1, 1), data = ecmdat1)
+> ecm1 <- dynlm(y~  L(y, 1)  +L(y,2)+L(y,3)+L(y,4)+ L(x, 1) + L(x,0)+L(r, 1), data = ecmdat1)
+> # ecm1 <- dynlm(d1~  L(d1, 1)  +L(d1,2)+L(d1,3)+L(d1,4)+L(r1, 1) + L(d2, 1), data = ecmdat1)
+> 
+> summary(ecm1)
+\end{Sinput}
+\begin{Soutput}
+Time series regression with "ts" data:
+Start = 2008(2), End = 2016(4)
+
+Call:
+dynlm(formula = y ~ L(y, 1) + L(y, 2) + L(y, 3) + L(y, 4) + L(x, 
+    1) + L(x, 0) + L(r, 1), data = ecmdat1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.387 -20.436   1.006  16.815 142.580 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 22.13335   11.14436   1.986   0.0573 .  
+L(y, 1)     -0.46108    0.19994  -2.306   0.0290 *  
+L(y, 2)     -0.01601    0.12908  -0.124   0.9022    
+L(y, 3)     -0.03563    0.12999  -0.274   0.7861    
+L(y, 4)     -0.02875    0.13862  -0.207   0.8373    
+L(x, 1)      0.05842    0.02549   2.292   0.0300 *  
+L(x, 0)      0.09517    0.01852   5.138  2.1e-05 ***
+L(r, 1)     -0.38373    0.16855  -2.277   0.0309 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 40.94 on 27 degrees of freedom
+Multiple R-squared:  0.5683,	Adjusted R-squared:  0.4564 
+F-statistic: 5.078 on 7 and 27 DF,  p-value: 9e-04
+\end{Soutput}
+\begin{Sinput}
+> # 对残差序列进行 单位根检验
+> r_ecm1 <- ecm1$residuals
+> summary(ur.df(r_ecm1)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-84.623 -17.207   6.866  18.222 144.776 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)    
+z.lag.1     -1.1622     0.2746  -4.232 0.000191 ***
+z.diff.lag   0.1081     0.1870   0.578 0.567543    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 37.52 on 31 degrees of freedom
+Multiple R-squared:  0.5034,	Adjusted R-squared:  0.4713 
+F-statistic: 15.71 on 2 and 31 DF,  p-value: 1.943e-05
+
+
+Value of test-statistic is: -4.2323 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(r_ecm1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1962 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(r_ecm1)) #小于临界值
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.857 -20.380   0.744  17.349 142.331 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.96851    6.38695   0.152    0.880
+y.l1        -0.03837    0.18416  -0.208    0.836
+
+Residual standard error: 37.18 on 32 degrees of freedom
+Multiple R-squared:  0.001354,	Adjusted R-squared:  -0.02985 
+F-statistic: 0.0434 on 1 and 32 DF,  p-value: 0.8363
+
+
+Value of test-statistic, type: Z-alpha  is: -33.1763 
+
+         aux. Z statistics
+Z-tau-mu            0.1525
+\end{Soutput}
+\begin{Sinput}
+> # 基数的协整关系比较复杂，不容易查看
+> ts.plot(retire, fof*10, col = rainbow(8), gpars = list(xlab="year", ylab="number" ))
+> #title("Time Trends of Retire and FOF in Last 10 Years")
+> # legend(x=2007,y=9000, c("Retire","FOF*10"), text.col = rainbow(8), bty="n")
+> legend(x=2007, y= 9500, c("Retire"), text.col=rainbow(8)[1], bty="n")
+> legend(x=2007, y= 7500, c("FOF * 10"), text.col=rainbow(8)[2], bty="n")
+> # 增长率之间趋势相同，可以猜测有协整关系
+> ts.plot(GR_retire, GR_fof, col=rainbow(8))
+> #title("Growth Rates of Retire and FOF in Last 10 years")
+> legend(x=2010, y= -0.05, c("the Growth Rate of Retire"), text.col=rainbow(8)[1], bty="n")
+> legend(x=2007, y= 0.22, c("the Growth Rate of FOF"), text.col=rainbow(8)[2], bty="n")
+> # ts.plot(diff(fof), diff(retire),col=rainbow(8))
+> 
+> #### ADF-Test/PP-Test/KPSS-Test ####
+> 
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> adf.test(diff(retire))
+\end{Sinput}
+\begin{Soutput}
+	Augmented Dickey-Fuller Test
+
+data:  diff(retire)
+Dickey-Fuller = -3.0769, Lag order = 3, p-value = 0.1517
+alternative hypothesis: stationary
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(diff(retire),lags=3)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-855.05  -41.91  163.29  469.74  770.84 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     -0.64920    0.28057  -2.314   0.0275 *
+z.diff.lag1 -0.05236    0.25661  -0.204   0.8397  
+z.diff.lag2 -0.07284    0.21765  -0.335   0.7401  
+z.diff.lag3 -0.04216    0.17733  -0.238   0.8136  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 477.6 on 31 degrees of freedom
+Multiple R-squared:  0.3587,	Adjusted R-squared:  0.2759 
+F-statistic: 4.334 on 4 and 31 DF,  p-value: 0.00671
+
+
+Value of test-statistic is: -2.3138 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(diff(retire))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1809 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(diff(retire))) #小于临界值
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1036.46  -146.86    38.13   352.54   635.49 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 117.0365    75.0543   1.559    0.128
+y.l1          0.2149     0.1618   1.328    0.192
+
+Residual standard error: 435 on 36 degrees of freedom
+Multiple R-squared:  0.04672,	Adjusted R-squared:  0.02024 
+F-statistic: 1.764 on 1 and 36 DF,  p-value: 0.1925
+
+
+Value of test-statistic, type: Z-alpha  is: -28.6452 
+
+         aux. Z statistics
+Z-tau-mu             1.546
+\end{Soutput}
+\begin{Sinput}
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> summary(ur.df(retire, lags = 3)) # 不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1045.81  -178.96    42.52   376.46   673.75 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+z.lag.1      0.013056   0.007953   1.642    0.110
+z.diff.lag1  0.216847   0.178196   1.217    0.233
+z.diff.lag2 -0.090237   0.181572  -0.497    0.623
+z.diff.lag3 -0.064484   0.177694  -0.363    0.719
+
+Residual standard error: 456.3 on 32 degrees of freedom
+Multiple R-squared:  0.1611,	Adjusted R-squared:  0.05628 
+F-statistic: 1.537 on 4 and 32 DF,  p-value: 0.2151
+
+
+Value of test-statistic is: 1.6417 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(retire)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0145 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(retire)) # 不拒绝 （临界值附近）
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1201.00  -177.74    43.92   298.78   598.23 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  58.28597  344.82205   0.169    0.867    
+y.l1          1.00925    0.03118  32.370   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 441.4 on 37 degrees of freedom
+Multiple R-squared:  0.9659,	Adjusted R-squared:  0.965 
+F-statistic:  1048 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: 0.2273 
+
+         aux. Z statistics
+Z-tau-mu            0.2576
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(log(retire),lags=3)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.126809 -0.016630  0.006701  0.032565  0.083800 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+z.lag.1      0.0013069  0.0009398   1.391   0.1739  
+z.diff.lag1  0.3110140  0.1760780   1.766   0.0869 .
+z.diff.lag2 -0.1607714  0.1820882  -0.883   0.3839  
+z.diff.lag3 -0.0741273  0.1749416  -0.424   0.6746  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04828 on 32 degrees of freedom
+Multiple R-squared:  0.1731,	Adjusted R-squared:  0.06973 
+F-statistic: 1.675 on 4 and 32 DF,  p-value: 0.1801
+
+
+Value of test-statistic is: 1.3907 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(log(retire))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.9983 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(log(retire))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.152481 -0.011965  0.004189  0.030196  0.079509 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.05752    0.33970   0.169    0.866    
+y.l1         0.99528    0.03665  27.160   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04822 on 37 degrees of freedom
+Multiple R-squared:  0.9522,	Adjusted R-squared:  0.9509 
+F-statistic: 737.7 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -0.4137 
+
+         aux. Z statistics
+Z-tau-mu            0.3023
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(GR_retire,lags=3)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.108118 -0.005006  0.018043  0.040857  0.093453 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     -0.760940   0.285093  -2.669    0.012 *
+z.diff.lag1  0.122135   0.251060   0.486    0.630  
+z.diff.lag2 -0.005352   0.209715  -0.026    0.980  
+z.diff.lag3 -0.007293   0.176462  -0.041    0.967  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.0501 on 31 degrees of freedom
+Multiple R-squared:  0.3559,	Adjusted R-squared:  0.2728 
+F-statistic: 4.282 on 4 and 31 DF,  p-value: 0.00713
+
+
+Value of test-statistic is: -2.6691 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(GR_retire)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1218 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(GR_retire)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.124986 -0.013397  0.003571  0.026942  0.096347 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept) 0.009042   0.007879   1.148   0.2587  
+y.l1        0.273667   0.158995   1.721   0.0938 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04664 on 36 degrees of freedom
+Multiple R-squared:  0.07604,	Adjusted R-squared:  0.05037 
+F-statistic: 2.963 on 1 and 36 DF,  p-value: 0.09379
+
+
+Value of test-statistic, type: Z-alpha  is: -25.5607 
+
+         aux. Z statistics
+Z-tau-mu            1.1248
+\end{Soutput}
+\begin{Sinput}
+> # df-test/pp-test的原假设是非平稳， kpss-test的原假设是平稳
+> # 拒绝说明平稳，不拒绝说明不平稳
+> summary(ur.df(fof)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-115.824  -25.939    8.554   30.464  182.785 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)  
+z.lag.1     0.02646    0.01046   2.531   0.0159 *
+z.diff.lag -0.09110    0.17204  -0.530   0.5997  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 55.28 on 36 degrees of freedom
+Multiple R-squared:  0.1626,	Adjusted R-squared:  0.116 
+F-statistic: 3.494 on 2 and 36 DF,  p-value: 0.04103
+
+
+Value of test-statistic is: 2.5305 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(fof)) # 拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0743 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(fof)) # 不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-127.92  -27.91   10.26   25.18  179.03 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 31.90547   23.30711   1.369    0.179    
+y.l1         0.99354    0.02417  41.110   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 53.76 on 37 degrees of freedom
+Multiple R-squared:  0.9786,	Adjusted R-squared:  0.978 
+F-statistic:  1690 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -0.1639 
+
+         aux. Z statistics
+Z-tau-mu              1.44
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(diff(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-101.21  -20.73   25.62   41.98  190.07 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)   
+z.lag.1     -0.7513     0.2208  -3.403  0.00168 **
+z.diff.lag  -0.1589     0.1662  -0.956  0.34566   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 59.99 on 35 degrees of freedom
+Multiple R-squared:  0.4597,	Adjusted R-squared:  0.4289 
+F-statistic: 14.89 on 2 and 35 DF,  p-value: 2.091e-05
+
+
+Value of test-statistic is: -3.4031 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(diff(fof))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1161 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(diff(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-131.109  -34.671    9.996   26.495  180.409 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  28.3908     9.8944   2.869  0.00684 **
+y.l1         -0.1052     0.1670  -0.630  0.53280   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 54.12 on 36 degrees of freedom
+Multiple R-squared:  0.0109,	Adjusted R-squared:  -0.01658 
+F-statistic: 0.3966 on 1 and 36 DF,  p-value: 0.5328
+
+
+Value of test-statistic, type: Z-alpha  is: -40.0703 
+
+         aux. Z statistics
+Z-tau-mu            2.8849
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(log(fof),lags=3)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.235654 -0.029210  0.009452  0.041083  0.160717 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)  
+z.lag.1      0.004970   0.002183   2.277   0.0296 *
+z.diff.lag1  0.138442   0.173385   0.798   0.4305  
+z.diff.lag2 -0.137916   0.173951  -0.793   0.4337  
+z.diff.lag3 -0.192555   0.170644  -1.128   0.2675  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07144 on 32 degrees of freedom
+Multiple R-squared:  0.2051,	Adjusted R-squared:  0.1057 
+F-statistic: 2.064 on 4 and 32 DF,  p-value: 0.1088
+
+
+Value of test-statistic is: 2.2765 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(log(fof))) #拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 1.0743 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(log(fof))) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.25946 -0.03200  0.01179  0.03291  0.16546 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.20848    0.17977    1.16    0.254    
+y.l1         0.97364    0.02673   36.43   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07 on 37 degrees of freedom
+Multiple R-squared:  0.9729,	Adjusted R-squared:  0.9721 
+F-statistic:  1327 on 1 and 37 DF,  p-value: < 2.2e-16
+
+
+Value of test-statistic, type: Z-alpha  is: -1.0362 
+
+         aux. Z statistics
+Z-tau-mu            1.1587
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.df(GR_fof)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.19661 -0.00530  0.02530  0.06323  0.18321 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)    
+z.lag.1    -0.74202    0.19820  -3.744  0.00065 ***
+z.diff.lag  0.02615    0.16466   0.159  0.87471    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.07448 on 35 degrees of freedom
+Multiple R-squared:  0.3649,	Adjusted R-squared:  0.3286 
+F-statistic: 10.05 on 2 and 35 DF,  p-value: 0.000355
+
+
+Value of test-statistic is: -3.7439 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(GR_fof)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.0954 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(GR_fof)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.230951 -0.023625  0.005496  0.038821  0.162127 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  0.02459    0.01252   1.964   0.0573 .
+y.l1         0.14885    0.16290   0.914   0.3669  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.06988 on 36 degrees of freedom
+Multiple R-squared:  0.02267,	Adjusted R-squared:  -0.004481 
+F-statistic: 0.8349 on 1 and 36 DF,  p-value: 0.3669
+
+
+Value of test-statistic, type: Z-alpha  is: -28.5833 
+
+         aux. Z statistics
+Z-tau-mu            1.9269
+\end{Soutput}
+\begin{Sinput}
+> #### 协整模型 ####
+> # 模型m1, 得到残差序列 r1
+> # m1 = fof ~ retire
+> m1 = lm(fof~retire)
+> # r1 = m1$residuals
+> r1 <- m1$residuals
+> par(mfrow=c(1,1))
+> plot(r1, xlab = 'time (seasonal)')
+> # t = adf.test(resid, alternative = 'explosive')
+> print(summary(m1))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = fof ~ retire)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-182.482  -26.622    1.348   38.330  145.811 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -7.552e+02  5.632e+01  -13.41 5.51e-16 ***
+retire       1.524e-01  5.042e-03   30.22  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 74.18 on 38 degrees of freedom
+Multiple R-squared:  0.9601,	Adjusted R-squared:  0.959 
+F-statistic: 913.5 on 1 and 38 DF,  p-value: < 2.2e-16
+\end{Soutput}
+\begin{Sinput}
+> # print(t)
+> 
+> # 对残差序列进行 单位根检验
+> summary(ur.df(r1)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-79.277 -27.154   0.878  35.364 119.339 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)   
+z.lag.1     -0.3536     0.1112   -3.18  0.00303 **
+z.diff.lag   0.1376     0.1547    0.89  0.37948   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 45.54 on 36 degrees of freedom
+Multiple R-squared:  0.2193,	Adjusted R-squared:  0.1759 
+F-statistic: 5.056 on 2 and 36 DF,  p-value: 0.01161
+
+
+Value of test-statistic is: -3.1799 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(r1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.2674 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(r1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-90.241 -29.743  -1.644  27.651 116.425 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    2.488      7.450   0.334     0.74    
+y.l1           0.722      0.103   7.006 2.78e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 46.51 on 37 degrees of freedom
+Multiple R-squared:  0.5702,	Adjusted R-squared:  0.5586 
+F-statistic: 49.09 on 1 and 37 DF,  p-value: 2.78e-08
+
+
+Value of test-statistic, type: Z-alpha  is: -10.0379 
+
+         aux. Z statistics
+Z-tau-mu            0.3398
+\end{Soutput}
+\begin{Sinput}
+> # r1 可以认为是平稳的，说明二者之间存在协整关系。
+> # 系数为 0.1524，则协整向量为 (1, -0.15)
+> 
+> 
+> #### 误差修正模型 ####
+> 
+> # bind the data
+> y = diff(fof); x = diff(retire)
+> r <- r1[1:39]
+> ecmdat1 <- cbind(y,x, r)
+> # 建立ECM模型
+> # ecm1 <- dynlm(d1~  L(d1, 1) + L(d2, 1) + L(d2,0)+L(r1, 1), data = ecmdat1)
+> ecm1 <- dynlm(y~  L(y, 1)  +L(y,2)+L(y,3)+L(y,4)+ L(x, 1) + L(x,0)+L(r, 1), data = ecmdat1)
+> # ecm1 <- dynlm(d1~  L(d1, 1)  +L(d1,2)+L(d1,3)+L(d1,4)+L(r1, 1) + L(d2, 1), data = ecmdat1)
+> 
+> summary(ecm1)
+\end{Sinput}
+\begin{Soutput}
+Time series regression with "ts" data:
+Start = 2008(2), End = 2016(4)
+
+Call:
+dynlm(formula = y ~ L(y, 1) + L(y, 2) + L(y, 3) + L(y, 4) + L(x, 
+    1) + L(x, 0) + L(r, 1), data = ecmdat1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.387 -20.436   1.006  16.815 142.580 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 22.13335   11.14436   1.986   0.0573 .  
+L(y, 1)     -0.46108    0.19994  -2.306   0.0290 *  
+L(y, 2)     -0.01601    0.12908  -0.124   0.9022    
+L(y, 3)     -0.03563    0.12999  -0.274   0.7861    
+L(y, 4)     -0.02875    0.13862  -0.207   0.8373    
+L(x, 1)      0.05842    0.02549   2.292   0.0300 *  
+L(x, 0)      0.09517    0.01852   5.138  2.1e-05 ***
+L(r, 1)     -0.38373    0.16855  -2.277   0.0309 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 40.94 on 27 degrees of freedom
+Multiple R-squared:  0.5683,	Adjusted R-squared:  0.4564 
+F-statistic: 5.078 on 7 and 27 DF,  p-value: 9e-04
+\end{Soutput}
+\begin{Sinput}
+> # 对残差序列进行 单位根检验
+> r_ecm1 <- ecm1$residuals
+> summary(ur.df(r_ecm1)) #拒绝
+\end{Sinput}
+\begin{Soutput}
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1 + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-84.623 -17.207   6.866  18.222 144.776 
+
+Coefficients:
+           Estimate Std. Error t value Pr(>|t|)    
+z.lag.1     -1.1622     0.2746  -4.232 0.000191 ***
+z.diff.lag   0.1081     0.1870   0.578 0.567543    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 37.52 on 31 degrees of freedom
+Multiple R-squared:  0.5034,	Adjusted R-squared:  0.4713 
+F-statistic: 15.71 on 2 and 31 DF,  p-value: 1.943e-05
+
+
+Value of test-statistic is: -4.2323 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.62 -1.95 -1.61
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.kpss(r_ecm1)) #不拒绝
+\end{Sinput}
+\begin{Soutput}
+####################### 
+# KPSS Unit Root Test # 
+####################### 
+
+Test is of type: mu with 3 lags. 
+
+Value of test-statistic is: 0.1962 
+
+Critical value for a significance level of: 
+                10pct  5pct 2.5pct  1pct
+critical values 0.347 0.463  0.574 0.739
+\end{Soutput}
+\begin{Sinput}
+> summary(ur.pp(r_ecm1)) #小于临界值
+\end{Sinput}
+\begin{Soutput}
+################################## 
+# Phillips-Perron Unit Root Test # 
+################################## 
+
+Test regression with intercept 
+
+
+Call:
+lm(formula = y ~ y.l1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.857 -20.380   0.744  17.349 142.331 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.96851    6.38695   0.152    0.880
+y.l1        -0.03837    0.18416  -0.208    0.836
+
+Residual standard error: 37.18 on 32 degrees of freedom
+Multiple R-squared:  0.001354,	Adjusted R-squared:  -0.02985 
+F-statistic: 0.0434 on 1 and 32 DF,  p-value: 0.8363
+
+
+Value of test-statistic, type: Z-alpha  is: -33.1763 
+
+         aux. Z statistics
+Z-tau-mu            0.1525
+\end{Soutput}
+\begin{Sinput}
+> 
+> 
+\end{Sinput}
+\end{Schunk}
+
+
+
+
+
+
+
+\end{document}

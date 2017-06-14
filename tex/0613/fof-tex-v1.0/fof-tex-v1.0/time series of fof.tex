@@ -1,0 +1,264 @@
+\documentclass[10.5pt,onecolumn,a4paper]{article}%pre,aps,
+\usepackage{ctex}
+\usepackage{setspace,dcolumn}
+\usepackage{subfigure,graphicx}
+\usepackage{float,psfrag,epsfig}
+\usepackage{hyperref}
+%\usepackage[font=small,format=plain,labelfont=bf,textfont=it,justification=raggedright,singlelinecheck=false]{caption}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{longtable,tabularx,multirow}
+\hypersetup{colorlinks=true}
+\usepackage{geometry}
+\geometry{top=2.54cm,bottom=2.54cm,left=3cm,right=3cm}
+
+\usepackage{listings,xcolor}
+\lstset{frame=shadowbox,rulesepcolor=\color{red!20!green!20!blue!20}, %边框阴影
+        numbers=left, %设置行号位置
+        numberstyle=\tiny, %设置行号大小
+        basicstyle=\tiny, %代码字体大小设定
+        keywordstyle=\color{blue}, %设置关键字颜色
+        commentstyle=\color[cmyk]{1,0,1,0}, %设置注释颜色
+        %frame=single, %设置边框格式
+        escapeinside=``, %逃逸字符(1左面的键),用于显示中文
+        breaklines, %自动折行
+        extendedchars=false, %解决代码跨页时,章节标题,页眉等汉字不显示的问题
+        xleftmargin=2em,xrightmargin=2em, aboveskip=1em, %设置边距
+        tabsize=4, %设置tab空格数
+        showspaces=false %不显示空格
+       }
+
+\title{美国FOF市场总资产的时间序列分析}
+\author{祁周, 王喆, 任庆杰}
+
+\begin{document}
+\maketitle{}
+
+\textcolor{red}{写在最前面：大家检查一下各自做的部分，把重点的图和数据结论、检验结论都摆出来，课堂pre上展示的图都要再出现一遍。然后请大家严格按照引言里面的图片插入方式插入图片，标题单独写，图片里不要有标题}
+
+\textcolor{blue}{红色的字是代表需要二位加入东西的地方，请二位各自修改各自负责部分，为了方便协同编辑，我会将二位反馈给我的tex文件里整个section直接复制粘贴，覆盖掉老版本的tex}
+
+\textcolor{red}{另外：大家想想我们的标题叫什么名字比较好，我先随便写了一个}
+
+\textcolor{blue}{我们需要提交的不仅是论文正文，还有一个一页纸的 Summary 请二位再写一下各自负责部分的``a description of the final model, and any conclusions drawn from your analysis'', by 王喆\& RQJ}
+
+\section{引言}
+基金中基金(fund of funds,简称FOF)是指投资于其他基金组合的基金.在欧美市场,基金中基金已经发展成为数量和规模均较大的一类成熟的理财产品.在美国市场上, FOF市场总资产在1995年初仅有3891.54百万美元,到2016年底已发展为1439637.04百万美元,年均增长率高达30.84\%.
+
+2016年9月,中国证券监督管理委员会发布《公开募集证券投资基金运作指引第2号------基金中基金指引》,标志着公募基金行业迎来创新品种FOF,并由此进入FOF发展的全新时代.
+\subsection{基金中基金的起源}
+
+基金中基金起源于上世纪70年代,最初是以其他私募股权基金(private equity fund)为投资的标的.这是因为私募股权基金往往设置有非常高的投资门槛,单笔投资的资金规模巨大,并且要求参与者为合格投资者,这使得许多有意愿投资私募股权基金的个人投资者被拒之门外.而PE FOF作为渠道,解决了这个问题,使得个人投资者可以通过投资PE FOF,即间接地投资一篮子私募股权基金,来分享风险投资可能带来的高收益.
+
+与中国市场不同,美国法律对于没有明确规定禁止的事情,默认为许可,而在中国,公民仅能做法律允许的事.这使得美国资本市场的创新能力非常强大,非常有利于全新产品的创立.
+
+\subsection{基金中基金的成熟契机}
+
+1987年10月19日,美国股票市场在经历了两年的牛市之后,遭受到一次巨大的股灾,这也是历史上继1929年经济危机后第二次全球经济危机.道琼斯指数单日跌幅达22\%,恒生指数暴跌11\%,这促使投资者开始思考如何根据市场的不同情况配置不同种类的基金,分散标的,减小风险.
+
+\begin{figure}[ht]
+\begin{minipage}[ht]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pic/mutual.pdf}
+\caption{1988--2016年美国股票、共同基金市场发展状况}\label{fg:mutual}
+\end{minipage}%
+\hspace{0.06\textwidth}
+\begin{minipage}[ht]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{pic/retirement.pdf}
+\caption{1974--2016年美国退休养老资产发展状况}\label{fg:retirement}
+\end{minipage}
+\end{figure}
+
+共同基金在这次惨重的股灾过后,也不断开发出新的产品,基金的类型迅速增多,整个基金市场呈现爆发式增长,如图~\ref{fg:mutual}~所示,基金数量甚至远超股票数量.市场的复杂性、基金的多样性使得投资者对基金筛选及风险分散有了极大的需求,从此, FOF市场规模的扩大有了客观上的推动因素.
+
+在同一时期,美国也大规模推广401(k)计划,这个计划的主要内容是创建了一个税收优惠账户,对雇员和雇主共同缴纳的养老金进行投资过程中收取的股息税和资本利得税进行减免.这为随后养老金进入资本市场打开了通道.
+
+\subsection{基金中基金与养老金的关系\label{sec:retire}}
+
+如上文所述,退休养老资产的扩大成为了美国基金中基金市场规模扩大的重要因素.为了能够吸引养老金投资者,基金公司推出了大量的针对养老金需求的基金中基金产品. 尽管FOF具有双重收费的劣势, 但它双重风险分散、多样化投资的优势吸引了大量养老金投资者的青睐.
+
+退休养老基金主要投资于基金中基金产品,而基金中基金市场的主要资金来源也是退休养老基金,二者相互依存.基金中基金解决了养老金投资的难点,将两者紧密联系在一起.
+
+\subsection{美国FOF市场的总资产序列}
+根据彭博资讯提供的数据可以获取美国市场上所有FOF基金的规模及成立时间,以此统计出全市场的数量和规模,如图~\ref{fg:fof}~所示,时间区间为1995年1月至2017年5月,具体数据如表~\ref{tab:fof}~所示.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.6\textwidth]{pic/fof.pdf}
+  \caption{1995年以来美国基金中基金市场的数量及规模}\label{fg:fof}
+\end{figure}
+
+如图~\ref{fg:fof}~所示,美国基金中基金市场的资产规模呈上升趋势,显示出明显的时间趋势.
+
+\textcolor{red}{补充：把之前proposal中的数据描述，翻译成汉语，稍作修改，补充在这个地方，by王喆}
+
+\textcolor{red}{修改：这部分引言是我自己写的，请二位提一提意见，然后我来修改，修改意见请二位单独写一个文件，或者像我一样加入红色的说明，否则的话容易被覆盖掉，by王喆\& RQJ}
+
+\section{美国FOF市场总资产}
+\subsection{ARIMA建模}
+首先使用ADF检验, 在备择假设为平稳性的条件下, 对FOF基金的资产总量数据进行检验. 检验结果为$P=0.8158$, 这说明FOF的资产总量数据并不是一个平稳的时间序列. 而对FOF资产总量取对数差分后,即得到总资产的对数增长率序列${GR\_ast_t}$, 再次进行ADF检验, 检验结果$P<0.01$, 拒绝了非平稳的原假设, 即其对数差分后是一个平稳序列.
+
+\textcolor{red}{展示: AST和GR\_ast的ADF检验结果, by王喆. }
+
+下面对对数差分后的序列进行ARMA建模. 绘制$GR\_ast_t$的自相关和偏自相关图像可以发现, 此序列的ACF函数在5阶处截尾, PACF函数在5阶处结尾. \emph{经过反复尝试,} 当使用MA(5)对序列进行刻画时, 可以得到较好的估计效果. MA(5)模型的极大似然估计结果如下:
+
+\textcolor{red}{展示: 定阶所用的数据或其图示, by王喆}
+
+\textcolor{red}{展示: MA(5)的极大似然估计结果的表格或图示, by王喆}
+
+\subsection{模型诊断}
+
+对估计的残差$\hat{u}_t$进行Ljung-Box检验, $p=0.84$, 可以接受原假设, 满足白噪声要求. 同时绘制$\hat{u}_t$的自相关函数, 从1阶开始都不显著, 也说明$\hat{u}_t$序列不存在自相关.
+
+\textcolor{red}{展示: 残差的白噪声检验结果及其ACF、PACF图示, by王喆}
+
+继续对$\hat{u}_t^2$进行 McLeod.Li检验, 判断是否存在ARCH效应. 检验结果各阶的$P$值都接近1, 说明不存在ARCH效应.
+
+\textcolor{red}{残差平方的第一次检验结果或其图示, by王喆}
+
+但是, 如果绘制出标准化的残差图进行观察, 会发现在第90期有一个明显的异常值. 很有可能因为这个异常值的出现, 使得其他的波动被隐藏, 在模型诊断的检验中造成了偏差. 通过Bonferroni法则进行检验MA(5)模型, 在第90期存在一个强影响点$GR\_ast_{90}$. 这进一步确认了我们的猜测.
+
+\textcolor{red}{在上一段补充: Bonferroni法则的简要介绍, 用几句话说一下就好, by王喆}
+
+\textcolor{red}{展示: 异常值的图示\&各种诊断情况, by王喆}
+
+\subsection{异常值处理}
+为了削弱第90期的异常值对模型的影响, 令
+$$GR\_ast_{90} = \frac{1}{3} \cdot (GR\_ast_{89}+GR\_ast_{90}+GR\_ast_{91})$$
+重新对${GR\_ast_t}$序列进行建模估计.
+此时对使用极大似然估计得到的残差序列${\hat{u}_t^2}$进行 McLeod.Li检验, 检验结果$P$值很小, 拒绝了不存在条件异方差的原假设, 即存在GARCH效应. 于是使用 ARMA(0,5)-GARCH(0,1) 对调整后的${GR\_ast_{t}}$进行建模. 估计结果如下:
+
+\textcolor{red}{写出模型的完整表达式，展示每个参数的值和标准差，by王喆}
+
+\textcolor{red}{展示: 最新模型的预测结果，就是beamer里面的那一堆图，by王喆}
+
+\textcolor{red}{修改: 统一一下上面几段用到的ARCH和GARCH字样，by王喆}
+
+\section{与退休养老资产的协整关系}
+由于美国FOF基金的兴起, 主要源于养老金市场的发展. 美国雇员逐渐选择将养老金计划由DB(Defined Benefit) Plan转向DC(Defined Contribute) Plan, 增大了养老金投资着的投资需求. 而FOF基金作为一种收益稳定、风险二次分散的基金, 自然受到了这些被动投资者的青睐. 下面, 利用彭博数据库中FOF基金资产总量和养老金资产总量的季度数据, 对FOF基金市场与养老金市场进行协整分析. 在2007--2016十年中, 二者的绝对数量和增长率变化趋势如下:
+
+% 两个市场的趋势图像
+\includegraphics[width=0.4\textwidth]{pic/3-0-1.eps}
+\includegraphics[width=0.4\textwidth]{pic/3-0-2.eps}
+
+\textcolor{red}{修改：将图片按照引言里的格式插入，对照代码即可，可能会需要subfigure命令，可以参考tex源文件里下面隐藏着的被注释掉的代码，by RQJ}
+
+%\begin{figure}[ht]
+%  \centering
+%  \subfigure[Small Box with a Long Caption]{
+%    \label{fig:subfig:a} %% label for first subfigure
+%    \includegraphics[width=1.0in]{pic1.eps}}
+%  \hspace{1in}
+%  \subfigure[Big Box]{
+%    \label{fig:subfig:b} %% label for second subfigure
+%    \includegraphics[width=1.5in]{pic.eps}}
+%  \caption{Two Subfigures}
+%  \label{fig:subfig} %% label for entire figure
+%\end{figure}
+
+% 单位根检验部分
+对${FOF_t}$和${Retire_t}$序列分别进行单位根检验. ADF检验和Phillips–Perron的结果接受了原假设（单位根过程）, 并且Kwiatkowski–Phillips–Schmidt–Shin检验结果拒绝了原假设（平稳过程）. 因此可以认为${FOF_t}$和${Retire_t}$是非平稳序列.
+继续对它们的差分序列${\Delta FOF_t}$和${\Delta Retire_t}$进行单位根检验, 得到的结果表明它们是平稳序列. 所以, ${FOF_t}$和${Retire_t}$分别是2个$I(1)$序列. 下面对这两个序列进行协整估计.
+
+% 协整部分
+首先, 使用最小二乘法估计如下方程:
+$$FOF_t = \alpha + \beta \cdot Retire_t + \mu_t$$
+得到$\alpha$和$\beta$的估计量$\hat{\alpha}$和$\hat{\beta}$. 估计结果如表~\ref{tab:coin-OLS-estimate}~所示.
+
+% OLS回归结果表格
+\begin{table}[ht]
+    \centering
+    \caption{OLS估计量}
+    \label{tab:coin-OLS-estimate}
+    \begin{tabular}{l | rrrr}
+        Coefficients: &            &            &         &                     \\
+                      & Estimate   & Std. Error & t value & Pr(\textgreater|t|) \\  \hline
+        (Intercept)   & -7.552e+02 & 5.632e+01  & -13.41  & 5.51e-16***        \\
+        Retire        & 1.524e-01  & 5.042e-03  & 30.22   & \textless 2e-16***
+    \end{tabular}
+\end{table}
+
+
+对残差估计序列$\hat{\mu}_t$进行单位根检验, $\hat{\mu}_t$在ADF检验和PP检验中拒绝了存在单位根的原假设, 在KPSS检验中接受了序列平稳的原假设.
+因此可以认为${FOF_t}$和${Retire_t}$两个$I(1)$过程得到了平稳的$I(0)$
+过程. 即两个序列之间存在着长期的均衡关系（协整关系）. 协整向量为$(1, -0.15)$, 表~\ref{tab:coin-OLS-resid-uniroot}~所示.
+
+% 残差具有平稳性
+\begin{table}[ht]
+    \centering
+    \caption{OLS估计残差的单位根检验}
+    \label{tab:coin-OLS-resid-uniroot}
+    \begin{tabular}{l | cccc}
+        Tests        & ADF-Test       & KPSS-Test      & PP-Test               \\  \hline
+        Statistics   & -3.1799 (<1pct) & 0.2674(<10pct) & -10.0379 (<Z-tau)
+    \end{tabular}
+\end{table}
+
+% Error Correction Model
+记$y_t = FOF_t$, $x_t = Retire_t$, 建立误差修正模型. 由于使用的是季度数据, 所以加入$\Delta y_t$的1-4阶滞后项.
+$$\Delta y_t = \alpha_1 \cdot \Delta y_{t-1} + \alpha_2  \cdot \Delta  y_{t-2} + \alpha_3 \cdot \Delta  y_{t-3} + \alpha_4 \cdot \Delta  y_{t-4} + \beta_0 \cdot \Delta  x_t+\beta_1 \cdot \Delta  x_{t-1} + +\gamma \cdot ( y_{t-1}-kx_{t-1}) + \epsilon_t$$
+
+\textcolor{red}{修改: 上面式子里连续有两个加号？仔细检查一下有没有缺项少项的问题，by任庆杰}
+
+估计结果表~\ref{tab:coin-correction-model}~所示.
+\begin{table}[ht]
+    \centering
+    \caption{误差修正模型估计结果}
+    \label{tab:coin-correction-model}
+    \begin{tabular}{l | rrrr}
+        Coefficients: &          &            &         &                     \\
+                      & Estimate & Std. Error & t value & Pr(\textgreater|t|) \\  \hline
+        (Intercept)   & 22.13335 & 11.14436   & 1.986   & 0.0573              \\
+        L(y, 1)       & -0.46108 & 0.19994    & -2.306  & 0.029*             \\
+        L(y, 2)       & -0.01601 & 0.12908    & -0.124  & 0.9022              \\
+        L(y, 3)       & -0.03563 & 0.12999    & -0.274  & 0.7861              \\
+        L(y, 4)       & -0.02875 & 0.13862    & -0.207  & 0.8373              \\
+        L(x, 1)       & 0.05842  & 0.02549    & 2.292   & 0.03*              \\
+        L(x, 0)       & 0.09517  & 0.01852    & 5.138   & 0.000021***        \\
+        L(r, 1)       & -0.38373 & 0.16855    & -2.277  & 0.0309*
+    \end{tabular}
+\end{table}
+
+
+误差修正项的系数在10\%的程度显著, 协整向量为$(1, -0.15)$.
+
+\textcolor{red}{补充: 几句话说明建立误差修正模型的原因及其能说明的问题，by RQJ}
+
+\section{结论}
+    \begin{enumerate}
+        \item 在过去的20年中, FOF资产总量的增长率满足ARMA(0,5)-GARCH(1,1)模型.
+        \item FOF基金市场和养老金市场之前存在协整关系. FOF资产总量维持在养老金市场总量的15\%水平, 可以实现长期稳定关系.
+    \end{enumerate}
+
+\textcolor{red}{修改：把结论第一点再说具体一些，现在字数有点少，by王喆}
+\clearpage
+\appendix
+\include{encl_data}
+\section{代码}
+\textcolor{red}{请二位模仿我下面写的这样，补充上各自负责的那一部分的代码，注意写清楚subsection，做好命名。如果自己一个人的代码太多，放在一起太混乱，可以写多个subsection，by王喆\& RQJ}
+
+\textcolor{red}{正文部分如果需要展示R的输出，也可以用下面的这个lstlisting环境，可能会比table环境更适合一些，by王喆\& RQJ}
+\subsection{xxxxxxx}
+\begin{lstlisting}[language=R,frame=single]
+rm(list=ls())
+
+library(readxl)
+library(TSA)
+library(forecast)
+
+data <- read_excel("API.xlsx", sheet = "R", col_types = c("skip", "numeric", "numeric"))
+
+ast = data[1] # ast represents asset
+ast = ts(ast, frequency = 12,start = c(1995,1)) # total net assets
+
+GR_ast = diff(log(ast)) # growth ratio of total net asset
+GR_ast = ts(GR_ast * 100, frequency = 12,start = c(1995,2), names = 'GR_ast')
+
+par(mfrow = c(2,1))
+plot(ast)
+plot(GR_ast)
+
+adf.test(ast)
+adf.test(GR_ast)
+\end{lstlisting}
+\end{document}

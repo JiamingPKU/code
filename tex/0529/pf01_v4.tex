@@ -1,18 +1,23 @@
 % @Author: Ren Qingjie
 % @Date:   2017-05-31 19:22:11
 % @Last Modified by:   Ren Qingjie
-% @Last Modified time: 2017-06-08 23:56:16
+% @Last Modified time: 2017-06-12 12:00:31
 
 \documentclass[10pt]{article}
-\usepackage{apacite}
-\usepackage[UTF8]{ctex}
-\usepackage{changes}
-% \usepackage{threeparttable}
-\usepackage{threeparttable}
-\usepackage{geometry}
-    \definechangesauthor[name={Jack}, color=orange]{per}
-    \setremarkmarkup{(#2)}
-    \geometry{top=3cm, bottom=3cm, left=3cm, right=3cm}
+\usepackage{apacite} %apa格式引用
+\usepackage[section]{placeins} %防止图片浮动过Section
+\usepackage[UTF8]{ctex} %中文
+% \usepackage{changes} %批注
+\usepackage{threeparttable} %多功能表格
+\usepackage{geometry} %边框
+\usepackage{appendix} %附录
+\usepackage{listings,xcolor}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{apacite} %apa格式引用
+% \definechangesauthor[name={Jack}, color=orange]{per}
+% \setremarkmarkup{(#2)}
+\geometry{top=2.54cm,bottom=2.54cm,left=3cm,right=3cm}
 \author{任庆杰  140001500  renqingjie@pku.edu.cn}
 \title{经济全球化与地方政府规模\\
 ——基于中国地方经济数据的实证检验}
@@ -28,12 +33,15 @@
 
 \section{文献综述}
 \subsection{政府职能的发展历史}
-在过去的一个多世纪的时间里，受到全球经济形势和主流经济思潮变化的影响，政府职能在不断地发生变化，政府支出和政府规模也随之而发生了几次重大的转变。在第一次世界大战之前，政府承担的社会职能有限，许多社会保障功能由教会和社区承担，政府支出的比例也相对较小\cite{Beito2002The}。20年代的经济大萧条开始，凯恩斯主义成为指导经济和财政政策真理，政府支出开始不断增加，以增加社会总消费和总投资。尽管一些人对凯恩斯思想的范例“罗斯福新政”的效用持有怀疑态度\cite{rothbard1972america}，但不可否认，在接下来的近半个世纪的时间内，几乎所有的国家都在走着凯恩斯设计的这条道路，政府支出开始不断增加。
-直到70年代的滞胀，以哈耶克为代表的奥地利学派和以弗里德曼为代表的新古典经济学派开始逐渐在经济学向左向右论战中占据主动。而几乎同时期在大选中获胜的里根和撒切尔，则是自由主义学派的代表性的政治人物。而之后的一段时期内，中国经历了改革开放，从计划经济逐渐走向市场经济时代；苏联解体，曾经的国有企业被私有化；两个最大的计划经济体的转变，意味着没有任何一个经济体能够避开全球化的浪潮。政府将更多的权力交给了市场，政府支出和政府规模在这一段时间都开始呈现下降趋势。\added[remark={（表4.5）}]{}
+在过去的一个多世纪的时间里，受到全球经济形势和主流经济思潮变化的影响，政府职能在不断地发生变化，政府支出和政府规模也随之而发生了几次重大的转变。在第一次世界大战之前，政府承担的社会职能有限，许多社会保障功能由教会和社区承担，政府支出的比例也相对较小 \cite{Beito2002The} 。20年代的经济大萧条开始，凯恩斯主义成为指导经济和财政政策真理，政府支出开始不断增加，以增加社会总消费和总投资。尽管一些人对凯恩斯思想的范例“罗斯福新政”的效用持有怀疑态度 \cite{rothbard1972america}，但不可否认，在接下来的近半个世纪的时间内，几乎所有的国家都在走着凯恩斯设计的这条道路，政府支出开始不断增加。
+直到70年代的滞胀，以哈耶克为代表的奥地利学派和以弗里德曼为代表的新古典经济学派开始逐渐在经济学向左向右论战中占据主动。而几乎同时期在大选中获胜的里根和撒切尔，则是自由主义学派的代表性的政治人物。而之后的一段时期内，中国经历了改革开放，从计划经济逐渐走向市场经济时代；苏联解体，曾经的国有企业被私有化；两个最大的计划经济体的转变，意味着没有任何一个经济体能够避开全球化的浪潮。政府将更多的权力交给了市场，政府支出和政府规模在这一段时间都开始呈现下降趋势。
+% \added[remark={（表4.5）}]{}
+\textcolor{red}{表4.5}
+
 
 直到2008年全球性的金融危机爆发，许多人开始呼吁政府更多地进入市场。一方面，全球性增大了金融危机的破坏力和传染力，许多人将此次危机归因于全球化进程，人们要求政府增大对金融机构的监管和对风险的抵抗能力；另一方面，当金融危机引发经济萧条，公司破产，失业率增加时，人们希望政府采取措施来恢复经济发展：包括减税以增加企业竞争力，也包括通过贸易保护措施来发展本土产业。此外，人们对政府职能提出了更新更高的要求，除了传统的做好市场经济的“守夜人”之外，人们也希望政府在社会保障如医疗、养老、教育等方面发挥更大的作用，促进社会平等和人权发展。
 \subsection{全球化和政府规模的两种假说}
-关于全球化和政府支出的关系，目前的研究存在两个相互矛盾的假说\cite{garrett2001globalization}。一个是效率假说，较高的政府支出，会降低其在全球化中的竞争力，因此随着全球化进程的推进，该经济体面临着经济的效率压力。此时政府会被迫采取更加开放的政策、降低税率、减少政府支出\cite{wangyu2014}。而除了效率的考虑之外，税基侵蚀也可能是政府规模减小的一个原因。全球化使得企业更加容易采取避税措施，在税基受到侵蚀的情况下，政府很难继续获得高税收收入\cite{tanzi2000globalization}。另一个补偿假说是说，随着全球化的加深，政府必须扩大支出来增加本地的竞争力，包括在教育上的投入以提高人力资本、增加公共品的供给以吸引资本流入\cite{rodrik1998more}。Rodrik还认为，对外贸易存在着更大的波动性，政府需要增大支出来应对潜在的风险，“对外依存度高的经济体，其政府支出扩张也较快” \cite{rodrik1998more}。但他忽略了对外贸易频繁，对外依存度高的经济体，往往会有更大的关税收入\cite{tanzi1973theory}。
+关于全球化和政府支出的关系，目前的研究存在两个相互矛盾的假说 \cite{garrett2001globalization} 。一个是效率假说，较高的政府支出，会降低其在全球化中的竞争力，因此随着全球化进程的推进，该经济体面临着经济的效率压力。此时政府会被迫采取更加开放的政策、降低税率、减少政府支出 \cite{wangyu2014} 。而除了效率的考虑之外，税基侵蚀也可能是政府规模减小的一个原因。全球化使得企业更加容易采取避税措施，在税基受到侵蚀的情况下，政府很难继续获得高税收收入 \cite{tanzi2000globalization} 。另一个补偿假说是说，随着全球化的加深，政府必须扩大支出来增加本地的竞争力，包括在教育上的投入以提高人力资本、增加公共品的供给以吸引资本流入 \cite{rodrik1998more} 。Rodrik还认为，对外贸易存在着更大的波动性，政府需要增大支出来应对潜在的风险，“对外依存度高的经济体，其政府支出扩张也较快”  \cite{rodrik1998more} 。但他忽略了对外贸易频繁，对外依存度高的经济体，往往会有更大的关税收入 \cite{tanzi1973theory}。
 \subsection{已有的实证检验}
 不同的财政政策可能基于不同的路径，也可能同时兼顾而有所侧重。\cite{kettl2000transformation} 认为无论是从人民的期待方面，还是在实际的功能上，美国政府已经在全球化的进程中发生了改变；\cite{garrett2001globalization}使用18个OECD国家1961到1993年的面板数据，发现政府支出减少是贸易总量增加和金融开放度增加的重要原因，但是全球市场的流动和政府对资本与劳动的课税并没有显著的关系。\cite{dreher2008impact} 使用60个样本国家的1971到2001年的面板数据，进行验证，并没有发现全球化对政府支出有显著的影响。\cite{bergh2010government}使用了1970-1995和1970到2005两个时间段的面板数据，得到政府规模和经济增长负相关的结论；但同时也发现了大政府往往会通过使用经济开放政策来减小政府规模对经济增长的影响。\cite{kaufman2001globalization}通过使用拉丁美洲1973-1997年的面板数据，发现贸易总量和对资本的开放程度相关，而对政府在社会保障方面的支出有负向影响。\cite{maojie2015}利用1850—2009年的长时段跨国数据得到结论，政府提供社会安全网的职能越突出，经济开放对政府规模的正向影响越显著；反之，负向影响越显著。
 
@@ -55,11 +63,12 @@ $govsize$为政府规模，采用同年的地方政府预算支出与地区生�
 同时引入控制变量人均GDP($gdppc$)的对数、人口数量($pop$)的对数，与省份固定效应$prov_i$和城市固定效用$c_i$。
 
 \subsection{描述性统计}
-本文主要变量的描述性统计如表1：
+本文主要变量的描述性统计如表\ref{tb:des}：
     % 描述性统计表1
     \begin{table}
         \begin{center}
             \caption{描述性统计}
+            \label{tb:des}
             \begin{threeparttable}
             \begin{tabular}{lccccc} \hline \hline
                  & (1) & (2) & (3) & (4) & (5) \\
@@ -96,13 +105,13 @@ $govsize$为政府规模，采用同年的地方政府预算支出与地区生�
     \end{equation}
 
 
-    估计结果见表2：
+    估计结果见表\ref{tb:estcross}：
 
     % 截面估计表2
     \newgeometry{left=1cm}
     \begin{table}
         \begin{center}
-            \caption{截面回归结果}
+            \caption{截面回归结果} \label{tb:estcross}
                 \begin{tabular}{lcccccccc} \hline \hline
 
                     % \small
@@ -151,12 +160,12 @@ $govsize$为政府规模，采用同年的地方政府预算支出与地区生�
         govsize_{it} = \alpha + \beta_{1} \cdot open_{it} + \beta_{2} \cdot ln(gdppc_{it}) + \beta_{3} \cdot \ln(pop_{it}) + prov_{it} +c_{i} +d_{t} + \mu_{it}
     \end{equation}
     
-    表3为估计结果。
+    为估计结果如表\ref{tb:panel}。
     
     % 面板估计
     \begin{table}
         \begin{center}
-            \caption{普通面板估计结果}
+            \caption{普通面板估计结果} \label{tb:panel}
             \begin{tabular}{lcc} \hline \hline
                  & (1) & (2) \\
                 VARIABLES & pool P\_clus & FE P\_clus \\ \hline
@@ -190,7 +199,7 @@ $govsize$为政府规模，采用同年的地方政府预算支出与地区生�
     % 协整估计
     \begin{table}
         \begin{center}
-        \caption{协整估计}
+        \caption{协整估计} \label{tb:coint}
             \caption{协整估计结果}
             \begin{tabular}{lccccc} \hline \hline
              & (1) & (2) & (3) & (4) & (5) \\
@@ -231,6 +240,10 @@ $govsize$为政府规模，采用同年的地方政府预算支出与地区生�
 截面之间正向影响，长期之间的动态均衡影响是不显著的。
 
 \renewcommand\refname{参考文献}
-\bibliographystyle{apacite}%
+\bibliographystyle{apacite}%	
 \bibliography{bib1}
+
+
+\appendix
+\section{附表}
 \end{document}

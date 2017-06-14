@@ -1,0 +1,27 @@
+\section{代码}
+\textcolor{red}{请二位模仿我下面写的这样，补充上各自负责的那一部分的代码，注意写清楚subsection，做好命名。如果自己一个人的代码太多，放在一起太混乱，可以写多个subsection，by王喆\& RQJ}
+
+\textcolor{red}{正文部分如果需要展示R的输出，也可以用下面的这个lstlisting环境，可能会比table环境更适合一些，by王喆\& RQJ}
+\subsection{xxxxxxx}
+\begin{lstlisting}[language=R,frame=single]
+rm(list=ls())
+
+library(readxl)
+library(TSA)
+library(forecast)
+
+data <- read_excel("API.xlsx", sheet = "R", col_types = c("skip", "numeric", "numeric"))
+
+ast = data[1] # ast represents asset
+ast = ts(ast, frequency = 12,start = c(1995,1)) # total net assets
+
+GR_ast = diff(log(ast)) # growth ratio of total net asset
+GR_ast = ts(GR_ast * 100, frequency = 12,start = c(1995,2), names = 'GR_ast')
+
+par(mfrow = c(2,1))
+plot(ast)
+plot(GR_ast)
+
+adf.test(ast)
+adf.test(GR_ast)
+\end{lstlisting}

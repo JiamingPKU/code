@@ -1,0 +1,12 @@
+# Fdb version 3
+["xdvipdfmx"] 0 "coin.xdv" "coin.pdf" "coin" 0
+  "coin.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "coin.pdf"
+["xelatex"] 1497435110 "coin.tex" "coin.xdv" "coin" 1497435164
+  "coin.aux" 1497434685 1778 541bb0199f1516c06d6904476b35b5ab ""
+  "coin.tex" 1497435060 8423 2c6cb355a154afc7ab0ddf83dd5af547 ""
+  "d:/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1494039361 3746720 cc908207f863d9f41e6923def597ba48 ""
+  (generated)
+  "coin.log"
+  "coin.xdv"

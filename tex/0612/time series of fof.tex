@@ -1,0 +1,102 @@
+\documentclass[10.5pt,onecolumn,a4paper]{article}%pre,aps,
+\usepackage{ctex}
+\usepackage{setspace,dcolumn}
+\usepackage{graphicx}
+\usepackage{float,psfrag,epsfig}
+\usepackage{hyperref}
+%\usepackage[font=small,format=plain,labelfont=bf,textfont=it,justification=raggedright,singlelinecheck=false]{caption}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{longtable,tabularx,multirow}
+\hypersetup{colorlinks=true}
+\usepackage{geometry}
+\geometry{top=2.54cm,bottom=2.54cm,left=3cm,right=3cm}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{listings,xcolor}
+\lstset{frame=shadowbox,rulesepcolor=\color{red!20!green!20!blue!20}, %边框阴影
+        numbers=left, %设置行号位置
+        numberstyle=\tiny, %设置行号大小
+        basicstyle=\tiny, %代码字体大小设定
+        keywordstyle=\color{blue}, %设置关键字颜色
+        commentstyle=\color[cmyk]{1,0,1,0}, %设置注释颜色
+        %frame=single, %设置边框格式
+        escapeinside=``, %逃逸字符(1左面的键),用于显示中文
+        breaklines, %自动折行
+        extendedchars=false, %解决代码跨页时,章节标题,页眉等汉字不显示的问题
+        xleftmargin=2em,xrightmargin=2em, aboveskip=1em, %设置边距
+        tabsize=4, %设置tab空格数
+        showspaces=false %不显示空格
+       }
+
+\title{美国FOF市场总资产的时间序列分析}
+\author{祁周, 王喆, 任庆杰}
+
+\begin{document}
+
+\begin{titlepage}	
+	\begin{center}	
+		\includegraphics[width=0.2\textwidth]{./pkulogo}\\[1cm]    
+		
+		\textsc{\LARGE Peking University}\\[1.5cm]
+		
+		\textsc{\Large }\\[2cm]
+		
+		
+		% Title
+
+		{ \huge \bfseries FOF基金时间序列分析}\\[3cm]
+
+		
+		% Author and supervisor
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{\Large 作者:}\\
+				\Large 祁周\\
+				\Large 王喆\\
+				\Large 任庆杰
+			\end{flushleft}
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{\Large 指导老师:} \\
+		\Large 涂云东
+			\end{flushright}
+		\end{minipage}
+		
+		\vfill
+		
+		% Bottom of the page
+		{\large \today}
+		
+	\end{center}
+	
+\end{titlepage}
+
+
+
+
+
+
+\include{abstract}
+\clearpage
+
+\include{intr}
+
+
+\include{ast}
+
+\include{coin}
+
+\include{conclusion}
+
+
+\clearpage
+
+
+
+\appendix
+\include{encl_data}
+\include{encl_code}
+
+\end{document}

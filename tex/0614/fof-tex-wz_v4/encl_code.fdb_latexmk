@@ -1,0 +1,12 @@
+# Fdb version 3
+["xdvipdfmx"] 0 "encl_code.xdv" "encl_code.pdf" "encl_code" 0
+  "encl_code.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "encl_code.pdf"
+["xelatex"] 1497497630 "encl_code.tex" "encl_code.xdv" "encl_code" 1497497631
+  "d:/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1494039361 3746720 cc908207f863d9f41e6923def597ba48 ""
+  "encl_code.aux" 1497438773 1297 d7c7861e0d46ca72d1915c1a5df9e40f ""
+  "encl_code.tex" 1497436827 5554 f8f4d58bed8ba612ce5434ea29d04925 ""
+  (generated)
+  "encl_code.xdv"
+  "encl_code.log"

@@ -1,14 +1,6 @@
-*-------------------------------------------------------
-* project: 财政学研究方法，学期论文
-* dofile name: pf01-3.do
-* Jun 4th, 2017, Version 01-3.
-* Ren Qingjie, Peking University, renqingjie@pku.edu.cn
-*-------------------------------------------------------
-
-*-------------------------------------------------------
-* Program Setup
-*-------------------------------------------------------
-
+\section{代码}
+\subsection{清理数据}
+\begin{lstlisting}[frame=single]
 version 14              // Set Version number for backward compatibility
 set more off            // Disable partitioned output
 clear all               // Start with a clean slate
@@ -26,16 +18,6 @@ global D = subinstr("`D'"," ","",.)
 cap noi mkdir "$D"
 global today = "${output}\${D}"
 cd $today
-
-/*
-macro drop _all         // clear all macros
-capture log close       // Close existing log files
-log using logfile.txt, replace       // Open log file
-* -------------------------------------------------------
-*/
-
-
-
 
 ********** 清理数据**********
 
@@ -55,9 +37,6 @@ duplicates drop city1, force
 rename city city_shortname
 rename city1 city
 save newcitycode.dta, replace
-
-
-
 
 *** 数据编码方式修改
 clear
@@ -206,12 +185,12 @@ restore
 keep if level == 2
 save city.dta, replace
 
-* svvarlbl test.txt, replace  //生成变量名和标签
+svvarlbl city_var_lb.txt, replace  //生成变量名和标签
+\end{lstlisting}
 
-
-
-
-
+\clearpage
+\subsection{模型建立与检验}
+\begin{lstlisting}[frame=single]
 ********** 模型建立和模型识别 **********
 
 ****** 生成相关变量
@@ -412,10 +391,4 @@ outreg2 using est, tex append ctitle(CMG) drop(_*)
 xtserial r_mg
 xtserial r_cmg
 xtserial r_cmg2
-
-/*
-* -------------------------------------------------------
-// Close the log, end the file
-*/
-log close
-exit
+\end{lstlisting}

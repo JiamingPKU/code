@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: pf01_v5.aux
+The style file: apacite.bst
+A level-1 auxiliary file: encl_code.aux
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: bib1.bib
+Repeated entry---line 251 of file bib1.bib
+ : @article{garrett2001globalization
+ :                                  ,
+I'm skipping whatever remains of this entry
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+You've used 18 entries,
+            6951 wiz_defined-function locations,
+            1385 strings with 13403 characters,
+and the built_in function-call counts, 33380 in all, are:
+= -- 4064
+> -- 258
+< -- 1672
++ -- 1638
+- -- 62
+* -- 2182
+:= -- 6449
+add.period$ -- 72
+call.type$ -- 18
+change.case$ -- 306
+chr.to.int$ -- 0
+cite$ -- 36
+duplicate$ -- 819
+empty$ -- 1316
+format.name$ -- 419
+if$ -- 6261
+int.to.chr$ -- 0
+int.to.str$ -- 54
+missing$ -- 0
+newline$ -- 439
+num.names$ -- 144
+pop$ -- 584
+preamble$ -- 1
+purify$ -- 72
+quote$ -- 0
+skip$ -- 2067
+stack$ -- 0
+substring$ -- 1780
+swap$ -- 488
+text.length$ -- 55
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 1440
+warning$ -- 0
+while$ -- 148
+width$ -- 0
+write$ -- 535
+(There was 1 error message)

@@ -1,0 +1,4 @@
+PWD F:/git/tex/0614/fof-tex-wz_v4
+INPUT d:/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt
+INPUT ./encl_code.tex
+OUTPUT encl_code.log

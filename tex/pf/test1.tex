@@ -1,0 +1,59 @@
+% @Author: Ren Qingjie
+% @Date:   2017-05-31 19:22:11
+% @Last Modified by:   Ren Qingjie
+% @Last Modified time: 2017-06-15 10:11:20
+
+\documentclass[10pt]{article}
+    \usepackage{apacite} %apa格式引用
+    \usepackage[section]{placeins} %防止图片浮动过Section
+    \usepackage[UTF8]{ctex} %中文
+    \usepackage{threeparttable} %多功能表格
+    \usepackage{geometry} %边框
+    \usepackage{appendix} %附录
+    \usepackage{listings,xcolor}
+    \usepackage{multicol}
+    \usepackage{multirow}
+    \usepackage{apacite} %apa格式引用
+    \usepackage{framed} %插入代码和其它结果
+    \lstset{frame=shadowbox,rulesepcolor=\color{red!20!green!20!blue!20}, %边框阴影
+            numbers=left, %设置行号位置
+            numberstyle=\tiny, %设置行号大小
+            basicstyle=\tiny, %代码字体大小设定
+            keywordstyle=\color{blue}, %设置关键字颜色
+            commentstyle=\color[cmyk]{1,0,1,0}, %设置注释颜色
+            %frame=single, %设置边框格式
+            escapeinside=``, %逃逸字符(1左面的键),用于显示中文
+            breaklines, %自动折行
+            extendedchars=false, %解决代码跨页时,章节标题,页眉等汉字不显示的问题
+            xleftmargin=2em,xrightmargin=2em, aboveskip=1em, %设置边距
+            tabsize=4, %设置tab空格数
+            showspaces=false %不显示空格
+           }
+    % \def\verbatim{\scriptsize\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+    \geometry{top=2.54cm,bottom=2.54cm,left=3cm,right=3cm}
+    \author{任庆杰  140001500  renqingjie@pku.edu.cn}
+    \title{经济全球化与地方政府规模\\
+    ——基于中国地方经济数据的实证检验}
+
+\begin{document}
+\maketitle{}
+\begin{framed}
+    \begin{verbatim}
+Average correlation coefficients & Pesaran (2004) CD test
+
+Variables series tested: govsize
+                           Group variable: pref
+                         Number of groups: 318
+                Average # of observations: 7.99
+                                 Panel is: unbalanced
+
+---------------------------------------------------------
+Variable |    CD-test  p-value     corr  abs(corr)
+-------------+-------------------------------------------
+ govsize |     460.50    0.000    0.727    0.758
+---------------------------------------------------------
+Notes: Under the null hypothesis of cross-section 
+    independence CD ~ N(0,1)
+\end{verbatim}
+\end{framed}
+\end{document}
